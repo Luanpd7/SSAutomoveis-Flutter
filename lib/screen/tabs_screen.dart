@@ -13,15 +13,20 @@ class TabsScreen extends StatefulWidget{
 }
 
 class _TabsScreeenState extends State<TabsScreen>{
-  int paginaAtual = 0;
+  int currentPage = 0;  //variavel para indicar o indice da página atual
 
   late PageController pg;
 
   void initState(){
     super.initState();
-    pg = PageController(initialPage: paginaAtual);
+    pg = PageController(initialPage: currentPage);
   }
 
+  setCurrentPage(int page){
+    setState(() {
+      currentPage = page;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +37,23 @@ class _TabsScreeenState extends State<TabsScreen>{
           Menu(),
           settings(),
         ],
+        onPageChanged: setCurrentPage,
       ),
        bottomNavigationBar: BottomNavigationBar(
 
                 onTap: (pagina) {pg.animateToPage(pagina, duration: Duration(microseconds: 400), curve: Curves.ease,);
                 },
-                backgroundColor: Theme.of(context).primaryColor,
-                selectedItemColor: Theme.of(context).hintColor,
-                unselectedItemColor: Theme.of(context).canvasColor,
-                currentIndex: paginaAtual,
+                backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+                unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+                currentIndex: currentPage,
         items: const [
              BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Menu',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_sharp),
             label: 'Configurações',
           ),
         ],
