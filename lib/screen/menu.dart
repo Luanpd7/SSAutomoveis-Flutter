@@ -1,36 +1,60 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
 import '../components/itemMenu.dart';
 import '../components/triangleClipper.dart';
+import '../routes/appRoutes.dart';
 
-
-
-
-class Menu extends StatelessWidget{
+class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-     body: Center(
-       child: Column(
-       
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-             Widget050(),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
+          Widget050(),
+          Expanded(
+            child: GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(65),
+              crossAxisSpacing: 30,
+              mainAxisSpacing: 15,
               children: [
-                ItemMenu(),
-                SizedBox(width: 10),
-                ItemMenu(),
+                ItemMenu(
+                  label: 'Clientes',
+                  icon: const Icon(
+                    Icons.people,
+                    size: 48,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoute.RegisterCliente);
+                  },
+                ),
+                ItemMenu(
+                    label: 'Gerentes',
+                    icon: const Icon(Icons.person_sharp, size: 48),
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoute.RegisterCliente);
+                    }),
+                ItemMenu(
+                    label: 'Gerentes',
+                    icon: const Icon(Icons.people, size: 48),
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoute.RegisterCliente);
+                    }),
+                ItemMenu(
+                    label: 'Veiculos',
+                    icon: const Icon(Icons.time_to_leave, size: 48),
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoute.RegisterCliente);
+                    })
               ],
-             )
+            ),
+          ),
         ],
-       ),
-     )
-    
-     
+      ),
     );
   }
-
 }

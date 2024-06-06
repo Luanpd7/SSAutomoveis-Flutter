@@ -35,7 +35,7 @@ class _TabsScreeenState extends State<TabsScreen>{
         controller: pg,
         children: [
           Menu(),
-          settings(),
+          Settings(),
         ],
         onPageChanged: setCurrentPage,
       ),

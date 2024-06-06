@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Widget050 extends StatelessWidget{
@@ -9,14 +11,9 @@ class Widget050 extends StatelessWidget{
       child: Container(
         width: double.infinity,
         height: 300,
-        decoration: const BoxDecoration(
             color:  Colors.grey,
-          border: Border(
-          bottom: (BorderSide(width: 2.0, color: Colors.black))
-
-        ),
+          
         
-        )
       ),
      );
   }
