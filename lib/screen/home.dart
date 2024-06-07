@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import '../components/itemMenu.dart';
-import '../components/triangleClipper.dart';
+import '../components/item_menu.dart';
+import '../components/triangle_clipper.dart';
 import '../routes/appRoutes.dart';
 
-class Menu extends StatelessWidget {
+/// Essa classe será a tela da homePage
+
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class Menu extends StatelessWidget {
             child: GridView.count(
               shrinkWrap: true,
               crossAxisCount: 2,
-              padding: EdgeInsets.all(65),
+              padding: const EdgeInsets.all(65),
               crossAxisSpacing: 30,
               mainAxisSpacing: 15,
               children: [

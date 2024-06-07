@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-import 'menu.dart';
+import 'home.dart';
 import 'settings.dart';
 
+///Essa classe servirá para ser meu bottomNavigationBar
+///utilizo a classe tabs_screen e home para ser
+///minha classe para navegar entre elas.
 
-
-class TabsScreen extends StatefulWidget{
+class TabsScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _TabsScreeenState();
-
 }
 
-class _TabsScreeenState extends State<TabsScreen>{
-  int currentPage = 0;  //variavel para indicar o indice da página atual
+class _TabsScreeenState extends State<TabsScreen> {
+  int currentPage = 0; //variavel para indicar o indice da página atual
 
   late PageController pg;
 
-  void initState(){
+  void initState() {
     super.initState();
     pg = PageController(initialPage: currentPage);
   }
 
-  setCurrentPage(int page){
+  setCurrentPage(int page) {
     setState(() {
       currentPage = page;
     });
@@ -30,25 +29,32 @@ class _TabsScreeenState extends State<TabsScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: PageView(
         controller: pg,
         children: [
-          Menu(),
+          Home(),
           Settings(),
         ],
         onPageChanged: setCurrentPage,
       ),
-       bottomNavigationBar: BottomNavigationBar(
-
-                onTap: (pagina) {pg.animateToPage(pagina, duration: Duration(microseconds: 400), curve: Curves.ease,);
-                },
-                backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-                selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-                unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-                currentIndex: currentPage,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (pagina) {
+          pg.animateToPage(
+            pagina,
+            duration: Duration(microseconds: 400),
+            curve: Curves.ease,
+          );
+        },
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        selectedItemColor:
+            Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        unselectedItemColor:
+            Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+        currentIndex: currentPage,
         items: const [
-             BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: 'Menu',
           ),
@@ -59,7 +65,5 @@ class _TabsScreeenState extends State<TabsScreen>{
         ],
       ),
     );
-    
   }
-
 }
