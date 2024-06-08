@@ -5,7 +5,7 @@ import '../routes/appRoutes.dart';
 
 /// Essa classe será a tela da homePage
 
-class Home extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

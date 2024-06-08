@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'settings.dart';
+import 'home_screen.dart';
+import 'settings_screen.dart';
 
 ///Essa classe servirá para ser meu bottomNavigationBar
 ///utilizo a classe tabs_screen e home para ser
@@ -33,8 +33,8 @@ class _TabsScreeenState extends State<TabsScreen> {
       body: PageView(
         controller: pg,
         children: [
-          Home(),
-          Settings(),
+          HomeScreen(),
+          SettingsScreen(),
         ],
         onPageChanged: setCurrentPage,
       ),

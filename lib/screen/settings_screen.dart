@@ -6,7 +6,7 @@ import '../components/item_settings.dart';
 ///que servirá para ser cada item apresentado.
 
 
-class Settings extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
