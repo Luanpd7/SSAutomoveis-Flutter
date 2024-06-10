@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../models/client.dart';
+
 class FormText extends StatelessWidget {
   final String? label;
+  final TextEditingController controller;
 
-  FormText({required this.label});
+  FormText({required this.label, required this.controller});
+
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
+        controller: controller,
+        
         decoration: InputDecoration(
+          
           label: Text(
             label!,
             style: Theme.of(context).textTheme.bodyLarge,
@@ -22,6 +29,8 @@ class FormText extends StatelessWidget {
               borderRadius: BorderRadius.circular(8)),
         ),
       ),
+      
     );
+    
   }
 }

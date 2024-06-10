@@ -4,16 +4,15 @@ import '../routes/appRoutes.dart';
 
 class FormButton extends StatelessWidget {
   final String? labelButton;
+  final onPressed;
 
-  FormButton({required this.labelButton});
+  FormButton({required this.labelButton, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, AppRoute.addClient);
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,

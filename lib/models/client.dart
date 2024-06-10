@@ -1,19 +1,16 @@
 class Client {
-  final int cnpj;
-  final String nome;
-  final int telefone;
+  final String cnpj;
+  final String razaoSocial;
+  final String telefone;
+  final String estado;
   final String cidade;
-  final String gerente;
-  final bool situacao;
-  final DateTime dataRegistro;
+  
 
   Client({
     required this.cnpj,
-    required this.nome,
+    required this.razaoSocial,
     required this.telefone,
-    required this.cidade,
-    required this.gerente,
-    required this.situacao,
-    required this.dataRegistro,
+    required this.estado,
+    required this.cidade
   });
 }

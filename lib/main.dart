@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'components/forms_add_client.dart';
+import 'provider/form_add_provider.dart';
+import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/tabs_screen.dart';
+import 'services/api_brasil.dart';
 
 /// Essa classe principal onde vai ser o começo de toda a aplicação onde será
 /// tambem armazenado as configuraçoes das cores e fonte das telas.
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FormAddProvider()),
+        ChangeNotifierProvider(create: (_) => FormsRegisterProvider()),
+        ChangeNotifierProvider(create: (_) => ApiBrasil()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
