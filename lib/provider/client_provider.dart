@@ -13,8 +13,8 @@ class ClientProvider with ChangeNotifier{
      notifyListeners();
   }
 
-  void select(Client client){
-    clientRepository.load();
+  Future<void> select() async {
+   list = await clientRepository.load();
     notifyListeners();
   }
 }

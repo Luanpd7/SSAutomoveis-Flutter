@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'components/forms_add_client.dart';
+import 'provider/client_provider.dart';
 import 'provider/form_add_provider.dart';
 import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
+import 'screen/home_screen.dart';
+import 'screen/query_client.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/tabs_screen.dart';
 import 'services/api_brasil.dart';
@@ -19,6 +22,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => FormAddProvider()),
         ChangeNotifierProvider(create: (_) => FormsRegisterProvider()),
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
+        ChangeNotifierProvider(create: (_) => ClientProvider())
+
       ],
       child: MyApp(),
     ),
@@ -77,11 +82,12 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoute.HOME: (ctx) {
           return Builder(builder: (context) {
-            return TabsScreen(); //local  trocar tela para desenvolvimento
+            return QueryClient(); //local  trocar tela para desenvolvimento
           });
         },
-        AppRoute.RegisterCliente: (context) => RegisterClienteScreen(),
+        AppRoute.registerCliente: (context) => RegisterClienteScreen(),
         AppRoute.addClient: (context) => AddClientScreen(),
+        AppRoute.queryClient: (context) => QueryClient(),
       },
     );
   }
