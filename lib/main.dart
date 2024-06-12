@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoute.HOME: (ctx) {
           return Builder(builder: (context) {
-            return QueryClient(); //local  trocar tela para desenvolvimento
+            return HomeScreen(); //local  trocar tela para desenvolvimento
           });
         },
         AppRoute.registerCliente: (context) => RegisterClienteScreen(),
