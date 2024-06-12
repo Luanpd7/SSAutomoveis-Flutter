@@ -30,7 +30,8 @@ class _QueryClientState extends State<QueryClient> {
               final client = clientProvider.list[index];
               return ListTile(
                 title: Text(client.razaoSocial),
-                subtitle: Text('Ola'),
+                subtitle: Text(client.id.toString()),
+                
               );
             },
           );

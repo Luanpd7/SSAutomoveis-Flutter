@@ -20,6 +20,7 @@ class ApiBrasil with ChangeNotifier {
      
 
       return Client(
+          
           cnpj: infoClients!['cnpj'],
           razaoSocial: infoClients['razao_social'],
           telefone: infoClients['ddd_telefone_1'],

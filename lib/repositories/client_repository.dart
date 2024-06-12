@@ -14,6 +14,8 @@ class ClientRepository {
 
     print('Inserido no banco = ${map[TableClient.cnpj]}');
     print('Inserido no banco = ${map[TableClient.razaoSocial]}');
+    print('Inserido no banco = ${map[TableClient.id]}');
+
   }
 
   Future<List<Client>> load() async {

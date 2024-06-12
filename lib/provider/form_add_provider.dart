@@ -25,7 +25,7 @@ class FormAddProvider with ChangeNotifier {
         telefoneController.text = clientData.telefone;
         estadoController.text = clientData.estado;
         cidadeController.text = clientData.cidade;
-       var client =  Client(cnpj: clientData.cnpj, razaoSocial: clientData.razaoSocial, 
+       var client =  Client(id:clientData.id,  cnpj: clientData.cnpj, razaoSocial: clientData.razaoSocial, 
         telefone: clientData.telefone, estado: clientData.estado, cidade: clientData.cidade);
         ClientRepository().insertClient(client);
       }

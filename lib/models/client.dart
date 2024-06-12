@@ -1,6 +1,7 @@
 import '../services/database.dart';
 
 class Client {
+  final int? id;
   final String cnpj;
   final String razaoSocial;
   final String telefone;
@@ -9,6 +10,7 @@ class Client {
   
 
   Client({
+    this.id,
     required this.cnpj,
     required this.razaoSocial,
     required this.telefone,
@@ -19,6 +21,7 @@ class Client {
 
   factory Client.fromMap(Map<String, dynamic> map) {
     return Client(
+      id: map[TableClient.id],
       cnpj: map[TableClient.cnpj],
       razaoSocial: map[TableClient.razaoSocial],
       telefone: map[TableClient.telefone],

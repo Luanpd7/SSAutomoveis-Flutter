@@ -37,7 +37,8 @@ Future<Database> getDatabase() async {
 class TableClient {
   static const String createTable = '''
    CREATE TABLE $tableName(
-   $cnpj TEXT PRIMARY KEY NOT NULL,
+   $id INTEGER PRIMARY KEY NOT NULL,
+   $cnpj TEXT NOT NULL,
    $razaoSocial TEXT NOT NULL,
    $telefone TEXT NOT NULL,
    $estado TEXT NOT NULL,
@@ -46,6 +47,7 @@ class TableClient {
    ''';
 
   static const String tableName = 'cliente';
+  static const String id = 'id';
   static const String cnpj = 'cnpj';
   static const String razaoSocial = 'razaoSocial';
   static const String telefone = 'telefone';
@@ -55,7 +57,8 @@ class TableClient {
   // Método para mapear os dados do Client para um Map
   static Map<String, dynamic> toMap(Client client) {
     final map = <String, dynamic>{};
-
+    
+    map[TableClient.id] = client.id;
     map[TableClient.cnpj] = client.cnpj;
     map[TableClient.razaoSocial] = client.razaoSocial;
     map[TableClient.telefone] = client.telefone;
