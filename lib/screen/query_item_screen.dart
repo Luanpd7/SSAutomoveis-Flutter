@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../components/query_item.dart';
+import '../components/query_item_icone.dart';
 import '../models/client.dart';
 
 class QueryItemScreen extends StatelessWidget {
@@ -24,43 +27,34 @@ class QueryItemScreen extends StatelessWidget {
          child: Container(
           height: 650,
           width: 380,
-          color: Colors.white,
+        //  color: Colors.white,
           child: 
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             Row(
+             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                QueryItem(title: 'Razão Social', subtitle: 'teste'),
-                QueryItem(title: 'CNPJ', subtitle: 'teste'),
+                QueryItem(title: 'Razão Social', subtitle: 'Lince Tech Academy'),
+                  QueryItem(title: 'Cidade', subtitle: 'Blumenau'),
+                QueryItem(title: 'Telefone', subtitle: '47 999999999'),
+                  QueryItem(title: 'Data de Registro', subtitle: 'teste'),
+                     QueryItemIcone(icon: Icons.delete,),
                 
               ],
              ),
-             Row(
+             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                QueryItem(title: 'Cidade', subtitle: 'teste'),
-                QueryItem(title: 'Estado', subtitle: 'teste'),
+                 QueryItem(title: 'CNPJ', subtitle: '111.1221.212.-323'),
+                QueryItem(title: 'Estado', subtitle: 'SC'),
+                 QueryItem(title: 'Gerente', subtitle: 'Sandi'),
+                 Container(),
+                  QueryItemIcone(icon: Icons.edit),
                 
               ],
              ),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                QueryItem(title: 'Telefone', subtitle: 'teste'),
-                QueryItem(title: 'Gerente', subtitle: 'teste'),
-                
-              ],
-             ),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                QueryItem(title: 'Data de Registro', subtitle: 'teste'),
-               
-                
-              ],
-             )
+           
           ],
           ),
          ),

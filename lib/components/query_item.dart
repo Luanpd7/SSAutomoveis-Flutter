@@ -10,7 +10,8 @@ class QueryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      //crossAxisAlignment: CrossAxisAlignment.center,
       children: [
      
         Text(title, style: Theme.of(context).textTheme.headlineSmall,),
