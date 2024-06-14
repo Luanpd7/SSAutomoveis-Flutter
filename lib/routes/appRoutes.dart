@@ -1,4 +1,4 @@
-import '../screen/query_client.dart';
+import '../screen/query_clients_screen.dart';
 
 ///Classe que contém os nomes das rotas 
 ///que servirá para deixar as rotas de navegações
@@ -8,6 +8,7 @@ class AppRoute {
   static const HOME = '/';
   static const registerCliente = '/RegisterCliente';
   static const addClient = '/AddClientScreen';
-  static const queryClient = '/QueryClient';
+  static const queryClients = '/QueryClientsScreen';
+  static const queryItem = '/QueryItemScreen';
 }
 

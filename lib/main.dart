@@ -7,7 +7,8 @@ import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
 import 'screen/home_screen.dart';
-import 'screen/query_client.dart';
+import 'screen/query_clients_screen.dart';
+import 'screen/query_item_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/tabs_screen.dart';
 import 'services/api_brasil.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
               fontSize: 20,
               color: Colors.white,
               fontFamily: 'inter.ttf'),
+              
           titleSmall: TextStyle(
               //home page
               fontSize: 20,
@@ -71,7 +73,18 @@ class MyApp extends StatelessWidget {
               fontSize: 17,
               color: Color.fromRGBO(134, 128, 128, 1.0),
               fontFamily: 'inter.ttf'),
+           headlineSmall:   TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 19,
+              color: Color.fromRGBO(255, 87, 87, 1.0),
+              fontFamily: 'inter.ttf'),
+               headlineMedium:   TextStyle(
+         
+              fontSize: 19,
+              color: Colors.black,
+              fontFamily: 'inter.ttf'),
         ),
+        
 
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             //Tema do bottomNavigationBarTheme
@@ -82,12 +95,13 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoute.HOME: (ctx) {
           return Builder(builder: (context) {
-            return HomeScreen(); //local  trocar tela para desenvolvimento
+            return QueryClientsScreen(); //local  trocar tela para desenvolvimento
           });
         },
         AppRoute.registerCliente: (context) => RegisterClienteScreen(),
         AppRoute.addClient: (context) => AddClientScreen(),
-        AppRoute.queryClient: (context) => QueryClient(),
+        AppRoute.queryClients: (context) => QueryClientsScreen(),
+        AppRoute.queryItem: (context) => QueryItemScreen()
       },
     );
   }
