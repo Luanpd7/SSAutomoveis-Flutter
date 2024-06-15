@@ -10,5 +10,6 @@ class AppRoute {
   static const addClient = '/AddClientScreen';
   static const queryClients = '/QueryClientsScreen';
   static const queryItem = '/QueryClientScreen';
+  static const updateClient = '/UpdateClientScreen';
 }
 

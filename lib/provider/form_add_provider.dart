@@ -31,6 +31,10 @@ class FormAddProvider with ChangeNotifier {
        var client =  Client(id:clientData.id,  cnpj: clientData.cnpj, razaoSocial: clientData.razaoSocial, 
         telefone: clientData.telefone, estado: clientData.estado, cidade: clientData.cidade);
         ClientRepository().insertClient(client);
+        //fazer uma mensagem de sucesso ou falha e apos isso retornar a mesma tela de salvar clientes;
+        //Limpar todos os campos apos ser inserido
+
+        Navigator.pop(context);
       }
       
       print('Validação concluída');
@@ -49,4 +53,14 @@ class FormAddProvider with ChangeNotifier {
       print('Estado inválido: $estado');
     }
   }
+  void cleanText(){
+    cnpjController.clear();
+    razaoSocialController.clear();
+    telefoneController.clear();
+    estadoController.clear();
+    cidadeController.clear();
+
+  }
 }
+
+

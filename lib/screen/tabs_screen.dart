@@ -30,6 +30,7 @@ class _TabsScreeenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PageView(
         controller: pg,
         children: [

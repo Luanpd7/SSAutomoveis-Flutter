@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 ///icon - tipo de icone
 
 class QueryItemIcone extends StatelessWidget {
-   IconData icon;
+   final IconData icon;
+   final Function() onTap;
 
-   QueryItemIcone({required this.icon});
+  const QueryItemIcone({super.key, required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-     child:  Icon(icon, color: Color.fromRGBO(255, 87, 87, 1.0), size: 30,),
-     
-     
-     
-      
+    return GestureDetector(
+      onTap: onTap,
+      child: Center(
+        child: Icon(
+          icon,
+          color: const Color.fromRGBO(255, 87, 87, 1.0),
+          size: 30,
+
+        ),
+
+      ),
     );
   }
 }

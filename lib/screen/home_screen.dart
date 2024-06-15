@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).canvasColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

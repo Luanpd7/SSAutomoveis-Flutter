@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ss_automveis/models/client.dart';
 import 'provider/client_provider.dart';
 import 'provider/form_add_provider.dart';
 import 'provider/form_register_provider.dart';
@@ -9,6 +10,7 @@ import 'screen/query_clients_screen.dart';
 import 'screen/query_client_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/tabs_screen.dart';
+import 'screen/update_client_screen.dart';
 import 'services/api_brasil.dart';
 
 /// Essa classe principal onde vai ser o começo de toda a aplicação onde será
@@ -22,7 +24,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => FormsRegisterProvider()),
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
         ChangeNotifierProvider(create: (_) => ClientProvider())
-
       ],
       child: MyApp(),
     ),
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(255, 87, 87, 1.0), //cor do appBar
         canvasColor:
@@ -45,7 +47,6 @@ class MyApp extends StatelessWidget {
               fontSize: 20,
               color: Colors.white,
               fontFamily: 'inter.ttf'),
-              
           titleSmall: TextStyle(
               //home page
               fontSize: 20,
@@ -71,18 +72,14 @@ class MyApp extends StatelessWidget {
               fontSize: 17,
               color: Color.fromRGBO(134, 128, 128, 1.0),
               fontFamily: 'inter.ttf'),
-           headlineSmall:   TextStyle(
+          headlineSmall: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 19,
               color: Color.fromRGBO(255, 87, 87, 1.0),
               fontFamily: 'inter.ttf'),
-               headlineMedium:   TextStyle(
-         
-              fontSize: 19,
-              color: Colors.black,
-              fontFamily: 'inter.ttf'),
+          headlineMedium: TextStyle(
+              fontSize: 19, color: Colors.black, fontFamily: 'inter.ttf'),
         ),
-        
 
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             //Tema do bottomNavigationBarTheme
@@ -99,7 +96,14 @@ class MyApp extends StatelessWidget {
         AppRoute.registerCliente: (context) => RegisterClienteScreen(),
         AppRoute.addClient: (context) => AddClientScreen(),
         AppRoute.queryClients: (context) => QueryClientsScreen(),
-        AppRoute.queryItem: (context) => QueryClientScreen()
+        AppRoute.updateClient: (context) => UpdateClientScreen(),
+        AppRoute.queryItem: (context) {
+          final client = ModalRoute.of(context)!.settings.arguments as Client;
+          return QueryClientScreen(
+            client: client,
+          );
+        }
+
       },
     );
   }

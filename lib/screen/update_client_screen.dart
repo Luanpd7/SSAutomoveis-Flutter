@@ -1,17 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/forms_add_client.dart';
 
-///[AddClientScreen] é a tela responsável por adicionar clients
+class UpdateClientScreen extends StatelessWidget {
 
-class AddClientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Cadastrar Cliente',
+          'Editar Cliente',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,
@@ -27,7 +27,7 @@ class AddClientScreen extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(23),
             ),
-            child: FormsAddClient(isEditing: false,),
+            child: FormsAddClient(isEditing: true,),
           ),
         ),
       ),

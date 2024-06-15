@@ -10,39 +10,59 @@ import 'form_text.dart';
 ///e o banco da dados para inserir as informações no banco.
 
 class FormsAddClient extends StatelessWidget {
+  final bool isEditing;
+
+  FormsAddClient({ required this.isEditing});
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<FormAddProvider>(builder: (ctx, formProvider, _) {
-      return Center(
+    return Consumer<FormAddProvider>(
+      builder: (ctx, formProvider, _) {
+        return Center(
           child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            FormText(label: 'CNPJ', controller: formProvider.cnpjController),
-            FormText(
-                label: 'Razão Social',
-                controller: formProvider.razaoSocialController),
-            FormText(
-                label: 'Telefone', controller: formProvider.telefoneController),
-            FormText(
-                label: 'Estado', controller: formProvider.estadoController),
-            FormText(
-                label: 'Cidade', controller: formProvider.cidadeController),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FormButton(labelButton: 'Cancelar', onPressed: () {}),
-                FormButton(
-                    labelButton: 'Salvar',
-                    onPressed: () {
-                      formProvider.saveForm(context);
-                    })
+                FormText(
+                  label: 'CNPJ',
+                  controller: formProvider.cnpjController,
+                ),
+                FormText(
+                  label: 'Razão Social',
+                  controller: formProvider.razaoSocialController,
+
+
+                ),
+                FormText(
+                  label: 'Telefone',
+                  controller: formProvider.telefoneController,
+                ),
+                FormText(
+                  label: 'Estado',
+                  controller: formProvider.estadoController,
+                ),
+                FormText(
+                  label: 'Cidade',
+                  controller: formProvider.cidadeController,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FormButton(labelButton: 'Cancelar', onPressed: () {}),
+                    FormButton(
+                      labelButton: isEditing ? 'Editar' :'Salvar',
+                      onPressed: () {
+                        formProvider.saveForm(context);
+                      },
+                    )
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ));
-    });
+            ),
+          ),
+        );
+      },
+    );
   }
 }

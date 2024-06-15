@@ -34,11 +34,12 @@ class ClientRepository {
     return _listClient;
   }
 
- /* Future<void> delete(Client client) async{
-     final database = await getDatabase();
-     await database.delete(client)
-  }*/
-
-
-
+  Future<void> delete(int id) async {
+    final database = await getDatabase();
+    await database.delete(
+      TableClient.tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
