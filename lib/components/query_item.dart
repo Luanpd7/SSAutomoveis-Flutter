@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+///[QueryItem] gerencia o titulo e o subtitulo da tela
+///[QueryClientScreen] que por lá será passado o titulo
+///e a informção do objeto.
+
 class QueryItem extends StatelessWidget {
    String title;
    String subtitle;
@@ -10,8 +14,7 @@ class QueryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
-      //crossAxisAlignment: CrossAxisAlignment.center,
+    
       children: [
      
         Text(title, style: Theme.of(context).textTheme.headlineSmall,),

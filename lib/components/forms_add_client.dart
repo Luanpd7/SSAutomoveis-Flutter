@@ -5,6 +5,10 @@ import 'form_button.dart';
 import 'form_drop.dart';
 import 'form_text.dart';
 
+///[FormsAddClient] gerencia o formulário de adicionar cliente,
+///aqui estará incluido os controllers a API [ApiBrasil],
+///e o banco da dados para inserir as informações no banco.
+
 class FormsAddClient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,21 +25,14 @@ class FormsAddClient extends StatelessWidget {
                 controller: formProvider.razaoSocialController),
             FormText(
                 label: 'Telefone', controller: formProvider.telefoneController),
-
-             FormText(
+            FormText(
                 label: 'Estado', controller: formProvider.estadoController),
-
-             
-             FormText(
+            FormText(
                 label: 'Cidade', controller: formProvider.cidadeController),
-
-
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FormButton(labelButton: 'Cancelar', onPressed: () {}),
-                
                 FormButton(
                     labelButton: 'Salvar',
                     onPressed: () {

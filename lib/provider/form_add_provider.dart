@@ -4,6 +4,9 @@ import '../models/client.dart';
 import '../repositories/client_repository.dart';
 import '../services/api_brasil.dart';
 
+///[FormAddProvider] gerencia o formulário do client para 
+///todas as classes que chamar ela.
+
 class FormAddProvider with ChangeNotifier {
   final TextEditingController cnpjController = TextEditingController();
   final TextEditingController razaoSocialController = TextEditingController();

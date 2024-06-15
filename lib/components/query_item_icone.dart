@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///[QueryItemIcone] gerencia os Icons do aplicativo,
+///icon - tipo de icone
+
 class QueryItemIcone extends StatelessWidget {
    IconData icon;
 
@@ -8,7 +11,8 @@ class QueryItemIcone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-     child:  Icon(icon),
+     child:  Icon(icon, color: Color.fromRGBO(255, 87, 87, 1.0), size: 30,),
+     
      
      
       

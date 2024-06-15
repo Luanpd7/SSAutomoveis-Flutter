@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import '../components/query_items.dart';
 import '../provider/client_provider.dart';
 
+///[QueryClientsScreen] é a tela resposável pela consulta 
+///de todos os clientes
+
 class QueryClientsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

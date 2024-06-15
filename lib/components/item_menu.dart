@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///Essa classe é um componente utilizado pela home
 ///para ser os itens das opcões.
-///
+
 class ItemMenu extends StatelessWidget {
   final String label;
   final Icon icon;

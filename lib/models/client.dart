@@ -1,5 +1,6 @@
 import '../services/database.dart';
-
+///classe modelo client
+///
 class Client {
   final int? id;
   final String cnpj;

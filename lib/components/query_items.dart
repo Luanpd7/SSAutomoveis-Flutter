@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import '../models/client.dart';
 import '../routes/appRoutes.dart';
 
+/// [QueryItems] gerencia uma lista de objetos; 
+/// e exibe cada objeto em um container.
+/// Utiliza um [ListView.builder] para construir a lista de forma eficiente.
+/// Cada item da lista é um [ListTile] que, ao ser clicado, 
+/// navega para uma nova tela com mais detalhes do objeto [QueryClientScreen].
+
 class QueryItems extends StatelessWidget {
   List<Client> list;
 

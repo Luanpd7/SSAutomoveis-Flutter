@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/client.dart';
 import '../repositories/client_repository.dart';
 
+///[ClientProvider] gerencia as informações do client para 
+///todas as classes que chamar ela
+
 class ClientProvider with ChangeNotifier{
    
 

@@ -1,6 +1,10 @@
 import '../models/client.dart';
 import '../services/database.dart';
 
+///[ClientRepository] é responsável por gerenciar as operações CRUD 
+///(Create, Read, Update, Delete) no banco de dados para os objetos [Client].
+
+
 class ClientRepository {
   final List<Client> _listClient = [];
 
@@ -29,4 +33,12 @@ class ClientRepository {
 
     return _listClient;
   }
+
+ /* Future<void> delete(Client client) async{
+     final database = await getDatabase();
+     await database.delete(client)
+  }*/
+
+
+
 }

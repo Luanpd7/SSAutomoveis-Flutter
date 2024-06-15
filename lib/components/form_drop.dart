@@ -3,6 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../provider/form_add_provider.dart';
 
+///   [FormDrop] é utilizado para exibir uma lista de itens em um menu dropdown
+///   e permite que o usuário selecione um dos itens.
+/// - labelDrop é  rótulo que será exibido acima do campo de seleção.
+/// - items uma lista de strings representando os itens disponíveis para seleção
+/// - value é valor atualmente selecionado no campo de seleção.
+/// - onChanged é a função
+
 class FormDrop extends StatelessWidget {
   final String? labelDrop;
   final List<String> items;

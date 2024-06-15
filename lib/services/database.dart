@@ -2,6 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/client.dart';
 
+///Método para resetar o banco caso precise
 
 Future<void> resetDatabase() async {
   final path = join(
@@ -13,6 +14,7 @@ Future<void> resetDatabase() async {
 }
 
 
+//Método para iniciar o banco
 Future<Database> getDatabase() async {
   final path = join(
     await getDatabasesPath(),
@@ -34,6 +36,8 @@ Future<Database> getDatabase() async {
   );
 }
 
+
+//Classe para tabela 
 class TableClient {
   static const String createTable = '''
    CREATE TABLE $tableName(
@@ -53,11 +57,11 @@ class TableClient {
   static const String telefone = 'telefone';
   static const String estado = 'estado';
   static const String cidade = 'cidade';
-   
+
   // Método para mapear os dados do Client para um Map
   static Map<String, dynamic> toMap(Client client) {
     final map = <String, dynamic>{};
-    
+
     map[TableClient.id] = client.id;
     map[TableClient.cnpj] = client.cnpj;
     map[TableClient.razaoSocial] = client.razaoSocial;

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'components/forms_add_client.dart';
 import 'provider/client_provider.dart';
 import 'provider/form_add_provider.dart';
 import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
-import 'screen/home_screen.dart';
 import 'screen/query_clients_screen.dart';
-import 'screen/query_item_screen.dart';
+import 'screen/query_client_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/tabs_screen.dart';
 import 'services/api_brasil.dart';
@@ -95,13 +93,13 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoute.HOME: (ctx) {
           return Builder(builder: (context) {
-            return QueryClientsScreen(); //local  trocar tela para desenvolvimento
+            return TabsScreen(); //local  trocar tela para desenvolvimento
           });
         },
         AppRoute.registerCliente: (context) => RegisterClienteScreen(),
         AppRoute.addClient: (context) => AddClientScreen(),
         AppRoute.queryClients: (context) => QueryClientsScreen(),
-        AppRoute.queryItem: (context) => QueryItemScreen()
+        AppRoute.queryItem: (context) => QueryClientScreen()
       },
     );
   }
