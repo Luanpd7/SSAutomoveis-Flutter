@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/form_add_provider.dart';
 import '../provider/form_register_provider.dart';
 import '../routes/appRoutes.dart';
-import 'form_button.dart';
-import 'form_drop.dart';
-import 'form_radio.dart';
-import 'form_text.dart';
+import '../components/form_button.dart';
+import '../components/form_drop.dart';
+import '../components/form_text.dart';
 
 ///[FormsRegisterClient] Gerencia o formulário de consulta do usuário
 ///onde também ele poderá navegar para tela como filtrar [QueryClientsScreen]
@@ -62,7 +60,8 @@ class FormsRegisterClient extends StatelessWidget {
                     labelButton: 'Novo Cliente',
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.addClient);
-                    })
+                    }
+                    )
               ],
             )
           ],

@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     label: 'Gerentes',
                     icon: const Icon(Icons.person_sharp, size: 48),
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoute.registerCliente);
+                      Navigator.pushNamed(context, AppRoute.registerManager);
                     }),
                 ItemMenu(
                     label: 'Gerentes',

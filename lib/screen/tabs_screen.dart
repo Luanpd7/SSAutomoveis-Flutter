@@ -33,17 +33,17 @@ class _TabsScreeenState extends State<TabsScreen> {
       resizeToAvoidBottomInset: false,
       body: PageView(
         controller: pg,
+        onPageChanged: setCurrentPage,
         children: [
           HomeScreen(),
           SettingsScreen(),
         ],
-        onPageChanged: setCurrentPage,
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (pagina) {
           pg.animateToPage(
             pagina,
-            duration: Duration(microseconds: 400),
+            duration: const Duration(microseconds: 400),
             curve: Curves.ease,
           );
         },

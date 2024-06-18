@@ -12,7 +12,22 @@ class Widget050 extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 300,
-        color: Colors.grey,
+        //    color: Colors.grey,
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(241, 242, 233, 1.0),
+                Color.fromRGBO(255, 87, 87, 1.0)
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Image.asset('images/logo_ss_automoveis.png'),
+          ),
+        ),
       ),
     );
   }

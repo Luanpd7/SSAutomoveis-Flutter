@@ -19,17 +19,13 @@ class ApiBrasil with ChangeNotifier {
     if (response.statusCode == 200) {
       infoClients = json.decode(response.body);
       print('voltou 200');
-     
 
       return Client(
-          
           cnpj: infoClients!['cnpj'],
           razaoSocial: infoClients['razao_social'],
           telefone: infoClients['ddd_telefone_1'],
           estado: infoClients['uf'],
-          cidade: infoClients['municipio']
-          );
-          
+          cidade: infoClients['municipio']);
     } else {
       infoClients = null;
       print('nao voltou');

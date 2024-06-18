@@ -30,4 +30,15 @@ class Client {
       cidade: map[TableClient.cidade],
     );
   }
+
+   Map<String, Object?> toMap(){
+    return {
+      'id': id,
+      'cnpj': cnpj,
+      'razaoSocial': razaoSocial,
+      'telefone': telefone,
+      'estado': estado,
+      'cidade': cidade
+    };
+   }
 }

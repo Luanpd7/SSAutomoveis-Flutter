@@ -19,7 +19,7 @@ class ClientProvider with ChangeNotifier {
 
   void addClient(Client client) {
     clientRepository.insertClient(client);
-    select();
+     //select();
     notifyListeners();
   }
 
@@ -39,6 +39,9 @@ class ClientProvider with ChangeNotifier {
 
 
   Future<void> update(Client client) async {
-
+   clientRepository.updateClient(client);
+   print('atualizado');
+   select();
+  notifyListeners();
   }
 }

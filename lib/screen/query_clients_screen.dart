@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../components/query_items.dart';
 import '../provider/client_provider.dart';
 
-///[QueryClientsScreen] é a tela resposável pela consulta 
+///[QueryClientsScreen] é a tela resposável pela consulta
 ///de todos os clientes
 
 class QueryClientsScreen extends StatelessWidget {
@@ -20,8 +18,9 @@ class QueryClientsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<ClientProvider>(
         builder: (context, clientProvider, _) {
-            var list = clientProvider.list;
-         return QueryItems(list: list,);
+          return QueryItems(
+            list: clientProvider.list,
+          );
         },
       ),
     );

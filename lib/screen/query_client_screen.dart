@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-
 import '../components/query_item.dart';
 import '../components/query_item_icone.dart';
 import '../models/client.dart';
@@ -23,14 +19,14 @@ class QueryClientScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('teste' /*client.razaoSocial*/,
+        title: Text(client.razaoSocial,
             style: Theme.of(context).textTheme.titleMedium),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<ClientProvider>(
         builder: (context, clientState, _) {
-          var list = clientState.list;
+          // var client = clientState.list;
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -38,11 +34,11 @@ class QueryClientScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       QueryItem(
                         title: 'Razão Social',
-                        subtitle: client.razaoSocial ?? '',
+                        subtitle: client.razaoSocial,
                       ),
                       QueryItem(title: 'Cidade', subtitle: client.cidade),
                       QueryItem(title: 'Telefone', subtitle: client.telefone),
@@ -51,8 +47,8 @@ class QueryClientScreen extends StatelessWidget {
                         icon: Icons.delete,
                         onTap: () async {
                           await clientState.delete(
-                          client,
-                        );
+                            client,
+                          );
                           Navigator.pop(context);
                         },
                       ),
@@ -61,23 +57,20 @@ class QueryClientScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       QueryItem(title: 'CNPJ', subtitle: client.cnpj),
                       QueryItem(title: 'Estado', subtitle: client.estado),
-                      QueryItem(title: 'Gerente', subtitle: client.id.toString()
-                      ),
+                      QueryItem(
+                          title: 'Gerente', subtitle: client.id.toString()),
                       QueryItem(title: '', subtitle: ''),
                       QueryItemIcone(
                         icon: Icons.edit,
-                        onTap: () async {
-                          await clientState.update(client);
-                          Navigator.pushNamed(context, AppRoute.updateClient);
-                        }
-
-
+                        onTap: () => Navigator.of(context).pushNamed(
+                          AppRoute.updateClient,
+                          arguments: client,
+                        ),
                       ),
-
                     ],
                   ),
                 ),

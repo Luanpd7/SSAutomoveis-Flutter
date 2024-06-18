@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../components/forms_add_client.dart';
+import '../clients/forms_controller_client.dart';
 
 ///[AddClientScreen] é a tela responsável por adicionar clients
 
@@ -27,7 +26,9 @@ class AddClientScreen extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(23),
             ),
-            child: FormsAddClient(isEditing: false,),
+            child: FormsControllerClient(
+              isEditing: false,
+            ),
           ),
         ),
       ),

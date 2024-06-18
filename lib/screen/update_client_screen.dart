@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../components/forms_add_client.dart';
+import '../clients/forms_controller_client.dart';
+import '../models/client.dart';
 
 class UpdateClientScreen extends StatelessWidget {
-
+  UpdateClientScreen();
   @override
   Widget build(BuildContext context) {
+    var client = ModalRoute.of(context)!.settings.arguments as Client;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -27,7 +28,10 @@ class UpdateClientScreen extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(23),
             ),
-            child: FormsAddClient(isEditing: true,),
+            child: FormsControllerClient(
+              isEditing: true,
+              client: client,
+            ),
           ),
         ),
       ),

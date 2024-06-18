@@ -5,14 +5,14 @@ import '../clients/forms_register_client.dart';
 ///de registro do cliente, o usuário poderá
 ///tanto cadastrar um novo cliente e também filtrar.
 
-class RegisterClienteScreen extends StatelessWidget {
+class RegisterManagerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Clientes',
+          'Gerentes',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,

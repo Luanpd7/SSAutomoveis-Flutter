@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 ///[QueryItem] gerencia o titulo e o subtitulo da tela

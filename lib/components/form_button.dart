@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../routes/appRoutes.dart';
-
-///[FormButton] gerencia os botões do aplicativo, 
-///- labelButton é o que vai ficar visível no centro do botão 
+///[FormButton] gerencia os botões do aplicativo,
+///- labelButton é o que vai ficar visível no centro do botão
 ///- onPresses é a função do botão.
 
 class FormButton extends StatelessWidget {

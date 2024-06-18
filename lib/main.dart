@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ss_automveis/models/client.dart';
+import 'models/client.dart';
 import 'provider/client_provider.dart';
 import 'provider/form_add_provider.dart';
 import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
-import 'screen/query_clients_screen.dart';
 import 'screen/query_client_screen.dart';
+import 'screen/query_clients_screen.dart';
 import 'screen/register_client_screen.dart';
+import 'screen/register_manager_screen.dart';
 import 'screen/tabs_screen.dart';
 import 'screen/update_client_screen.dart';
 import 'services/api_brasil.dart';
@@ -21,6 +22,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FormAddProvider()),
+        //  ChangeNotifierProvider(create: (_) => FormUpdateProvider()),
         ChangeNotifierProvider(create: (_) => FormsRegisterProvider()),
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
         ChangeNotifierProvider(create: (_) => ClientProvider())
@@ -97,13 +99,13 @@ class MyApp extends StatelessWidget {
         AppRoute.addClient: (context) => AddClientScreen(),
         AppRoute.queryClients: (context) => QueryClientsScreen(),
         AppRoute.updateClient: (context) => UpdateClientScreen(),
-        AppRoute.queryItem: (context) {
+        AppRoute.registerManager: (context) => RegisterManagerScreen(),
+        AppRoute.queryClient: (context) {
           final client = ModalRoute.of(context)!.settings.arguments as Client;
           return QueryClientScreen(
             client: client,
           );
         }
-
       },
     );
   }

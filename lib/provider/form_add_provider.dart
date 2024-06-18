@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/client.dart';
 import '../repositories/client_repository.dart';
 import '../services/api_brasil.dart';
+import 'client_provider.dart';
 
 ///[FormAddProvider] gerencia o formulário do client para 
 ///todas as classes que chamar ela.
@@ -19,6 +20,7 @@ class FormAddProvider with ChangeNotifier {
   List<String> cidades = ['Blumenau', 'Gaspar', 'Indaial', 'Nova Russia'];
 
   Future<void> saveForm(BuildContext context) async {
+
     final api = Provider.of<ApiBrasil>(context, listen: false);
     try {
       final clientData = await api.validateCNPJ(cnpjController.text);
@@ -33,6 +35,9 @@ class FormAddProvider with ChangeNotifier {
         ClientRepository().insertClient(client);
         //fazer uma mensagem de sucesso ou falha e apos isso retornar a mesma tela de salvar clientes;
         //Limpar todos os campos apos ser inserido
+           final load = Provider.of<ClientProvider>(context, listen: false);
+           load.select();
+        cleanText();
 
         Navigator.pop(context);
       }
@@ -45,6 +50,8 @@ class FormAddProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+
   void setEstado(String? estado) {
     if (estados.contains(estado)) {
       selectedEstado = estado;
@@ -53,6 +60,7 @@ class FormAddProvider with ChangeNotifier {
       print('Estado inválido: $estado');
     }
   }
+
   void cleanText(){
     cnpjController.clear();
     razaoSocialController.clear();
