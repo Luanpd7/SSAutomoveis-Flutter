@@ -10,4 +10,6 @@ class AppRoute {
   static const queryClient = '/QueryClientScreen';
   static const updateClient = '/UpdateClientScreen';
   static const registerManager = '/RegisterManagerScreen';
+  static const queryManagers = '/QueryManagersScreen';
+   static const addManager = '/AddManagerScreen';
 }

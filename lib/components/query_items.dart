@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
 
 import '../models/client.dart';
+import '../models/manager.dart';
 import '../routes/appRoutes.dart';
+import 'build_list_tile.dart';
 
-/// [QueryItems] gerencia uma lista de objetos;
+/// [QueryItems] gerencia uma lista de objetos de forma boleana;
+/// que se for recebido como true sera fornecido uma lista de cliente
+/// se não de gerentes
 /// e exibe cada objeto em um container.
 /// Utiliza um [ListView.builder] para construir a lista de forma eficiente.
 /// Cada item da lista é um [ListTile] que, ao ser clicado,
-/// navega para uma nova tela com mais detalhes do objeto [QueryClientScreen].
+/// navega para uma nova tela com mais detalhes do objeto [QueryClientScreen]
+/// ou [QueryManagerScreen].
 
 class QueryItems extends StatelessWidget {
-  List<Client> list;
+  List<Object> list;
+  
+  bool isClient;
 
-  QueryItems({required this.list});
+  QueryItems({required this.list, required this.isClient});
 
-  @override
+  //oque pode ser passado por parametro?
+  //ao inves de passsar a lista, passar razão social e cnpj
+  //ou nome e cpf
+
+@override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
@@ -22,39 +33,29 @@ class QueryItems extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemCount: list.length,
         itemBuilder: (context, index) {
-          final client = list[index];
-
-          return Padding(
-            padding: const EdgeInsetsDirectional.only(
-                start: 10, end: 10, bottom: 15),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 10,
-                        spreadRadius: 1,
-                        offset: Offset.fromDirection(0, 5))
-                  ]),
-              width: double.infinity,
-              height: 100,
-              child: Center(
-                child: ListTile(
-                  title: Text(client.razaoSocial),
-                  subtitle: Text(client.cnpj),
-                  trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                  onTap: () => Navigator.of(context).pushNamed(
-                    AppRoute.queryClient,
-                    arguments: client,
-                  ),
-                ),
+          if (isClient) {
+            final client = list[index] as Client;
+            return buildListTile(
+              context: context,
+              title: client.razaoSocial,
+              subtitle: client.cnpj,
+              onTap: () => Navigator.of(context).pushNamed(
+                AppRoute.queryClient,
+                arguments: client,
               ),
-            ),
-          );
+            );
+          } else {
+            final manager = list[index] as Manager;
+            return buildListTile(
+              context: context,
+              title: manager.nome,
+              subtitle: manager.cpf,
+              onTap: () {}
+        //      Navigator.of(context).pushNamed( AppRoute.queryManager, arguments: manager,),
+            );
+          }
         },
       ),
     );
+  }  
   }
-}

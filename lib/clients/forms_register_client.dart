@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../components/form_radio.dart';
 import '../provider/form_register_provider.dart';
 import '../routes/appRoutes.dart';
 import '../components/form_button.dart';
@@ -47,7 +48,8 @@ class FormsRegisterClient extends StatelessWidget {
                 formRegisterProvider.setEstado(newValue);
               },
             ),
-            
+            FormRadio(),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

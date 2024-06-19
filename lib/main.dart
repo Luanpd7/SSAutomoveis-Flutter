@@ -6,8 +6,10 @@ import 'provider/form_add_provider.dart';
 import 'provider/form_register_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
+import 'screen/add_manager_screen.dart';
 import 'screen/query_client_screen.dart';
 import 'screen/query_clients_screen.dart';
+import 'screen/query_managers_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/register_manager_screen.dart';
 import 'screen/tabs_screen.dart';
@@ -96,6 +98,8 @@ class MyApp extends StatelessWidget {
           });
         },
         AppRoute.registerCliente: (context) => RegisterClienteScreen(),
+        AppRoute.queryManagers: (context) => QueryManagersScreen(),
+        AppRoute.addManager: (context) => AddManagerScreen(),
         AppRoute.addClient: (context) => AddClientScreen(),
         AppRoute.queryClients: (context) => QueryClientsScreen(),
         AppRoute.updateClient: (context) => UpdateClientScreen(),
