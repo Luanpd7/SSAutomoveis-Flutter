@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../c_manager/forms_register_manager.dart';
-import '../clients/forms_register_client.dart';
+import '../c_manager/forms_query_manager.dart';
+import '../clients/forms_query_client.dart';
 
 ///Essa classe será responsavel para ser a tela
 ///de registro do cliente, o usuário poderá
@@ -28,7 +28,7 @@ class RegisterManagerScreen extends StatelessWidget {
               width: 380,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(23)),
-              child: FormsRegisterManager(),
+              child: FormsQueryManager(),
             ),
           ),
         ),

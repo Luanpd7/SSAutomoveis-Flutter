@@ -1,10 +1,12 @@
+import '../services/database.dart';
+
 class Manager {
   final int? id;
   final String cpf;
   final String nome;
   final String telefone;
   final String estado;
-  final String Percentual;
+  final String percentual;
   
 
   Manager({
@@ -13,6 +15,31 @@ class Manager {
     required this.nome,
     required this.telefone,
     required this.estado,
-    required this.Percentual
+    required this.percentual
   });
+
+    factory Manager.fromMap(Map<String, dynamic> map) {
+    return Manager(
+      id: map[TableManager.id],
+      cpf: map[TableManager.cpf],
+      nome: map[TableManager.nome],
+      telefone: map[TableManager.telefone],
+      estado: map[TableManager.estado],
+      percentual: map[TableManager.percentual],
+    );
+  }
+
+
+  //possivelmente apagar
+
+   Map<String, Object?> toMap(){
+    return {
+      'id': id,
+      'cnpj': cpf,
+      'razaoSocial': nome,
+      'telefone': telefone,
+      'estado': estado,
+      'cidade': percentual
+    };
+   }
 }

@@ -5,10 +5,10 @@ import '../repositories/client_repository.dart';
 import '../services/api_brasil.dart';
 import 'client_provider.dart';
 
-///[FormAddProvider] gerencia o formulário do client para 
+///[FormAddProvider] gerencia o formulário do client para
 ///todas as classes que chamar ela.
 
-class FormAddProvider with ChangeNotifier {
+class FormAddClientProvider with ChangeNotifier {
   final TextEditingController cnpjController = TextEditingController();
   final TextEditingController razaoSocialController = TextEditingController();
   final TextEditingController telefoneController = TextEditingController();
@@ -20,7 +20,6 @@ class FormAddProvider with ChangeNotifier {
   List<String> cidades = ['Blumenau', 'Gaspar', 'Indaial', 'Nova Russia'];
 
   Future<void> saveForm(BuildContext context) async {
-
     final api = Provider.of<ApiBrasil>(context, listen: false);
     try {
       final clientData = await api.validateCNPJ(cnpjController.text);
@@ -30,27 +29,30 @@ class FormAddProvider with ChangeNotifier {
         telefoneController.text = clientData.telefone;
         estadoController.text = clientData.estado;
         cidadeController.text = clientData.cidade;
-       var client =  Client(id:clientData.id,  cnpj: clientData.cnpj, razaoSocial: clientData.razaoSocial, 
-        telefone: clientData.telefone, estado: clientData.estado, cidade: clientData.cidade);
+        var client = Client(
+            id: clientData.id,
+            cnpj: clientData.cnpj,
+            razaoSocial: clientData.razaoSocial,
+            telefone: clientData.telefone,
+            estado: clientData.estado,
+            cidade: clientData.cidade);
         ClientRepository().insertClient(client);
         //fazer uma mensagem de sucesso ou falha e apos isso retornar a mesma tela de salvar clientes;
         //Limpar todos os campos apos ser inserido
-           final load = Provider.of<ClientProvider>(context, listen: false);
-           load.select();
+        final load = Provider.of<ClientProvider>(context, listen: false);
+        load.select();
         cleanText();
 
         Navigator.pop(context);
       }
-      
+
       print('Validação concluída');
     } catch (error) {
       print('Erro durante a validação');
     }
-    
+
     notifyListeners();
   }
-
-
 
   void setEstado(String? estado) {
     if (estados.contains(estado)) {
@@ -61,14 +63,11 @@ class FormAddProvider with ChangeNotifier {
     }
   }
 
-  void cleanText(){
+  void cleanText() {
     cnpjController.clear();
     razaoSocialController.clear();
     telefoneController.clear();
     estadoController.clear();
     cidadeController.clear();
-
   }
 }
-
-

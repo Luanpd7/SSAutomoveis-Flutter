@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///[ItemSettings] é o filho da classe settings que 
+///[ItemSettings] é o filho da classe settings que
 ///contém os itens da [SettingsScreen].
 
 class ItemSettings extends StatelessWidget {
@@ -23,7 +23,7 @@ class ItemSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15),
-      child:  Container(
+      child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +37,7 @@ class ItemSettings extends StatelessWidget {
                   subtitle!,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-               const SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 if (label != null)
@@ -54,7 +54,7 @@ class ItemSettings extends StatelessWidget {
                     subtitle2!,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(

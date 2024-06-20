@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/client.dart';
+import '../models/manager.dart';
 
 ///Método para resetar o banco caso precise
 
@@ -13,7 +14,6 @@ Future<void> resetDatabase() async {
   await deleteDatabase(path);
 }
 
-
 //Método para iniciar o banco
 Future<Database> getDatabase() async {
   final path = join(
@@ -23,21 +23,25 @@ Future<Database> getDatabase() async {
 
   return openDatabase(
     path,
-    version: 2, // Aumente a versão do banco de dados
+    version: 2, // Versão do banco de dados
     onCreate: (db, version) {
       db.execute(TableClient.createTable);
+      db.execute(TableManager
+          .createTable); // Adicione aqui a criação da tabela de gerentes
     },
     onUpgrade: (db, oldVersion, newVersion) async {
       if (oldVersion < newVersion) {
         await db.execute('DROP TABLE IF EXISTS ${TableClient.tableName}');
+        await db.execute(
+            'DROP TABLE IF EXISTS ${TableManager.tableName}'); // Adicione aqui a exclusão da tabela de gerentes, se necessário
         db.execute(TableClient.createTable);
+        db.execute(TableManager.createTable);
       }
     },
   );
 }
 
-
-//Classe para tabela 
+//Classe para tabela
 class TableClient {
   static const String createTable = '''
    CREATE TABLE $tableName(
@@ -68,6 +72,41 @@ class TableClient {
     map[TableClient.telefone] = client.telefone;
     map[TableClient.estado] = client.estado;
     map[TableClient.cidade] = client.cidade;
+
+    return map;
+  }
+}
+
+class TableManager {
+  static const String createTable = '''
+   CREATE TABLE $tableName(
+   $id INTEGER PRIMARY KEY NOT NULL,
+   $cpf TEXT NOT NULL,
+   $nome TEXT NOT NULL,
+   $telefone TEXT NOT NULL,
+   $estado TEXT NOT NULL,
+   $percentual TEXT NOT NULL
+   );
+   ''';
+
+  static const String tableName = 'gerente';
+  static const String id = 'id';
+  static const String cpf = 'cpf';
+  static const String nome = 'nome';
+  static const String telefone = 'telefone';
+  static const String estado = 'estado';
+  static const String percentual = 'percentual';
+
+  // Método para mapear os dados do Mana para um Map
+  static Map<String, dynamic> toMap(Manager manager) {
+    final map = <String, dynamic>{};
+
+    map[TableManager.id] = manager.id;
+    map[TableManager.cpf] = manager.cpf;
+    map[TableManager.nome] = manager.nome;
+    map[TableManager.telefone] = manager.telefone;
+    map[TableManager.estado] = manager.estado;
+    map[TableManager.percentual] = manager.percentual;
 
     return map;
   }

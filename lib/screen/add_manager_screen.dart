@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../c_manager/form_controller_manager.dart';
+
 class AddManagerScreen extends StatelessWidget {
   const AddManagerScreen({super.key});
 
-  
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -26,12 +27,12 @@ class AddManagerScreen extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(23),
             ),
-           // child: FormsControllerClient(
-            //  isEditing: false,
-           // ),
+            child: FormsControllerManager(
+              isEditing: false,
+            ),
           ),
         ),
       ),
     );
   }
-  }
+}

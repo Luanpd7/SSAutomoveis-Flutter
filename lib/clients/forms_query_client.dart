@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/form_radio.dart';
-import '../provider/form_register_provider.dart';
+import '../provider/form_query_client_provider.dart';
 import '../routes/appRoutes.dart';
 import '../components/form_button.dart';
 import '../components/form_drop.dart';
@@ -11,10 +11,10 @@ import '../components/form_text.dart';
 ///onde também ele poderá navegar para tela como filtrar [QueryClientsScreen]
 ///e tambem adicionar novo cliente [AddClientScreen].
 
-class FormsRegisterClient extends StatelessWidget {
+class FormsQueryClient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<FormsRegisterProvider>(
+    return Consumer<FormsQueryClientProvider>(
         builder: (context, formRegisterProvider, _) {
       return Center(
           child: Padding(
@@ -49,7 +49,6 @@ class FormsRegisterClient extends StatelessWidget {
               },
             ),
             FormRadio(),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -63,8 +62,7 @@ class FormsRegisterClient extends StatelessWidget {
                     labelButton: 'Novo Cliente',
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.addClient);
-                    }
-                    )
+                    })
               ],
             )
           ],

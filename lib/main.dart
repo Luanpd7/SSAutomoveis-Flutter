@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/client.dart';
 import 'provider/client_provider.dart';
-import 'provider/form_add_provider.dart';
-import 'provider/form_register_provider.dart';
+import 'provider/form_add_client_provider.dart';
+import 'provider/form_add_manager_provider.dart';
+import 'provider/form_query_client_provider.dart';
+import 'provider/form_query_manager_provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
 import 'screen/add_manager_screen.dart';
@@ -23,9 +25,11 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => FormAddProvider()),
-        //  ChangeNotifierProvider(create: (_) => FormUpdateProvider()),
-        ChangeNotifierProvider(create: (_) => FormsRegisterProvider()),
+        ChangeNotifierProvider(create: (_) => FormAddClientProvider()),
+        ChangeNotifierProvider(create: (_) => FormAddManagerProvider()),
+        // ChangeNotifierProvider(create: (_) => FormUpdateProvider()),
+        ChangeNotifierProvider(create: (_) => FormsQueryClientProvider()),
+        ChangeNotifierProvider(create: (_) => FormsQueryManagerProvider()),
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
         ChangeNotifierProvider(create: (_) => ClientProvider())
       ],

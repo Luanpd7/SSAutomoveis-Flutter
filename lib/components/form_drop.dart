@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/form_add_provider.dart';
+import '../provider/form_add_client_provider.dart';
 
 ///   [FormDrop] é utilizado para exibir uma lista de itens em um menu dropdown
 ///   e permite que o usuário selecione um dos itens.
@@ -24,7 +24,7 @@ class FormDrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FormAddProvider>(
+    return Consumer<FormAddClientProvider>(
       builder: (context, formProvider, child) {
         final currentVallue = items.contains(value) ? value : null;
         return DropdownButtonFormField<String>(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../clients/forms_register_client.dart';
+import '../clients/forms_query_client.dart';
 
 ///Essa classe será responsavel para ser a tela
 ///de registro do cliente, o usuário poderá
@@ -27,7 +27,7 @@ class RegisterClienteScreen extends StatelessWidget {
               width: 380,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(23)),
-              child: FormsRegisterClient(),
+              child: FormsQueryClient(),
             ),
           ),
         ),

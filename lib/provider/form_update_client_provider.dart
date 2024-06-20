@@ -5,19 +5,15 @@ import '../models/client.dart';
 import '../repositories/client_repository.dart';
 import 'client_provider.dart';
 
-class FormUpdateProvider with ChangeNotifier {
-
-
-
-
+class FormUpdateClientProvider with ChangeNotifier {
   final TextEditingController cnpjController;
   final TextEditingController razaoSocialController;
   final TextEditingController telefoneController;
   final TextEditingController estadoController;
   final TextEditingController cidadeController;
-  final int? id ;
+  final int? id;
 
-  FormUpdateProvider(Client client)
+  FormUpdateClientProvider(Client client)
       : cnpjController = TextEditingController(text: client.cnpj),
         razaoSocialController = TextEditingController(text: client.razaoSocial),
         telefoneController = TextEditingController(text: client.telefone),
@@ -25,24 +21,21 @@ class FormUpdateProvider with ChangeNotifier {
         id = client.id,
         cidadeController = TextEditingController(text: client.cidade);
 
-
   Future<void> updateForm(BuildContext context) async {
     var clientRepository = ClientRepository();
     print('antes = ${cidadeController}');
     clientRepository.updateClient(Client(
-      
         id: this.id,
         cnpj: cnpjController.text,
         razaoSocial: razaoSocialController.text,
         telefone: telefoneController.text,
         estado: estadoController.text,
         cidade: cidadeController.text));
-         print('depois = ${cidadeController}');
-         final load = Provider.of<ClientProvider>(context, listen: false);
-           load.select();
+    print('depois = ${cidadeController}');
+    final load = Provider.of<ClientProvider>(context, listen: false);
+    load.select();
 
-            Navigator.pop(context); 
-           
+    Navigator.pop(context);
 
     notifyListeners();
   }

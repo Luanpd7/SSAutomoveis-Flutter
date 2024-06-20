@@ -28,10 +28,10 @@ class ClientRepository {
     final List<Client> clients =
         maps.map((map) => Client.fromMap(map)).toList();
 
-    _listClient.clear();
-    _listClient.addAll(clients);
+    listClient.clear();
+    listClient.addAll(clients);
 
-    return _listClient;
+    return listClient;
   }
 
   Future<void> delete(int id) async {

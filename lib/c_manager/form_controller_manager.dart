@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/client.dart';
-import '../provider/form_add_client_provider.dart';
-import '../provider/form_update_client_provider.dart';
 import '../components/form_button.dart';
 import '../components/form_text.dart';
+import '../models/manager.dart';
+import '../provider/form_add_manager_provider.dart';
+import '../provider/form_update_client_provider.dart';
+import '../provider/form_update_manager_provider.dart';
 
-/// [FormsControllerClient] controla o formulário de adicionar e editar ou cliente,
-/// aqui estará incluido os controllers a API [ApiBrasil],
+/// [FormsControllerManager] controla o formulário de adicionar ou editar o gerente,
 /// e o banco da dados para inserir as informações no banco.
 
-class FormsControllerClient extends StatelessWidget {
+class FormsControllerManager extends StatelessWidget {
   final bool isEditing;
-  final Client? client;
+  final Manager? manager;
 
-  FormsControllerClient({required this.isEditing, this.client});
+  FormsControllerManager({required this.isEditing, this.manager});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => isEditing
-          ? FormUpdateClientProvider(client!)
-          : FormAddClientProvider(),
+      create: (context) =>
+          isEditing ? FormUpdateManagerProvider() : FormAddManagerProvider(),
       child: Consumer<ChangeNotifier>(
         builder: (context, formProvider, _) {
           return Center(
@@ -31,44 +30,44 @@ class FormsControllerClient extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FormText(
-                    label: 'CNPJ',
+                    label: 'CPF',
                     controller: isEditing
-                        ? (formProvider as FormUpdateClientProvider)
-                            .cnpjController
-                        : (formProvider as FormAddClientProvider)
-                            .cnpjController,
+                        ? (formProvider as FormUpdateManagerProvider)
+                            .cpfController
+                        : (formProvider as FormAddManagerProvider)
+                            .cpfController,
                   ),
                   FormText(
-                    label: 'Razão Social',
+                    label: 'Nome',
                     controller: isEditing
-                        ? (formProvider as FormUpdateClientProvider)
-                            .razaoSocialController
-                        : (formProvider as FormAddClientProvider)
-                            .razaoSocialController,
+                        ? (formProvider as FormUpdateManagerProvider)
+                            .nomeController
+                        : (formProvider as FormAddManagerProvider)
+                            .nomeController,
                   ),
                   FormText(
                     label: 'Telefone',
                     controller: isEditing
-                        ? (formProvider as FormUpdateClientProvider)
+                        ? (formProvider as FormUpdateManagerProvider)
                             .telefoneController
-                        : (formProvider as FormAddClientProvider)
+                        : (formProvider as FormAddManagerProvider)
                             .telefoneController,
                   ),
                   FormText(
                     label: 'Estado',
                     controller: isEditing
-                        ? (formProvider as FormUpdateClientProvider)
+                        ? (formProvider as FormUpdateManagerProvider)
                             .estadoController
-                        : (formProvider as FormAddClientProvider)
+                        : (formProvider as FormAddManagerProvider)
                             .estadoController,
                   ),
                   FormText(
-                    label: 'Cidade',
+                    label: 'Percentual',
                     controller: isEditing
-                        ? (formProvider as FormUpdateClientProvider)
-                            .cidadeController
-                        : (formProvider as FormAddClientProvider)
-                            .cidadeController,
+                        ? (formProvider as FormUpdateManagerProvider)
+                            .percentualController
+                        : (formProvider as FormAddManagerProvider)
+                            .percentualController,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +78,8 @@ class FormsControllerClient extends StatelessWidget {
                           if (isEditing) {
                             (formProvider as FormUpdateClientProvider);
                           } else {
-                            (formProvider as FormAddClientProvider).cleanText();
+                            (formProvider as FormAddManagerProvider)
+                                .cleanText();
                           }
                         },
                       ),
@@ -87,10 +87,10 @@ class FormsControllerClient extends StatelessWidget {
                         labelButton: isEditing ? 'Editar' : 'Salvar',
                         onPressed: () {
                           if (isEditing) {
-                            (formProvider as FormUpdateClientProvider)
+                            (formProvider as FormUpdateManagerProvider)
                                 .updateForm(context);
                           } else {
-                            (formProvider as FormAddClientProvider)
+                            (formProvider as FormAddManagerProvider)
                                 .saveForm(context);
                           }
                         },
