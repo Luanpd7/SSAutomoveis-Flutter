@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-///[FormAddProvider] gerencia o formulário da tela do client para
-///todas as classes que chamar ela.
+///[FormsQueryClientProvider] gerencia o formulário de consulta 
+///do client para todas as classes que chamar ela.
 
 class FormsQueryClientProvider with ChangeNotifier {
   final TextEditingController cnpjController = TextEditingController();

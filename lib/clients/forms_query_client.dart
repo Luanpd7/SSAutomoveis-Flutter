@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../components/form_button.dart';
 import '../components/form_radio.dart';
 import '../provider/form_query_client_provider.dart';
 import '../routes/appRoutes.dart';
-import '../components/form_button.dart';
+
 import '../components/form_drop.dart';
 import '../components/form_text.dart';
 
-///[FormsRegisterClient] Gerencia o formulário de consulta do usuário
-///onde também ele poderá navegar para tela como filtrar [QueryClientsScreen]
-///e tambem adicionar novo cliente [AddClientScreen].
+///[FormsQueryClient] Gerencia o formulário de consulta do usuário
+///onde também ele poderá navegar para tela como filtrar ['QueryClientsScreen']
+///e tambem adicionar novo cliente ['AddClientScreen'].
 
 class FormsQueryClient extends StatelessWidget {
   @override

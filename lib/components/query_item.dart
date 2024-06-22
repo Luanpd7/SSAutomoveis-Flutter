@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///[QueryItem] gerencia o titulo e o subtitulo da tela
-///[QueryClientScreen] que por lá será passado o titulo
+///['QueryClientScreen'] que por lá será passado o titulo
 ///e a informção do objeto.
 
 class QueryItem extends StatelessWidget {

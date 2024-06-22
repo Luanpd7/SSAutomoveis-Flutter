@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                     label: 'Veiculos',
                     icon: const Icon(Icons.time_to_leave, size: 48),
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoute.registerCliente);
+                      Navigator.pushNamed(context, AppRoute.registerVehicle);
                     })
               ],
             ),

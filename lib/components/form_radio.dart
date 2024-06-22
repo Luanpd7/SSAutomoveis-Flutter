@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///[FormRadio] gerencia os radios do formulário da tela [RegisterClienteScreen]
+///[FormRadio] gerencia os radios do formulário da tela ['RegisterClienteScreen']
 ///que será utilizado para filtrar os objetos ativos ou inativos.
 
 class FormRadio extends StatelessWidget {

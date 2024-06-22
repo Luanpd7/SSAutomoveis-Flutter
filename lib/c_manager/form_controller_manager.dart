@@ -4,11 +4,12 @@ import '../components/form_button.dart';
 import '../components/form_text.dart';
 import '../models/manager.dart';
 import '../provider/form_add_manager_provider.dart';
-import '../provider/form_update_client_provider.dart';
 import '../provider/form_update_manager_provider.dart';
 
-/// [FormsControllerManager] controla o formulário de adicionar ou editar o gerente,
-/// e o banco da dados para inserir as informações no banco.
+///[FormsControllerManager] controla o formulário de adicionar ou editar 
+/// do manager, essa classe estará esperando um valor  booleano no qual 
+/// for verdadeiro sera usado o formulario de editar se não para adicionar,
+/// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerManager extends StatelessWidget {
   final bool isEditing;
@@ -19,8 +20,9 @@ class FormsControllerManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) =>
-          isEditing ? FormUpdateManagerProvider() : FormAddManagerProvider(),
+      create: (context) => isEditing
+          ? FormUpdateManagerProvider(manager!)
+          : FormAddManagerProvider(),
       child: Consumer<ChangeNotifier>(
         builder: (context, formProvider, _) {
           return Center(
@@ -76,7 +78,7 @@ class FormsControllerManager extends StatelessWidget {
                         labelButton: 'Cancelar',
                         onPressed: () {
                           if (isEditing) {
-                            (formProvider as FormUpdateClientProvider);
+                            (formProvider as FormUpdateManagerProvider);
                           } else {
                             (formProvider as FormAddManagerProvider)
                                 .cleanText();

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/client.dart';
 import '../repositories/client_repository.dart';
 
-///[ClientProvider] gerencia as informações do client para
-///todas as classes que chamar ela
+/// [ClientProvider] é um provider responsável por gerenciar o estado
+/// relacionado a [Client]. Ele utiliza o [ChangeNotifier] para notificar
 
 class ClientProvider with ChangeNotifier {
   ///utilizei select no construtor para garantir que assim for instânciado
@@ -19,7 +19,7 @@ class ClientProvider with ChangeNotifier {
 
   void addClient(Client client) {
     clientRepository.insertClient(client);
-     //select();
+
     notifyListeners();
   }
 
@@ -36,12 +36,10 @@ class ClientProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-
   Future<void> update(Client client) async {
-   clientRepository.updateClient(client);
-   print('atualizado');
-   select();
-  notifyListeners();
+    clientRepository.updateClient(client);
+    print('atualizado');
+    select();
+    notifyListeners();
   }
 }

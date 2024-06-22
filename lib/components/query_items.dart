@@ -16,7 +16,7 @@ import 'build_list_tile.dart';
 
 class QueryItems extends StatelessWidget {
   List<Object> list;
-  
+
   bool isClient;
 
   QueryItems({required this.list, required this.isClient});
@@ -25,7 +25,7 @@ class QueryItems extends StatelessWidget {
   //ao inves de passsar a lista, passar razão social e cnpj
   //ou nome e cpf
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
@@ -47,15 +47,16 @@ class QueryItems extends StatelessWidget {
           } else {
             final manager = list[index] as Manager;
             return buildListTile(
-              context: context,
-              title: manager.nome,
-              subtitle: manager.cpf,
-              onTap: () {}
-        //      Navigator.of(context).pushNamed( AppRoute.queryManager, arguments: manager,),
-            );
+                context: context,
+                title: manager.nome,
+                subtitle: manager.cpf,
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(AppRoute.queryManager, arguments: manager);
+                });
           }
         },
       ),
     );
-  }  
   }
+}

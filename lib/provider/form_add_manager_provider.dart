@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../models/manager.dart';
-import '../repositories/manager_repository.dart';
+import 'manager.provider.dart';
+
+///[FormAddManagerProvider] gerencia o formulário de adicionar 
+///do Manager para todas as classes que chamar ela.
 
 class FormAddManagerProvider with ChangeNotifier {
   final TextEditingController cpfController = TextEditingController();
@@ -11,7 +14,6 @@ class FormAddManagerProvider with ChangeNotifier {
   final TextEditingController percentualController = TextEditingController();
 
   Future<void> saveForm(BuildContext context) async {
-    print('salvando');
     var manager = Manager(
         cpf: cpfController.text,
         nome: nomeController.text,
@@ -19,7 +21,11 @@ class FormAddManagerProvider with ChangeNotifier {
         estado: estadoController.text,
         percentual: percentualController.text);
 
-    ManagerRepository().insertManager(manager);
+    ManagerProvider().addManager(manager);
+
+    Provider.of<ManagerProvider>(context, listen: false).select();
+    cleanText();
+    Navigator.pop(context);
   }
 
   void cleanText() {

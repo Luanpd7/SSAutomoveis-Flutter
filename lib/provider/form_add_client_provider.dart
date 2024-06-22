@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/client.dart';
-import '../repositories/client_repository.dart';
 import '../services/api_brasil.dart';
 import 'client_provider.dart';
 
-///[FormAddProvider] gerencia o formulário do client para
-///todas as classes que chamar ela.
+///[FormAddClientProvider] gerencia o formulário de adicionar 
+///do client para todas as classes que chamar ela.
 
 class FormAddClientProvider with ChangeNotifier {
   final TextEditingController cnpjController = TextEditingController();
@@ -36,7 +35,8 @@ class FormAddClientProvider with ChangeNotifier {
             telefone: clientData.telefone,
             estado: clientData.estado,
             cidade: clientData.cidade);
-        ClientRepository().insertClient(client);
+        ClientProvider().addClient(client);
+
         //fazer uma mensagem de sucesso ou falha e apos isso retornar a mesma tela de salvar clientes;
         //Limpar todos os campos apos ser inserido
         final load = Provider.of<ClientProvider>(context, listen: false);

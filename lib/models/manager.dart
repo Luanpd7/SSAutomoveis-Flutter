@@ -7,18 +7,16 @@ class Manager {
   final String telefone;
   final String estado;
   final String percentual;
-  
 
-  Manager({
-    this.id,
-    required this.cpf,
-    required this.nome,
-    required this.telefone,
-    required this.estado,
-    required this.percentual
-  });
+  Manager(
+      {this.id,
+      required this.cpf,
+      required this.nome,
+      required this.telefone,
+      required this.estado,
+      required this.percentual});
 
-    factory Manager.fromMap(Map<String, dynamic> map) {
+  factory Manager.fromMap(Map<String, dynamic> map) {
     return Manager(
       id: map[TableManager.id],
       cpf: map[TableManager.cpf],
@@ -29,17 +27,14 @@ class Manager {
     );
   }
 
-
-  //possivelmente apagar
-
-   Map<String, Object?> toMap(){
+  Map<String, Object?> toMap() {
     return {
       'id': id,
-      'cnpj': cpf,
-      'razaoSocial': nome,
+      'cpf': cpf,
+      'nome': nome,
       'telefone': telefone,
       'estado': estado,
-      'cidade': percentual
+      'percentual': percentual
     };
-   }
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///[ItemSettings] é o filho da classe settings que
-///contém os itens da [SettingsScreen].
+///contém os itens da ['SettingsScreen'].
 
 class ItemSettings extends StatelessWidget {
   final String title;

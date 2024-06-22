@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/client.dart';
+import 'models/manager.dart';
 import 'provider/client_provider.dart';
 import 'provider/form_add_client_provider.dart';
 import 'provider/form_add_manager_provider.dart';
 import 'provider/form_query_client_provider.dart';
 import 'provider/form_query_manager_provider.dart';
+import 'provider/form_query_vehicle_provider.dart';
+import 'provider/manager.provider.dart';
 import 'routes/appRoutes.dart';
 import 'screen/add_client_screen.dart';
 import 'screen/add_manager_screen.dart';
 import 'screen/query_client_screen.dart';
 import 'screen/query_clients_screen.dart';
+import 'screen/query_manager_screen.dart';
 import 'screen/query_managers_screen.dart';
 import 'screen/register_client_screen.dart';
 import 'screen/register_manager_screen.dart';
+import 'screen/register_vehicle_screen.dart';
 import 'screen/tabs_screen.dart';
 import 'screen/update_client_screen.dart';
+import 'screen/update_manager_screen.dart';
 import 'services/api_brasil.dart';
 
 /// Essa classe principal onde vai ser o começo de toda a aplicação onde será
@@ -27,11 +33,12 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => FormAddClientProvider()),
         ChangeNotifierProvider(create: (_) => FormAddManagerProvider()),
-        // ChangeNotifierProvider(create: (_) => FormUpdateProvider()),
+        ChangeNotifierProvider(create: (_) => FormsQueryVehicleProvider()),
         ChangeNotifierProvider(create: (_) => FormsQueryClientProvider()),
         ChangeNotifierProvider(create: (_) => FormsQueryManagerProvider()),
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
-        ChangeNotifierProvider(create: (_) => ClientProvider())
+        ChangeNotifierProvider(create: (_) => ClientProvider()),
+        ChangeNotifierProvider(create: (_) => ManagerProvider())
       ],
       child: MyApp(),
     ),
@@ -107,12 +114,18 @@ class MyApp extends StatelessWidget {
         AppRoute.addClient: (context) => AddClientScreen(),
         AppRoute.queryClients: (context) => QueryClientsScreen(),
         AppRoute.updateClient: (context) => UpdateClientScreen(),
+        AppRoute.updateManager: (context) => UpdateManagerScreen(),
         AppRoute.registerManager: (context) => RegisterManagerScreen(),
+        AppRoute.registerVehicle: (context) => RegisterVehicleScreen(),
         AppRoute.queryClient: (context) {
           final client = ModalRoute.of(context)!.settings.arguments as Client;
           return QueryClientScreen(
             client: client,
           );
+        },
+        AppRoute.queryManager: (context) {
+          final manager = ModalRoute.of(context)!.settings.arguments as Manager;
+          return QueryManagerScreen(manager: manager);
         }
       },
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../clients/forms_controller_client.dart';
 
-///[AddClientScreen] é a tela responsável por adicionar clients
+///[AddClientScreen] é a tela responsável por adicionar clientes
 
 class AddClientScreen extends StatelessWidget {
   @override

@@ -5,38 +5,26 @@ import '../models/manager.dart';
 
 ///Método para resetar o banco caso precise
 
+
+
 Future<void> resetDatabase() async {
-  final path = join(
-    await getDatabasesPath(),
-    'mydb.db',
-  );
+  final path = join(await getDatabasesPath(), 'mydb.db');
 
   await deleteDatabase(path);
+  print('Database deleted at $path');
 }
 
-//Método para iniciar o banco
+
 Future<Database> getDatabase() async {
-  final path = join(
-    await getDatabasesPath(),
-    'mydb.db',
-  );
+  final path = join(await getDatabasesPath(), 'mydb.db');
 
   return openDatabase(
     path,
-    version: 2, // Versão do banco de dados
-    onCreate: (db, version) {
-      db.execute(TableClient.createTable);
-      db.execute(TableManager
-          .createTable); // Adicione aqui a criação da tabela de gerentes
-    },
-    onUpgrade: (db, oldVersion, newVersion) async {
-      if (oldVersion < newVersion) {
-        await db.execute('DROP TABLE IF EXISTS ${TableClient.tableName}');
-        await db.execute(
-            'DROP TABLE IF EXISTS ${TableManager.tableName}'); // Adicione aqui a exclusão da tabela de gerentes, se necessário
-        db.execute(TableClient.createTable);
-        db.execute(TableManager.createTable);
-      }
+    version: 2, 
+    onCreate: (db, version) async {
+      await db.execute(TableClient.createTable);
+      await db.execute(TableManager.createTable); 
+      print('Tables created');
     },
   );
 }

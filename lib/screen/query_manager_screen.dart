@@ -2,30 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/query_item.dart';
 import '../components/query_item_icone.dart';
-import '../models/client.dart';
-import '../provider/client_provider.dart';
+import '../models/manager.dart';
+import '../provider/manager.provider.dart';
 import '../routes/appRoutes.dart';
 
-///[QueryClientScreen] é a tela resposável pela consulta
-///geral de um cliente, sendo passado o cliente pelo construtor
+///[QueryManagerScreen] é a tela resposável pela consulta
+///geral de um gerente, sendo passado o cliente pelo construtor
 
-class QueryClientScreen extends StatelessWidget {
-  QueryClientScreen({required this.client});
+class QueryManagerScreen extends StatelessWidget {
+  QueryManagerScreen({required this.manager});
 
-  Client client;
+  Manager manager;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(client.razaoSocial,
-            style: Theme.of(context).textTheme.titleMedium),
+        title:
+            Text(manager.nome, style: Theme.of(context).textTheme.titleMedium),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       backgroundColor: Theme.of(context).canvasColor,
-      body: Consumer<ClientProvider>(
-        builder: (context, clientState, _) {
+      body: Consumer<ManagerProvider>(
+        builder: (context, managerState, _) {
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -36,17 +36,17 @@ class QueryClientScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       QueryItem(
-                        title: 'Razão Social',
-                        subtitle: client.razaoSocial,
+                        title: 'Nome',
+                        subtitle: manager.nome,
                       ),
-                      QueryItem(title: 'Cidade', subtitle: client.cidade),
-                      QueryItem(title: 'Telefone', subtitle: client.telefone),
-                      QueryItem(title: 'Data de Registro', subtitle: 'teste'),
+                      QueryItem(title: 'Telefone', subtitle: manager.telefone),
+                      QueryItem(
+                          title: 'Comissão', subtitle: manager.percentual),
                       QueryItemIcone(
                         icon: Icons.delete,
                         onTap: () async {
-                          await clientState.delete(
-                            client,
+                          await managerState.delete(
+                            manager,
                           );
                           Navigator.pop(context);
                         },
@@ -58,16 +58,14 @@ class QueryClientScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      QueryItem(title: 'CNPJ', subtitle: client.cnpj),
-                      QueryItem(title: 'Estado', subtitle: client.estado),
-                      QueryItem(
-                          title: 'Gerente', subtitle: client.id.toString()),
-                      QueryItem(title: '', subtitle: ''),
+                      QueryItem(title: 'CPF', subtitle: manager.cpf),
+                      QueryItem(title: 'Estado', subtitle: manager.estado),
+                      QueryItem(title: 'Data de Registro', subtitle: 'teste'),
                       QueryItemIcone(
                         icon: Icons.edit,
                         onTap: () => Navigator.of(context).pushNamed(
-                          AppRoute.updateClient,
-                          arguments: client,
+                          AppRoute.updateManager,
+                          arguments: manager,
                         ),
                       ),
                     ],

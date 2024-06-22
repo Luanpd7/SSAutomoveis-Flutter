@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///[buildListTile] é um widget chamado no componente QueryItems,
-///para verificar qual informação sera passada para criar um 
+///para verificar qual informação sera passada para criar um
 ///listTile;
 
 Widget buildListTile({
@@ -11,7 +11,8 @@ Widget buildListTile({
   required VoidCallback onTap,
 }) {
   return Padding(
-    padding: const EdgeInsetsDirectional.only(start: 10, end: 10, bottom: 15),
+    padding: const EdgeInsetsDirectional.only(
+        start: 10, end: 10, top: 15, bottom: 3),
     child: Container(
       decoration: BoxDecoration(
         color: Colors.white,

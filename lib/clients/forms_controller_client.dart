@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../components/form_button.dart';
+import '../components/form_text.dart';
 import '../models/client.dart';
 import '../provider/form_add_client_provider.dart';
 import '../provider/form_update_client_provider.dart';
-import '../components/form_button.dart';
-import '../components/form_text.dart';
 
-/// [FormsControllerClient] controla o formulário de adicionar e editar ou cliente,
-/// aqui estará incluido os controllers a API [ApiBrasil],
-/// e o banco da dados para inserir as informações no banco.
+///[FormsControllerClient] controla o formulário de adicionar ou editar 
+/// do cliente, essa classe estará esperando um valor  booleano no qual 
+/// for verdadeiro sera usado o formulario de editar se não para adicionar,
+/// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerClient extends StatelessWidget {
   final bool isEditing;

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///[FormsQueryManagerProvider] gerencia o formulário de consulta 
+///do client para todas as classes que chamar ela.
+
 class FormsQueryManagerProvider with ChangeNotifier {
   final TextEditingController cpfController = TextEditingController();
   final TextEditingController nomeController = TextEditingController();

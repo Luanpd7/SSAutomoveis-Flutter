@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+
 import '../c_manager/form_controller_manager.dart';
+import '../models/manager.dart';
 
-///[AddClientScreen] é a tela responsável por adicionar clients
-
-class AddManagerScreen extends StatelessWidget {
-  const AddManagerScreen({super.key});
-
+class UpdateManagerScreen extends StatelessWidget {
+  UpdateManagerScreen();
   @override
   Widget build(BuildContext context) {
+    var manager = ModalRoute.of(context)!.settings.arguments as Manager;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Cadastrar Gerente',
+          'Editar Manager',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,
@@ -29,7 +29,8 @@ class AddManagerScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(23),
             ),
             child: FormsControllerManager(
-              isEditing: false,
+              isEditing: true,
+              manager: manager,
             ),
           ),
         ),
