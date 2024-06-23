@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import '../c_vehicle/forms_query_vehicle.dart';
 
-
 ///Essa classe será responsavel para ser a tela
 ///de registro do cliente, o usuário poderá
 ///tanto cadastrar um novo cliente e também filtrar.
-
 
 class RegisterVehicleScreen extends StatelessWidget {
   @override
@@ -28,7 +26,7 @@ class RegisterVehicleScreen extends StatelessWidget {
                 height: 680,
                 width: 380,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).hintColor,
                     borderRadius: BorderRadius.circular(23)),
                 child: FormsQueryVehicle()),
           ),

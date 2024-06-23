@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pushNamed(context, AppRoute.registerManager);
                     }),
                 ItemMenu(
-                    label: 'Gerentes',
+                    label: 'Teste',
                     icon: const Icon(Icons.people, size: 48),
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoute.registerCliente);
+                      // Navigator.pushNamed(context, AppRoute.registerCliente);
                     }),
                 ItemMenu(
                     label: 'Veiculos',

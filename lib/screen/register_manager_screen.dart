@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../c_manager/forms_query_manager.dart';
 
-
 ///Essa classe será responsavel para ser a tela
 ///de registro do gerente, o usuário poderá
 ///tanto cadastrar um novo gerente e também filtrar.
@@ -27,7 +26,8 @@ class RegisterManagerScreen extends StatelessWidget {
               height: 680,
               width: 380,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(23)),
+                  color: Theme.of(context).hintColor,
+                  borderRadius: BorderRadius.circular(23)),
               child: FormsQueryManager(),
             ),
           ),

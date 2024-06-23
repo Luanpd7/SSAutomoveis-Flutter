@@ -12,7 +12,10 @@ class AppRoute {
   static const registerManager = '/RegisterManagerScreen';
   static const queryManagers = '/QueryManagersScreen';
   static const queryManager = '/QueryManagerScreen';
-   static const addManager = '/AddManagerScreen';
-   static const updateManager = '/UpdateManagerScreen';
-    static const registerVehicle = '/RegisterVehicleScreen';
+  static const addManager = '/AddManagerScreen';
+  static const updateManager = '/UpdateManagerScreen';
+  static const registerVehicle = '/RegisterVehicleScreen';
+  static const addVehicle = '/AddVehicleScreen';
+  static const queryVehicles = '/QueryVehicleScreen';
+  static const privacyPolicy = '/PrivacyPolicy';
 }

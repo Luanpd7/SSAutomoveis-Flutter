@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/manager.dart';
-import 'manager.provider.dart';
+import 'manager_provider.dart';
 
-
-///[FormUpdateManagerProvider] gerencia o formulário de editar 
+///[FormUpdateManagerProvider] gerencia o formulário de editar
 ///do gerente para todas as classes que chamar ela.
-
 
 class FormUpdateManagerProvider with ChangeNotifier {
   final TextEditingController cpfController;

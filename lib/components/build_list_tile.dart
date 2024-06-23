@@ -15,7 +15,7 @@ Widget buildListTile({
         start: 10, end: 10, top: 15, bottom: 3),
     child: Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).hintColor,
         borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(

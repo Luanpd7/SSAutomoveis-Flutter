@@ -3,12 +3,13 @@ import 'package:provider/provider.dart';
 import '../components/query_item.dart';
 import '../components/query_item_icone.dart';
 import '../models/manager.dart';
-import '../provider/manager.provider.dart';
+import '../provider/manager_provider.dart';
 import '../routes/appRoutes.dart';
 
 ///[QueryManagerScreen] é a tela resposável pela consulta
 ///geral de um gerente, sendo passado o cliente pelo construtor
 
+// ignore: must_be_immutable
 class QueryManagerScreen extends StatelessWidget {
   QueryManagerScreen({required this.manager});
 

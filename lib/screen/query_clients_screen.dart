@@ -18,10 +18,16 @@ class QueryClientsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<ClientProvider>(
         builder: (context, clientProvider, _) {
-          return QueryItems(
-            list: clientProvider.list,
-            isClient: true,
-          );
+          if (clientProvider.list.isNotEmpty) {
+            return QueryItems(
+              list: clientProvider.list,
+              isClient: true,
+            );
+          } else {
+            return const Center(
+              child: Text('Nenhum Cliente Cadastrado!'),
+            );
+          }
         },
       ),
     );

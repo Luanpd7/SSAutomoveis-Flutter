@@ -23,7 +23,7 @@ class AddClientScreen extends StatelessWidget {
             height: 680,
             width: 380,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).hintColor,
               borderRadius: BorderRadius.circular(23),
             ),
             child: FormsControllerClient(

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../components/form_button.dart';
 import '../components/form_drop.dart';
 import '../components/form_radio.dart';
 import '../components/form_text.dart';
-import '../provider/form_query_manager_provider.dart';
 import '../provider/form_query_vehicle_provider.dart';
+import '../routes/appRoutes.dart';
 
 class FormsQueryVehicle extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Consumer<FormsQueryVehicleProvider>(
@@ -22,7 +19,8 @@ class FormsQueryVehicle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FormText(
-                label: 'Marca', controller: formRegisterProvider.marcaController),
+                label: 'Marca',
+                controller: formRegisterProvider.marcaController),
             FormText(
               label: 'Modelo',
               controller: formRegisterProvider.modeloController,
@@ -54,13 +52,13 @@ class FormsQueryVehicle extends StatelessWidget {
                 FormButton(
                   labelButton: 'Filtrar',
                   onPressed: () {
-               //     Navigator.pushNamed(context, AppRoute.queryClients);
+                    Navigator.pushNamed(context, AppRoute.queryVehicles);
                   },
                 ),
                 FormButton(
                     labelButton: 'Novo Veículo',
                     onPressed: () {
-                  //    Navigator.pushNamed(context, AppRoute.addClient);
+                      Navigator.pushNamed(context, AppRoute.addVehicle);
                     })
               ],
             )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../models/Vehicle.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../routes/appRoutes.dart';
@@ -11,15 +11,21 @@ import 'build_list_tile.dart';
 /// e exibe cada objeto em um container.
 /// Utiliza um [ListView.builder] para construir a lista de forma eficiente.
 /// Cada item da lista é um [ListTile] que, ao ser clicado,
-/// navega para uma nova tela com mais detalhes do objeto [QueryClientScreen]
-/// ou [QueryManagerScreen].
+/// navega para uma nova tela com mais detalhes do objeto ['QueryClientScreen']
+/// ou ['QueryManagerScreen'].
 
+// ignore: must_be_immutable
 class QueryItems extends StatelessWidget {
   List<Object> list;
+  bool? isClient;
+  bool? isManager;
+  bool? isVehicle;
 
-  bool isClient;
-
-  QueryItems({required this.list, required this.isClient});
+  QueryItems(
+      {required this.list,
+      this.isClient = false,
+      this.isManager = false,
+      this.isVehicle = false});
 
   //oque pode ser passado por parametro?
   //ao inves de passsar a lista, passar razão social e cnpj
@@ -33,7 +39,7 @@ class QueryItems extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemCount: list.length,
         itemBuilder: (context, index) {
-          if (isClient) {
+          if (isClient!) {
             final client = list[index] as Client;
             return buildListTile(
               context: context,
@@ -44,7 +50,8 @@ class QueryItems extends StatelessWidget {
                 arguments: client,
               ),
             );
-          } else {
+          }
+          if (isManager!) {
             final manager = list[index] as Manager;
             return buildListTile(
                 context: context,
@@ -55,6 +62,19 @@ class QueryItems extends StatelessWidget {
                       .pushNamed(AppRoute.queryManager, arguments: manager);
                 });
           }
+          if (isVehicle!) {
+            final vehicle = list[index] as Vehicle;
+
+            return buildListTile(
+                context: context,
+                title: vehicle.marca,
+                subtitle: vehicle.modelo,
+                onTap: () {
+                  /*   Navigator.of(context)
+                      .pushNamed(AppRoute.queryManager, arguments: manager);*/
+                });
+          }
+          return null;
         },
       ),
     );

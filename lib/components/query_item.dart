@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 ///['QueryClientScreen'] que por lá será passado o titulo
 ///e a informção do objeto.
 
+// ignore: must_be_immutable
 class QueryItem extends StatelessWidget {
   String title;
   String subtitle;

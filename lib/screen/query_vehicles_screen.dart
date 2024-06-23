@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/query_items.dart';
-import '../provider/manager_provider.dart';
+import '../provider/vehicle_provider.dart';
 
-///[QueryManagersScreen] é a tela resposável pela consulta
+///[QueryVehiclesScreen] é a tela resposável pela consulta
 ///de todos os gerentes
 
-class QueryManagersScreen extends StatelessWidget {
-  const QueryManagersScreen({super.key});
-
+class QueryVehiclesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Consultar Gerentes',
+        title: Text('Consultar Veículos',
             style: Theme.of(context).textTheme.titleMedium),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       backgroundColor: Theme.of(context).canvasColor,
-      body: Consumer<ManagerProvider>(
-        builder: (context, managerProvider, _) {
-          if (managerProvider.list.isNotEmpty) {
+      body: Consumer<VehicleProvider>(
+        builder: (context, vehiclesProvider, _) {
+          if (vehiclesProvider.list.isNotEmpty) {
             return QueryItems(
-              list: managerProvider.list,
-              isManager: true,
+              list: vehiclesProvider.list,
+              isVehicle: true,
             );
           } else {
             return const Center(
-              child: Text('Nenhum Gerente Cadastrado!'),
+              child: Text('Nenhum Veículo Cadastrado!'),
             );
           }
         },

@@ -9,6 +9,7 @@ import '../routes/appRoutes.dart';
 ///[QueryClientScreen] é a tela resposável pela consulta
 ///geral de um cliente, sendo passado o cliente pelo construtor
 
+// ignore: must_be_immutable
 class QueryClientScreen extends StatelessWidget {
   QueryClientScreen({required this.client});
 

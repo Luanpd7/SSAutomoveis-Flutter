@@ -9,7 +9,7 @@ class Widget050 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: MyClipper(),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 300,
         //    color: Colors.grey,
@@ -17,7 +17,8 @@ class Widget050 extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromRGBO(241, 242, 233, 1.0),
+                Color.fromARGB(255, 214, 195, 195),
+                //  Color.fromARGB(255, 189, 189, 189),
                 Color.fromRGBO(255, 87, 87, 1.0)
               ],
               begin: Alignment.topLeft,
