@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import 'models/client.dart';
 import 'models/manager.dart';
 import 'provider/client_provider.dart';
@@ -9,6 +11,7 @@ import 'provider/form_add_vehicle_provider.dart';
 import 'provider/form_query_client_provider.dart';
 import 'provider/form_query_manager_provider.dart';
 import 'provider/form_query_vehicle_provider.dart';
+import 'provider/language_provider.dart';
 import 'provider/manager_provider.dart';
 import 'provider/settings_provider.dart';
 import 'provider/vehicle_provider.dart';
@@ -47,7 +50,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => ClientProvider()),
         ChangeNotifierProvider(create: (_) => ManagerProvider()),
         ChangeNotifierProvider(create: (_) => VehicleProvider()),
-        ChangeNotifierProvider(create: (_) => SettingsProvider())
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
       ],
       child: MyApp(),
     ),
@@ -59,42 +63,56 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SettingsProvider>(builder: (context, settingsProvider, _) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: settingsProvider.isLight ? themeLight() : themeDark(),
-        routes: {
-          AppRoute.HOME: (ctx) {
-            return Builder(builder: (context) {
-              return TabsScreen(); //local  trocar tela para desenvolvimento
-            });
+     return Consumer<SettingsProvider>(
+      builder: (context, settingsProvider, _) {
+        return Consumer<LanguageProvider>(
+          builder: (context, languageProvider, _) {
+            var locale = Locale(languageProvider.idiomaSelecionado);
+        return MaterialApp(
+         localizationsDelegates: AppLocalizations.localizationsDelegates,
+         supportedLocales: AppLocalizations.supportedLocales,
+          
+        
+        
+          debugShowCheckedModeBanner: false,
+          theme: settingsProvider.isLight ? themeLight() : themeDark(),
+          locale: locale,
+          routes: {
+            AppRoute.HOME: (ctx) {
+              return Builder(builder: (context) {
+                return TabsScreen(); //local  trocar tela para desenvolvimento
+              });
+            },
+            AppRoute.registerCliente: (context) => RegisterClienteScreen(),
+            AppRoute.queryManagers: (context) => QueryManagersScreen(),
+            AppRoute.addManager: (context) => AddManagerScreen(),
+            AppRoute.privacyPolicy: (context) => PrivacyPolicy(),
+            AppRoute.addClient: (context) => AddClientScreen(),
+            AppRoute.queryClients: (context) => QueryClientsScreen(),
+            AppRoute.updateClient: (context) => UpdateClientScreen(),
+            AppRoute.updateManager: (context) => UpdateManagerScreen(),
+            AppRoute.registerManager: (context) => RegisterManagerScreen(),
+            AppRoute.registerVehicle: (context) => RegisterVehicleScreen(),
+            AppRoute.addVehicle: (context) => AddVehicleScreen(),
+            AppRoute.queryVehicles: (context) => QueryVehiclesScreen(),
+            AppRoute.queryClient: (context) {
+              final client = ModalRoute.of(context)!.settings.arguments as Client;
+              return QueryClientScreen(
+                client: client,
+              );
+            },
+            AppRoute.queryManager: (context) {
+              final manager =
+                  ModalRoute.of(context)!.settings.arguments as Manager;
+              return QueryManagerScreen(manager: manager);
+            }
           },
-          AppRoute.registerCliente: (context) => RegisterClienteScreen(),
-          AppRoute.queryManagers: (context) => QueryManagersScreen(),
-          AppRoute.addManager: (context) => AddManagerScreen(),
-          AppRoute.privacyPolicy: (context) => PrivacyPolicy(),
-          AppRoute.addClient: (context) => AddClientScreen(),
-          AppRoute.queryClients: (context) => QueryClientsScreen(),
-          AppRoute.updateClient: (context) => UpdateClientScreen(),
-          AppRoute.updateManager: (context) => UpdateManagerScreen(),
-          AppRoute.registerManager: (context) => RegisterManagerScreen(),
-          AppRoute.registerVehicle: (context) => RegisterVehicleScreen(),
-          AppRoute.addVehicle: (context) => AddVehicleScreen(),
-          AppRoute.queryVehicles: (context) => QueryVehiclesScreen(),
-          AppRoute.queryClient: (context) {
-            final client = ModalRoute.of(context)!.settings.arguments as Client;
-            return QueryClientScreen(
-              client: client,
-            );
-          },
-          AppRoute.queryManager: (context) {
-            final manager =
-                ModalRoute.of(context)!.settings.arguments as Manager;
-            return QueryManagerScreen(manager: manager);
-          }
-        },
+        );
+        }
       );
-    });
+   
+    }
+    );
   }
 
   ThemeData themeLight() {

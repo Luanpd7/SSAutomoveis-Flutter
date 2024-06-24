@@ -10,6 +10,8 @@ class ItemSettings extends StatelessWidget {
   final String? subtitle2;
   final String? label2;
   final Function()? onTap;
+  final Function()? onTap2;
+  final Function()? onTap3;
   final String? label;
   final bool isText;
 
@@ -21,15 +23,17 @@ class ItemSettings extends StatelessWidget {
     this.label,
     this.label2,
     this.onTap,
+    this.onTap2,
+    this.onTap3,
     this.isText = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(15),
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: GestureDetector(
+        onTap: onTap,
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,20 +72,23 @@ class ItemSettings extends StatelessWidget {
                 ],
               ),
               if (label2 != null)
-                Row(
-                  children: [
-                    Text(
-                      subtitle2!,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      label2!,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    )
-                  ],
+                GestureDetector(
+                  onTap: onTap2,
+                  child: Row(
+                    children: [
+                      Text(
+                        subtitle2!,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        label2!,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      )
+                    ],
+                  ),
                 )
             ],
           ),

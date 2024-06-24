@@ -1,0 +1,13 @@
+{
+  "menu": "Menu",
+  "settings": "Settings",
+  "@menu": {
+    "description": "Label for the home page menu item"
+  },
+  "@settings": {
+    "description": "Label for the settings page menu item"
+  },
+  "theme": "Theme",
+  "language": "Language"
+
+}

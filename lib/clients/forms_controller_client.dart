@@ -85,7 +85,7 @@ class FormsControllerClient extends StatelessWidget {
                         },
                       ),
                       FormButton(
-                        labelButton: isEditing ? 'Editar' : 'Salvar',
+                        labelButton: isEditing ? 'Salvar' : 'Salvar',
                         onPressed: () {
                           if (isEditing) {
                             (formProvider as FormUpdateClientProvider)

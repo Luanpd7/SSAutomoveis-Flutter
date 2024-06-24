@@ -1,0 +1,12 @@
+{
+  "menu": "Menu",
+  "settings": "Configurações",
+  "@menu": {
+    "description": "Rótulo para o item de menu da página inicial"
+  },
+  "@settings": {
+    "description": "Rótulo para o item de menu da página de configurações"
+  },
+  "theme": "Tema",
+  "language": "Idioma"
+}
