@@ -8,5 +8,25 @@
     "description": "Rótulo para o item de menu da página de configurações"
   },
   "theme": "Tema",
-  "language": "Idioma"
+    
+  "language": "Idioma",
+
+  "owner": "Proprietário",
+
+  "name": "Nome",
+
+  "appearance": "Aparência",
+
+  "detail": "Detalhe",
+
+  "privacyPolicy": "Politíca de privacidade",
+
+  "developedBy": "Desenvolvido por",
+
+  "costumers": "Clientes",
+
+  "managers": "Gerentes",
+
+  "vehicles": "Veículos"
+
 }

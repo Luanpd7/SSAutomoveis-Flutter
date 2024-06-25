@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/client.dart';
+import '../routes/appRoutes.dart';
 import '../services/api_brasil.dart';
 import 'client_provider.dart';
 
@@ -43,7 +44,7 @@ class FormAddClientProvider with ChangeNotifier {
         load.select();
         cleanText();
 
-        Navigator.pop(context);
+        Navigator.popAndPushNamed(context, AppRoute.queryClients);
       }
 
       print('Validação concluída');

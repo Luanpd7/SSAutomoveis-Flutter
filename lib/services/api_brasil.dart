@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/client.dart';
 
 ///API para consultar e pegar informações de CNPJ;

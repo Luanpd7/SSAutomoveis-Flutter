@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/item_menu.dart';
 import '../components/triangle_clipper.dart';
 import '../routes/appRoutes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Essa classe será a tela da homePage
 
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisSpacing: 15,
               children: [
                 ItemMenu(
-                  label: 'Clientes',
+                  label: AppLocalizations.of(context)!.costumers,
                   icon: const Icon(
                     Icons.people,
                     size: 48,
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
                 ItemMenu(
-                    label: 'Gerentes',
+                    label: AppLocalizations.of(context)!.managers,
                     icon: const Icon(Icons.person_sharp, size: 48),
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.registerManager);
@@ -46,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                       // Navigator.pushNamed(context, AppRoute.registerCliente);
                     }),
                 ItemMenu(
-                    label: 'Veiculos',
+                    label: AppLocalizations.of(context)!.vehicles,
                     icon: const Icon(Icons.time_to_leave, size: 48),
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.registerVehicle);

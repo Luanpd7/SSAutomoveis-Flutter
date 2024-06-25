@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/manager.dart';
+import '../routes/appRoutes.dart';
 import 'manager_provider.dart';
 
 ///[FormAddManagerProvider] gerencia o formulário de adicionar
@@ -25,7 +26,7 @@ class FormAddManagerProvider with ChangeNotifier {
 
     Provider.of<ManagerProvider>(context, listen: false).select();
     cleanText();
-    Navigator.pop(context);
+    Navigator.popAndPushNamed(context, AppRoute.queryManagers);
   }
 
   void cleanText() {

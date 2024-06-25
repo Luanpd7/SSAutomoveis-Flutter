@@ -47,15 +47,15 @@ class SettingsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ItemSettings(
-                        title: 'Proprietário',
-                        subtitle: 'Nome:',
+                        title: AppLocalizations.of(context)!.owner,
+                        subtitle: AppLocalizations.of(context)!.name,
                         label: 'Saulo Corrêa',
                         subtitle2: 'E-mail:',
                         label2: 'saulo_ssautomóveis@gmail.com',
                         isText: true,
                       ),
                       ItemSettings(
-                        title: 'Aparência',
+                        title: AppLocalizations.of(context)!.appearance,
                         subtitle: AppLocalizations.of(context)!.language,
                         label: idiomaSelecionado,
                                onTap: () {
@@ -111,15 +111,15 @@ class SettingsScreen extends StatelessWidget {
                         },
                       ),
                       ItemSettings(
-                        title: 'Detalhe',
+                        title: AppLocalizations.of(context)!.detail,
                         icon: Icon(Icons.feed_outlined),
-                        subtitle: 'Política de privacidade',
+                        subtitle: AppLocalizations.of(context)!.privacyPolicy,
                         isText: false,
                         onTap: () =>
                             Navigator.pushNamed(context, AppRoute.privacyPolicy),
                       ),
                       ItemSettings(
-                        title: 'Desenvolvido Por:',
+                        title: AppLocalizations.of(context)!.developedBy,
                         subtitle: 'Luan Pereira Dias',
                         //     printOntap: 'clicando linkedln luan',
                       ),
