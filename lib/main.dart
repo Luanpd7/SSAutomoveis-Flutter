@@ -11,6 +11,7 @@ import 'provider/form_add_vehicle_provider.dart';
 import 'provider/form_query_client_provider.dart';
 import 'provider/form_query_manager_provider.dart';
 import 'provider/form_query_vehicle_provider.dart';
+import 'provider/image_picker_provider.dart';
 import 'provider/language_provider.dart';
 import 'provider/manager_provider.dart';
 import 'provider/settings_provider.dart';
@@ -52,6 +53,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => VehicleProvider()),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
+        ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
       ],
       child: MyApp(),
     ),
