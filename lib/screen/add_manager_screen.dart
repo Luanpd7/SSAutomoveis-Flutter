@@ -20,7 +20,7 @@ class AddManagerScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Container(
             height: 680,
             width: 380,

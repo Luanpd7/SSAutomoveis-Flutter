@@ -13,7 +13,7 @@ import '../services/input_formatter.dart';
 /// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerClient extends StatelessWidget {
-  var inputFormatter = InputFormatter();
+  var maskFormatter = InputFormatter();
 
   final bool isEditing;
   final Client? client;
@@ -35,9 +35,8 @@ class FormsControllerClient extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FormText(
-                    // inputFormatters: [inputFormatter.cnpjMaskFormatter],
+                    inputFormatters: [maskFormatter.cnpjMaskFormatter],
                     label: 'CNPJ',
-
                     controller: isEditing
                         ? (formProvider as FormUpdateClientProvider)
                             .cnpjController

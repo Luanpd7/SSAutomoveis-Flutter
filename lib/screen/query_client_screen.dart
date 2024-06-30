@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../components/query_item.dart';
 import '../components/query_item_icone.dart';
@@ -17,6 +18,11 @@ class QueryClientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _formatDateToBrasilia(DateTime date) {
+      final DateTime dateTimeInBrasilia = date.toUtc().add(Duration(hours: -3));
+      return DateFormat('dd/MM/yyyy HH:mm').format(dateTimeInBrasilia);
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -42,7 +48,10 @@ class QueryClientScreen extends StatelessWidget {
                       ),
                       QueryItem(title: 'Cidade', subtitle: client.cidade),
                       QueryItem(title: 'Telefone', subtitle: client.telefone),
-                      QueryItem(title: 'Data de Registro', subtitle: 'teste'),
+                      QueryItem(
+                          title: 'Data de Registro',
+                          subtitle:
+                              _formatDateToBrasilia(client.dataRegistro!)),
                       QueryItemIcone(
                         icon: Icons.delete,
                         onTap: () async {

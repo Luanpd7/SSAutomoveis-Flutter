@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/manager.dart';
+import '../routes/appRoutes.dart';
 import 'manager_provider.dart';
 
 ///[FormUpdateManagerProvider] gerencia o formulário de editar
@@ -24,6 +25,7 @@ class FormUpdateManagerProvider with ChangeNotifier {
 
   Future<void> updateForm(BuildContext context) async {
     var managerProvider = ManagerProvider();
+
     managerProvider.update(Manager(
         id: this.id,
         cpf: cpfController.text,
@@ -32,10 +34,14 @@ class FormUpdateManagerProvider with ChangeNotifier {
         estado: estadoController.text,
         percentual: percentualController.text));
 
-    final load = Provider.of<ManagerProvider>(context, listen: false);
-    load.select();
-    Navigator.pop(context);
+       /*  final load = Provider.of<ManagerProvider>(context, listen: false);
+         load.select();*/
+         managerProvider.select();
 
+   
+   Navigator.pop(context);
+  
     notifyListeners();
+     
   }
 }

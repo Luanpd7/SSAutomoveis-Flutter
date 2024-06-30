@@ -26,10 +26,10 @@ class ClientProvider with ChangeNotifier {
   }
 
   Future<void> select() async {
-     isLoading = true;
+    isLoading = true;
     _list = await clientRepository.load();
-     isLoading = false;
-     await Future.delayed(Duration(seconds: 1));
+    isLoading = false;
+    await Future.delayed(Duration(seconds: 1));
     notifyListeners();
   }
 

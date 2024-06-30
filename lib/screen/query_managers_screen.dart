@@ -21,14 +21,17 @@ class QueryManagersScreen extends StatelessWidget {
       body: Consumer<ManagerProvider>(
         builder: (context, managerProvider, _) {
           if (managerProvider.isLoading == true) {
-             return const Center(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 5,),
-                  Text('Carregando...'),
-                ],
-              ));
+            return const Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('Carregando...'),
+              ],
+            ));
           } else if (managerProvider.list.isNotEmpty) {
             return QueryItems(
               list: managerProvider.list,

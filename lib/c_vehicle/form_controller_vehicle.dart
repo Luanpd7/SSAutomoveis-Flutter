@@ -21,7 +21,7 @@ class FormsControllerVehicle extends StatelessWidget {
       child: Consumer<FormAddVehicleProvider>(
         builder: (context, formProvider, _) {
           if (formProvider.marcas.isEmpty) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
             return buildForm(context, formProvider);
           }
@@ -44,7 +44,8 @@ class FormsControllerVehicle extends StatelessWidget {
                   )
                 : FormDrop(
                     labelDrop: 'Marca',
-                    items: formProvider.marcas.map((brand) => brand.nome).toList(),
+                    items:
+                        formProvider.marcas.map((brand) => brand.nome).toList(),
                     value: formProvider.selectedMarca ?? '',
                     onChanged: (newValue) {
                       formProvider.setMarca(context, newValue);
@@ -76,7 +77,8 @@ class FormsControllerVehicle extends StatelessWidget {
             ),
             FormPicture(
               onTap: () async {
-                await Provider.of<ImagePickerProvider>(context, listen: false).getPhoto();
+                await Provider.of<ImagePickerProvider>(context, listen: false)
+                    .getPhoto();
               },
             ),
             Row(

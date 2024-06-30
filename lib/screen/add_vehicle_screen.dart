@@ -19,7 +19,7 @@ class AddVehicleScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(18),
+          padding: const EdgeInsets.all(18),
           child: Container(
             height: 748,
             width: 380,

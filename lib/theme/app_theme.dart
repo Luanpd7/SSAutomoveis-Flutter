@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppTheme{
-  
-
-
+class AppTheme {
   ThemeData themeLight() {
     return ThemeData(
       primaryColor: const Color.fromRGBO(255, 87, 87, 1.0), //cor do appBar

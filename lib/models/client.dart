@@ -8,10 +8,12 @@ class Client {
   final String telefone;
   final String estado;
   final String cidade;
+  final DateTime? dataRegistro;
   
 
   Client({
     this.id,
+    this.dataRegistro,
     required this.cnpj,
     required this.razaoSocial,
     required this.telefone,
@@ -23,6 +25,7 @@ class Client {
   factory Client.fromMap(Map<String, dynamic> map) {
     return Client(
       id: map[TableClient.id],
+      dataRegistro: DateTime.parse(map[TableClient.dataRegistro]),
       cnpj: map[TableClient.cnpj],
       razaoSocial: map[TableClient.razaoSocial],
       telefone: map[TableClient.telefone],
@@ -34,11 +37,13 @@ class Client {
    Map<String, Object?> toMap(){
     return {
       'id': id,
+      'dataRegistro' :dataRegistro,
       'cnpj': cnpj,
       'razaoSocial': razaoSocial,
       'telefone': telefone,
       'estado': estado,
-      'cidade': cidade
+      'cidade': cidade,
+      
     };
    }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Essa classe servirá para ser meu bottomNavigationBar
 ///utilizo a classe tabs_screen e home para ser
@@ -55,7 +55,7 @@ class _TabsScreeenState extends State<TabsScreen> {
         unselectedItemColor:
             Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         currentIndex: currentPage,
-        items:  [
+        items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.home_filled),
             label: AppLocalizations.of(context)!.menu,

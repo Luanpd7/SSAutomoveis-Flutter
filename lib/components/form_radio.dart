@@ -14,7 +14,7 @@ class FormRadio extends StatelessWidget {
           'Situação:',
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Row(

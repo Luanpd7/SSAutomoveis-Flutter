@@ -24,7 +24,7 @@ class FormButton extends StatelessWidget {
                 topLeft: Radius.circular(80),
                 topRight: Radius.zero,
                 bottomLeft: Radius.zero,
-                bottomRight: Radius.circular(80)), // Raio das bordas
+                bottomRight: Radius.circular(80)), 
           ),
         ),
         child: Text(

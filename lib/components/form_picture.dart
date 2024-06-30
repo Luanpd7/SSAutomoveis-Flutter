@@ -2,17 +2,15 @@ import 'package:cross_file/src/types/interface.dart';
 import 'package:flutter/material.dart';
 
 class FormPicture extends StatelessWidget {
+  final Future<void> Function()? onTap;
 
-    final Future<void> Function()? onTap;
-
-   FormPicture(/*XFile? photo,*/ {required this.onTap});
-
+  FormPicture(/*XFile? photo,*/ {required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: onTap ,
+        onTap: onTap,
         child: Container(
           height: 150,
           width: 345,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../components/item_settings.dart';
 import '../provider/language_provider.dart';
 import '../provider/settings_provider.dart';
 import '../routes/appRoutes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Essa classe é a tela de configurações
 ///ela tem como filho a classe item_settings
@@ -24,9 +24,8 @@ class SettingsScreen extends StatelessWidget {
         body:
             Consumer<SettingsProvider>(builder: (context, settingsProvider, _) {
           return Consumer<LanguageProvider>(
-
-            builder: ( context, languageProvider , _) {  
-              var idiomaSelecionado = languageProvider.idiomaSelecionado;
+              builder: (context, languageProvider, _) {
+            var idiomaSelecionado = languageProvider.idiomaSelecionado;
             return Column(
               children: [
                 Container(
@@ -58,44 +57,43 @@ class SettingsScreen extends StatelessWidget {
                         title: AppLocalizations.of(context)!.appearance,
                         subtitle: AppLocalizations.of(context)!.language,
                         label: idiomaSelecionado,
-                               onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Center(
-                                      child:
-                                          Text(AppLocalizations.of(context)!.settings)),
-                                  content: Consumer<LanguageProvider>(
-                                    builder: (context, idiomaProvider, _) =>
-                                        DropdownButtonFormField<String>(
-                                      value: idiomaProvider.idiomaSelecionado,
-                                      onChanged: (String? novoIdioma) {
-                                        if (novoIdioma != null) {
-                                          idiomaProvider
-                                              .selecionarIdioma(novoIdioma);
-                                        }
-                                      },
-                                      items: <String>['pt', 'en']
-                                          .map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(
-                                            value,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium,
-                                          ),
-                                        );
-                                      }).toList(),
-                                    ),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Center(
+                                    child: Text(AppLocalizations.of(context)!
+                                        .settings)),
+                                content: Consumer<LanguageProvider>(
+                                  builder: (context, idiomaProvider, _) =>
+                                      DropdownButtonFormField<String>(
+                                    value: idiomaProvider.idiomaSelecionado,
+                                    onChanged: (String? novoIdioma) {
+                                      if (novoIdioma != null) {
+                                        idiomaProvider
+                                            .selecionarIdioma(novoIdioma);
+                                      }
+                                    },
+                                    items: <String>['pt', 'en']
+                                        .map<DropdownMenuItem<String>>((value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
-                                  actions: [
-                                    TextButton(
-                                      child: Text('Fechar'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: const Text('Fechar'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
                                     },
                                   ),
                                 ],
@@ -115,8 +113,8 @@ class SettingsScreen extends StatelessWidget {
                         icon: Icon(Icons.feed_outlined),
                         subtitle: AppLocalizations.of(context)!.privacyPolicy,
                         isText: false,
-                        onTap: () =>
-                            Navigator.pushNamed(context, AppRoute.privacyPolicy),
+                        onTap: () => Navigator.pushNamed(
+                            context, AppRoute.privacyPolicy),
                       ),
                       ItemSettings(
                         title: AppLocalizations.of(context)!.developedBy,
@@ -128,8 +126,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ],
             );
-            }
-          );
+          });
         }));
   }
 }

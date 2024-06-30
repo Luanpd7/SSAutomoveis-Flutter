@@ -17,6 +17,7 @@ class FormAddManagerProvider with ChangeNotifier {
   Future<void> saveForm(BuildContext context) async {
     var manager = Manager(
         cpf: cpfController.text,
+        dataRegistro: DateTime.now(),
         nome: nomeController.text,
         telefone: telefoneController.text,
         estado: estadoController.text,

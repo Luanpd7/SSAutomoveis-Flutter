@@ -59,7 +59,6 @@ class FormsQueryVehicle extends StatelessWidget {
                     labelButton: 'Novo Veículo',
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.addVehicle);
-                      
                     })
               ],
             )

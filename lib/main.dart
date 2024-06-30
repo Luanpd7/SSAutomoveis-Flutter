@@ -22,6 +22,10 @@ import 'theme/app_theme.dart';
 /// tambem armazenado as configuraçoes das cores e fonte das telas.
 
 void main() async {
+  //  WidgetsFlutterBinding.ensureInitialized();
+
+  // await resetDatabase();  // Recriar o banco de dados
+
   runApp(
     MultiProvider(
       providers: [

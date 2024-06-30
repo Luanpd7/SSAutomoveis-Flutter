@@ -5,8 +5,9 @@ class ApiFipe {
   static const String baseUrl = 'https://fipe.parallelum.com.br/api/v2';
 
   Future<List<dynamic>> getCarrosByMarca(String brandId) async {
-    final response = await http.get(Uri.parse('$baseUrl/cars/brands/$brandId/models'));
-    
+    final response =
+        await http.get(Uri.parse('$baseUrl/cars/brands/$brandId/models'));
+
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       print('Modelos retornados: ${data['models']}');

@@ -18,15 +18,18 @@ class QueryClientsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<ClientProvider>(
         builder: (context, clientProvider, _) {
-          if(clientProvider.isLoading == true){
-              return const Center(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 5,),
-                  Text('Carregando...'),
-                ],
-              ));
+          if (clientProvider.isLoading == true) {
+            return const Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('Carregando...'),
+              ],
+            ));
           }
           if (clientProvider.list.isNotEmpty) {
             return QueryItems(

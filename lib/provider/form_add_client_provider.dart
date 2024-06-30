@@ -3,9 +3,10 @@ import 'package:provider/provider.dart';
 import '../models/client.dart';
 import '../routes/appRoutes.dart';
 import '../services/api_brasil.dart';
+import '../services/input_formatter.dart';
 import 'client_provider.dart';
 
-///[FormAddClientProvider] gerencia o formulário de adicionar 
+///[FormAddClientProvider] gerencia o formulário de adicionar
 ///do client para todas as classes que chamar ela.
 
 class FormAddClientProvider with ChangeNotifier {
@@ -20,9 +21,12 @@ class FormAddClientProvider with ChangeNotifier {
   List<String> cidades = ['Blumenau', 'Gaspar', 'Indaial', 'Nova Russia'];
 
   Future<void> saveForm(BuildContext context) async {
+    var maskFormatter = InputFormatter();
+
     final api = Provider.of<ApiBrasil>(context, listen: false);
     try {
-      final clientData = await api.validateCNPJ(cnpjController.text);
+      final clientData = await api
+          .validateCNPJ(maskFormatter.removeCnpjMask(cnpjController.text));
 
       if (clientData != null) {
         razaoSocialController.text = clientData.razaoSocial;
@@ -31,9 +35,10 @@ class FormAddClientProvider with ChangeNotifier {
         cidadeController.text = clientData.cidade;
         var client = Client(
             id: clientData.id,
-            cnpj: clientData.cnpj,
+            dataRegistro: DateTime.now(),
+            cnpj: maskFormatter.addCnpjMask(clientData.cnpj),
             razaoSocial: clientData.razaoSocial,
-            telefone: clientData.telefone,
+            telefone: maskFormatter.addPhoneMask(clientData.telefone),
             estado: clientData.estado,
             cidade: clientData.cidade);
         ClientProvider().addClient(client);

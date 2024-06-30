@@ -38,7 +38,7 @@ Future<Database> getDatabase() async {
 
 Future<void> printMarcaData(Database db) async {
   final List<Map<String, dynamic>> maps = await db.query(TableBrand.tableName);
-  
+
   if (maps.isEmpty) {
     print('No data found in ${TableBrand.tableName}');
   } else {
@@ -65,22 +65,25 @@ Future<void> _dropTables(Database db) async {
 
 Future<void> _insertInitialData(Database db) async {
   // Inserindo dados iniciais na tabela Marca
-  await db.insert(TableBrand.tableName, TableBrand.toMap(Brand(id: 1, nome: 'Volkswagen')));
-  await db.insert(TableBrand.tableName, TableBrand.toMap(Brand(id: 2, nome: 'Chevrolet')));
-  await db.insert(TableBrand.tableName, TableBrand.toMap(Brand(id: 3, nome: 'Peugeot')));
-  await db.insert(TableBrand.tableName, TableBrand.toMap(Brand(id: 4, nome: 'Honda')));
-  await db.insert(TableBrand.tableName, TableBrand.toMap(Brand(id: 5, nome: 'Toyota')));
+  await db.insert(
+      TableBrand.tableName, TableBrand.toMap(Brand(id: 1, nome: 'Volkswagen')));
+  await db.insert(
+      TableBrand.tableName, TableBrand.toMap(Brand(id: 2, nome: 'Chevrolet')));
+  await db.insert(
+      TableBrand.tableName, TableBrand.toMap(Brand(id: 3, nome: 'Peugeot')));
+  await db.insert(
+      TableBrand.tableName, TableBrand.toMap(Brand(id: 4, nome: 'Honda')));
+  await db.insert(
+      TableBrand.tableName, TableBrand.toMap(Brand(id: 5, nome: 'Toyota')));
   print('Initial data inserted');
 }
-
-
-
 
 //Classe para tabela
 class TableClient {
   static const String createTable = '''
    CREATE TABLE $tableName(
    $id INTEGER PRIMARY KEY NOT NULL,
+   $dataRegistro TEXT NOT NULL,
    $cnpj TEXT NOT NULL,
    $razaoSocial TEXT NOT NULL,
    $telefone TEXT NOT NULL,
@@ -91,6 +94,7 @@ class TableClient {
 
   static const String tableName = 'cliente';
   static const String id = 'id';
+  static const String dataRegistro = 'dataRegistro';
   static const String cnpj = 'cnpj';
   static const String razaoSocial = 'razaoSocial';
   static const String telefone = 'telefone';
@@ -102,6 +106,7 @@ class TableClient {
     final map = <String, dynamic>{};
 
     map[TableClient.id] = client.id;
+    map[TableClient.dataRegistro] = client.dataRegistro?.toIso8601String();
     map[TableClient.cnpj] = client.cnpj;
     map[TableClient.razaoSocial] = client.razaoSocial;
     map[TableClient.telefone] = client.telefone;
@@ -116,6 +121,7 @@ class TableManager {
   static const String createTable = '''
    CREATE TABLE $tableName(
    $id INTEGER PRIMARY KEY NOT NULL,
+   $dataRegistro TEXT NOT NULL,
    $cpf TEXT NOT NULL,
    $nome TEXT NOT NULL,
    $telefone TEXT NOT NULL,
@@ -126,6 +132,7 @@ class TableManager {
 
   static const String tableName = 'gerente';
   static const String id = 'id';
+  static const String dataRegistro = 'dataRegistro';
   static const String cpf = 'cpf';
   static const String nome = 'nome';
   static const String telefone = 'telefone';
@@ -137,6 +144,7 @@ class TableManager {
     final map = <String, dynamic>{};
 
     map[TableManager.id] = manager.id;
+    map[TableManager.dataRegistro] = manager.dataRegistro?.toIso8601String();
     map[TableManager.cpf] = manager.cpf;
     map[TableManager.nome] = manager.nome;
     map[TableManager.telefone] = manager.telefone;
@@ -145,11 +153,7 @@ class TableManager {
 
     return map;
   }
-
-  
 }
-
-
 
 class TableBrand {
   static const String createTable = '''
@@ -163,7 +167,6 @@ class TableBrand {
   static const String id = 'id';
   static const String nome = 'nome';
 
-
   // Método para mapear os dados do Mana para um Map
   static Map<String, dynamic> toMap(Brand marca) {
     final map = <String, dynamic>{};
@@ -171,9 +174,6 @@ class TableBrand {
     map[TableBrand.id] = marca.id;
     map[TableBrand.nome] = marca.nome;
 
-
     return map;
   }
-
-  
 }

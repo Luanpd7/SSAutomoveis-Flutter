@@ -13,7 +13,7 @@ import '../services/input_formatter.dart';
 ///e tambem adicionar novo Gerente['AddManagerScreen'].
 
 class FormsQueryManager extends StatelessWidget {
-  var inputFormatter = InputFormatter();
+  var maskFormatter = InputFormatter();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class FormsQueryManager extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FormText(
-                  inputFormatters: [inputFormatter.cpfMaskFormatter],
+                  inputFormatters: [maskFormatter.cpfMaskFormatter],
                   label: 'CPF',
                   controller: formRegisterProvider.cpfController,
                   textInputType: TextInputType.number,
@@ -36,7 +36,7 @@ class FormsQueryManager extends StatelessWidget {
                   controller: formRegisterProvider.nomeController,
                 ),
                 FormText(
-                  inputFormatters: [inputFormatter.phoneMaskFormatter],
+                  inputFormatters: [maskFormatter.phoneMaskFormatter],
                   label: 'Telefone',
                   controller: formRegisterProvider.telefoneController,
                 ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import '../components/form_button.dart';
 import '../components/form_text.dart';
@@ -14,7 +13,7 @@ import '../services/input_formatter.dart';
 /// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerManager extends StatelessWidget {
-  var inputFormatter = InputFormatter();
+  var maskFormatter = InputFormatter();
 
   final bool isEditing;
   final Manager? manager;
@@ -36,7 +35,7 @@ class FormsControllerManager extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FormText(
-                    inputFormatters: [inputFormatter.cpfMaskFormatter],
+                    inputFormatters: [maskFormatter.cpfMaskFormatter],
                     label: 'CPF',
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
@@ -54,7 +53,7 @@ class FormsControllerManager extends StatelessWidget {
                             .nomeController,
                   ),
                   FormText(
-                    inputFormatters: [inputFormatter.phoneMaskFormatter],
+                    inputFormatters: [maskFormatter.phoneMaskFormatter],
                     label: 'Telefone',
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
@@ -73,7 +72,7 @@ class FormsControllerManager extends StatelessWidget {
                   ),
                   FormText(
                     label: 'Percentual',
-                    inputFormatters: [inputFormatter.valueMaskFormatter],
+                    inputFormatters: [maskFormatter.valueMaskFormatter],
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
                             .percentualController
