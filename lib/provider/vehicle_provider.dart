@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
-import '../models/Vehicle.dart';
-import '../repositories/vehicle_repository.dart';
-
-/// [VehicleProvider] é um provider responsável por gerenciar o estado
-/// relacionado a [Vehicle]. Ele utiliza o [ChangeNotifier] para notificar
+import '../models/brand.dart';
+import '../repositories/brand_repository.dart';
+import '../services/api_fipe.dart';
 
 class VehicleProvider with ChangeNotifier {
-  ///utilizei select no construtor para garantir que assim for instânciado
-  ///se atualiazado o select para pegar a lista de Veiculos atualizado
+  var brandRepository = BrandRepository();
+  List<Brand> _list = [];
+  List<Brand> get listBrand => _list;
 
-  var vehicleRepository = VehicleRepository();
-  List<Vehicle> _list = [];
+  Future<void> selectMarca() async {
+    _list = await brandRepository.load();
+    notifyListeners();
+  }
 
-  List<Vehicle> get list => _list;
+  final ApiFipe _fipeService = ApiFipe();
+  List<dynamic> _listModel = [];
+
+  List<dynamic> get listModel => _listModel;
+
+  Future<void> fetchCarrosByMarca(String marcaId) async {
+    _listModel = await _fipeService.getCarrosByMarca("5585");
+    notifyListeners();
+  }
 }
+

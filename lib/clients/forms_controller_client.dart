@@ -5,13 +5,16 @@ import '../components/form_text.dart';
 import '../models/client.dart';
 import '../provider/form_add_client_provider.dart';
 import '../provider/form_update_client_provider.dart';
+import '../services/input_formatter.dart';
 
-///[FormsControllerClient] controla o formulário de adicionar ou editar 
-/// do cliente, essa classe estará esperando um valor  booleano no qual 
+///[FormsControllerClient] controla o formulário de adicionar ou editar
+/// do cliente, essa classe estará esperando um valor  booleano no qual
 /// for verdadeiro sera usado o formulario de editar se não para adicionar,
 /// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerClient extends StatelessWidget {
+  var inputFormatter = InputFormatter();
+
   final bool isEditing;
   final Client? client;
 
@@ -32,12 +35,15 @@ class FormsControllerClient extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FormText(
+                    // inputFormatters: [inputFormatter.cnpjMaskFormatter],
                     label: 'CNPJ',
+
                     controller: isEditing
                         ? (formProvider as FormUpdateClientProvider)
                             .cnpjController
                         : (formProvider as FormAddClientProvider)
                             .cnpjController,
+                    textInputType: TextInputType.number,
                   ),
                   FormText(
                     label: 'Razão Social',

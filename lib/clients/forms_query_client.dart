@@ -4,7 +4,7 @@ import '../components/form_button.dart';
 import '../components/form_radio.dart';
 import '../provider/form_query_client_provider.dart';
 import '../routes/appRoutes.dart';
-
+import '../services/input_formatter.dart';
 import '../components/form_drop.dart';
 import '../components/form_text.dart';
 
@@ -13,6 +13,8 @@ import '../components/form_text.dart';
 ///e tambem adicionar novo cliente ['AddClientScreen'].
 
 class FormsQueryClient extends StatelessWidget {
+  var inputFormatter = InputFormatter();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<FormsQueryClientProvider>(
@@ -24,14 +26,20 @@ class FormsQueryClient extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FormText(
-                label: 'CNPJ', controller: formRegisterProvider.cnpjController),
+              inputFormatters: [inputFormatter.cnpjMaskFormatter],
+              label: 'CNPJ',
+              controller: formRegisterProvider.cnpjController,
+              textInputType: TextInputType.number,
+            ),
             FormText(
               label: 'Razão Social',
               controller: formRegisterProvider.razaoSocialController,
             ),
             FormText(
+              inputFormatters: [inputFormatter.phoneMaskFormatter],
               label: 'Telefone',
               controller: formRegisterProvider.telefoneController,
+              textInputType: TextInputType.number,
             ),
             FormDrop(
               labelDrop: 'Estado',

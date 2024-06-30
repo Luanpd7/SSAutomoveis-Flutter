@@ -20,7 +20,16 @@ class QueryManagersScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<ManagerProvider>(
         builder: (context, managerProvider, _) {
-          if (managerProvider.list.isNotEmpty) {
+          if (managerProvider.isLoading == true) {
+             return const Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 5,),
+                  Text('Carregando...'),
+                ],
+              ));
+          } else if (managerProvider.list.isNotEmpty) {
             return QueryItems(
               list: managerProvider.list,
               isManager: true,

@@ -7,15 +7,22 @@ import 'package:flutter/material.dart';
 class FormText extends StatelessWidget {
   final String? label;
   final TextEditingController controller;
+  final String? hintLabel;
+  final  inputFormatters;
+  final textInputType;
 
-  FormText({required this.label, required this.controller});
+  FormText({required this.label, required this.controller, this.hintLabel, this.inputFormatters, this.textInputType});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
         controller: controller,
+        keyboardType: textInputType,
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
+         
+          hintText: hintLabel,
           label: Text(
             label!,
             style: Theme.of(context).textTheme.bodyLarge,

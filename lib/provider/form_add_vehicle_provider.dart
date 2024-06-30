@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'form_query_client_provider.dart';
+import '../models/brand.dart';
+import 'vehicle_provider.dart';
 
 class FormAddVehicleProvider with ChangeNotifier {
   final TextEditingController marcaController = TextEditingController();
@@ -12,30 +10,36 @@ class FormAddVehicleProvider with ChangeNotifier {
   final TextEditingController anoController = TextEditingController();
   final TextEditingController diariaController = TextEditingController();
 
-  cleanText() {
-    marcaController.clear();
-    modeloController.clear();
-    placaController.clear();
-    anoController.clear();
-    diariaController.clear();
-  }
-  
-    String? selectedMarca;
-    String? selectedModelo;
-    String? selectedAno;
+  String? selectedMarca;
+  String? selectedModelo;
+  String? selectedAno;
 
-
-  List<String> marcas = ['Volkswagen', 'Chevrolet', 'Hyundai', 'Peugeot','Fiat','Toyota'];
+  List<Brand> marcas = [];
   List<String> modelos = [];
   List<String> anos = [];
 
-  void setMarca(String? marca) {
-    if (marcas.contains(marca)) {
-      selectedMarca = marca;
-      notifyListeners();
-    } else {
-      print('Estado inválido: ');
+  FormAddVehicleProvider() {
+    // Constructor to initialize any necessary data
+  }
+
+  Future<void> initialize(BuildContext context) async {
+    await Provider.of<VehicleProvider>(context, listen: false).selectMarca();
+    marcas = Provider.of<VehicleProvider>(context, listen: false).listBrand;
+    notifyListeners();
+  }
+
+  Future<void> fetchModelosByMarca(BuildContext context, String marcaId) async {
+    await Provider.of<VehicleProvider>(context, listen: false).fetchCarrosByMarca(marcaId);
+    modelos = Provider.of<VehicleProvider>(context, listen: false).listModel.map((carro) => carro['nome'] as String).toList();
+    notifyListeners();
+  }
+
+  void setMarca(BuildContext context, String? marca) async {
+    selectedMarca = marca;
+    if (marca != null) {
+      await fetchModelosByMarca(context, marca);
     }
+    notifyListeners();
   }
 
   void setModelo(String? modelo) {
@@ -47,12 +51,20 @@ class FormAddVehicleProvider with ChangeNotifier {
     }
   }
 
-    void setAno(String? ano) {
+  void setAno(String? ano) {
     if (anos.contains(ano)) {
       selectedAno = ano;
       notifyListeners();
     } else {
       print('Estado inválido: ');
     }
+  }
+
+  void cleanText() {
+    marcaController.clear();
+    modeloController.clear();
+    placaController.clear();
+    anoController.clear();
+    diariaController.clear();
   }
 }

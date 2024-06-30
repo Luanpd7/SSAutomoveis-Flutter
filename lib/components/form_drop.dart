@@ -14,7 +14,7 @@ class FormDrop extends StatelessWidget {
   final String? labelDrop;
   final List<String> items;
   final String value;
-  final ValueChanged<String?>? onChanged;
+  final ValueChanged<String?> onChanged;
 
   FormDrop(
       {required this.labelDrop,

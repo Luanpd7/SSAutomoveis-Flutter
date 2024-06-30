@@ -1,3 +1,24 @@
+import 'package:flutter/material.dart';
+
+import '../models/client.dart';
+import '../models/manager.dart';
+import '../screen/add_client_screen.dart';
+import '../screen/add_manager_screen.dart';
+import '../screen/add_vehicle_screen.dart';
+import '../screen/privacy_policy_screen.dart';
+import '../screen/query_client_screen.dart';
+import '../screen/query_clients_screen.dart';
+import '../screen/query_manager_screen.dart';
+import '../screen/query_managers_screen.dart';
+import '../screen/query_vehicles_screen.dart';
+import '../screen/register_client_screen.dart';
+import '../screen/register_manager_screen.dart';
+import '../screen/register_vehicle_screen.dart';
+import '../screen/tabs_screen.dart';
+import '../screen/update_client_screen.dart';
+import '../screen/update_manager_screen.dart';
+
+
 ///Classe que contém os nomes das rotas
 ///que servirá para deixar as rotas de navegações
 ///mais seguras e organizadas
@@ -18,4 +39,41 @@ class AppRoute {
   static const addVehicle = '/AddVehicleScreen';
   static const queryVehicles = '/QueryVehicleScreen';
   static const privacyPolicy = '/PrivacyPolicy';
-}
+
+
+  Map<String, Widget Function(BuildContext)>  routes(){
+    return  { AppRoute.HOME: (ctx) {
+              return Builder(builder: (context) {
+                return TabsScreen(); //local  trocar tela para desenvolvimento
+              });
+            },
+            AppRoute.registerCliente: (context) => RegisterClienteScreen(),
+            AppRoute.queryManagers: (context) => QueryManagersScreen(),
+            AppRoute.addManager: (context) => AddManagerScreen(),
+            AppRoute.privacyPolicy: (context) => PrivacyPolicy(),
+            AppRoute.addClient: (context) => AddClientScreen(),
+            AppRoute.queryClients: (context) => QueryClientsScreen(),
+            AppRoute.updateClient: (context) => UpdateClientScreen(),
+            AppRoute.updateManager: (context) => UpdateManagerScreen(),
+            AppRoute.registerManager: (context) => RegisterManagerScreen(),
+            AppRoute.registerVehicle: (context) => RegisterVehicleScreen(),
+            AppRoute.addVehicle: (context) => AddVehicleScreen(),
+            AppRoute.queryVehicles: (context) => QueryVehiclesScreen(),
+            AppRoute.queryClient: (context) {
+              final client =
+                  ModalRoute.of(context)!.settings.arguments as Client;
+              return QueryClientScreen(
+                client: client,
+              );
+            },
+            AppRoute.queryManager: (context) {
+              final manager =
+                  ModalRoute.of(context)!.settings.arguments as Manager;
+              return QueryManagerScreen(manager: manager);
+            }
+
+
+    };
+  }
+  }
+

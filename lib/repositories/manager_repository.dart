@@ -29,6 +29,7 @@ class ManagerRepository {
 
     listManager.clear();
     listManager.addAll(manager);
+    
 
     return listManager;
   }

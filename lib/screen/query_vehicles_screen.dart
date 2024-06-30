@@ -18,9 +18,9 @@ class QueryVehiclesScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<VehicleProvider>(
         builder: (context, vehiclesProvider, _) {
-          if (vehiclesProvider.list.isNotEmpty) {
+          if (vehiclesProvider.listBrand.isNotEmpty) {
             return QueryItems(
-              list: vehiclesProvider.list,
+              list: vehiclesProvider.listBrand,
               isVehicle: true,
             );
           } else {

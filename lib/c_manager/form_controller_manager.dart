@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import '../components/form_button.dart';
 import '../components/form_text.dart';
 import '../models/manager.dart';
 import '../provider/form_add_manager_provider.dart';
 import '../provider/form_update_manager_provider.dart';
+import '../services/input_formatter.dart';
 
-///[FormsControllerManager] controla o formulário de adicionar ou editar 
-/// do manager, essa classe estará esperando um valor  booleano no qual 
+///[FormsControllerManager] controla o formulário de adicionar ou editar
+/// do manager, essa classe estará esperando um valor  booleano no qual
 /// for verdadeiro sera usado o formulario de editar se não para adicionar,
 /// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerManager extends StatelessWidget {
+  var inputFormatter = InputFormatter();
+
   final bool isEditing;
   final Manager? manager;
 
@@ -32,12 +36,14 @@ class FormsControllerManager extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FormText(
+                    inputFormatters: [inputFormatter.cpfMaskFormatter],
                     label: 'CPF',
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
                             .cpfController
                         : (formProvider as FormAddManagerProvider)
                             .cpfController,
+                    textInputType: TextInputType.number,
                   ),
                   FormText(
                     label: 'Nome',
@@ -48,12 +54,14 @@ class FormsControllerManager extends StatelessWidget {
                             .nomeController,
                   ),
                   FormText(
+                    inputFormatters: [inputFormatter.phoneMaskFormatter],
                     label: 'Telefone',
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
                             .telefoneController
                         : (formProvider as FormAddManagerProvider)
                             .telefoneController,
+                    textInputType: TextInputType.number,
                   ),
                   FormText(
                     label: 'Estado',
@@ -65,11 +73,13 @@ class FormsControllerManager extends StatelessWidget {
                   ),
                   FormText(
                     label: 'Percentual',
+                    inputFormatters: [inputFormatter.valueMaskFormatter],
                     controller: isEditing
                         ? (formProvider as FormUpdateManagerProvider)
                             .percentualController
                         : (formProvider as FormAddManagerProvider)
                             .percentualController,
+                    textInputType: TextInputType.number,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -6,12 +6,15 @@ import '../components/form_radio.dart';
 import '../components/form_text.dart';
 import '../provider/form_query_manager_provider.dart';
 import '../routes/appRoutes.dart';
+import '../services/input_formatter.dart';
 
 ///[FormsQueryManager] Gerencia o formulário de consulta do usuário
 ///onde também ele poderá navegar para tela como filtrar ['QueryManagerScreen']
 ///e tambem adicionar novo Gerente['AddManagerScreen'].
 
 class FormsQueryManager extends StatelessWidget {
+  var inputFormatter = InputFormatter();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<FormsQueryManagerProvider>(
@@ -23,13 +26,17 @@ class FormsQueryManager extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FormText(
-                    label: 'CPF',
-                    controller: formRegisterProvider.cpfController),
+                  inputFormatters: [inputFormatter.cpfMaskFormatter],
+                  label: 'CPF',
+                  controller: formRegisterProvider.cpfController,
+                  textInputType: TextInputType.number,
+                ),
                 FormText(
                   label: 'Nome',
                   controller: formRegisterProvider.nomeController,
                 ),
                 FormText(
+                  inputFormatters: [inputFormatter.phoneMaskFormatter],
                   label: 'Telefone',
                   controller: formRegisterProvider.telefoneController,
                 ),

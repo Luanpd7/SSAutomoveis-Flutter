@@ -15,6 +15,8 @@ class ClientProvider with ChangeNotifier {
   var clientRepository = ClientRepository();
   List<Client> _list = [];
 
+  bool? isLoading;
+
   List<Client> get list => _list;
 
   void addClient(Client client) {
@@ -24,7 +26,10 @@ class ClientProvider with ChangeNotifier {
   }
 
   Future<void> select() async {
+     isLoading = true;
     _list = await clientRepository.load();
+     isLoading = false;
+     await Future.delayed(Duration(seconds: 1));
     notifyListeners();
   }
 
