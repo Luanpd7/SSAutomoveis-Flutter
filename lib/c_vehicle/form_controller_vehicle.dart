@@ -21,6 +21,7 @@ class FormsControllerVehicle extends StatelessWidget {
       child: Consumer<FormAddVehicleProvider>(
         builder: (context, formProvider, _) {
           if (formProvider.marcas.isEmpty) {
+            print(formProvider.marcas.length);
             return const Center(child: CircularProgressIndicator());
           } else {
             return buildForm(context, formProvider);
@@ -44,11 +45,10 @@ class FormsControllerVehicle extends StatelessWidget {
                   )
                 : FormDrop(
                     labelDrop: 'Marca',
-                    items:
-                        formProvider.marcas.map((brand) => brand.nome).toList(),
+                    items: formProvider.marcas.map((marca) => marca.nome).toList(),
                     value: formProvider.selectedMarca ?? '',
                     onChanged: (newValue) {
-                      formProvider.setMarca(context, newValue);
+                      formProvider.setMarca(newValue, context);
                     },
                   ),
             FormDrop(

@@ -18,46 +18,40 @@ class FormAddVehicleProvider with ChangeNotifier {
   List<String> modelos = [];
   List<String> anos = [];
 
-  FormAddVehicleProvider() {
-    // Constructor to initialize any necessary data
-  }
+  FormAddVehicleProvider();
 
   Future<void> initialize(BuildContext context) async {
-    await Provider.of<VehicleProvider>(context, listen: false).selectMarca();
-    marcas = Provider.of<VehicleProvider>(context, listen: false).listBrand;
+    VehicleProvider vehicleProvider = Provider.of<VehicleProvider>(context, listen: false);
+    await vehicleProvider.fetchBrand();
+    marcas = vehicleProvider.listBrand;
     notifyListeners();
   }
 
-  Future<void> fetchModelosByMarca(BuildContext context, String marcaId) async {
-    await Provider.of<VehicleProvider>(context, listen: false).fetchCarrosByMarca(marcaId);
-    modelos = Provider.of<VehicleProvider>(context, listen: false).listModel.map((carro) => carro['nome'] as String).toList();
-    notifyListeners();
-  }
-
-  void setMarca(BuildContext context, String? marca) async {
+  Future<void> setMarca(String? marca, BuildContext context) async {
     selectedMarca = marca;
     if (marca != null) {
-      await fetchModelosByMarca(context, marca);
+      int? brandCode = marcas.firstWhere((b) => b.nome == marca).id;
+      if (brandCode != null) {
+        VehicleProvider vehicleProvider = Provider.of<VehicleProvider>(context, listen: false);
+        print(brandCode);
+        modelos = await vehicleProvider.fetchModels(brandCode);
+        selectedModelo = null;
+      }
+      else if(brandCode == null){
+        print('ta retornando nulo');
+      }
     }
     notifyListeners();
   }
 
   void setModelo(String? modelo) {
-    if (modelos.contains(modelo)) {
-      selectedModelo = modelo;
-      notifyListeners();
-    } else {
-      print('Estado inválido: ');
-    }
+    selectedModelo = modelo;
+    notifyListeners();
   }
 
   void setAno(String? ano) {
-    if (anos.contains(ano)) {
-      selectedAno = ano;
-      notifyListeners();
-    } else {
-      print('Estado inválido: ');
-    }
+    selectedAno = ano;
+    notifyListeners();
   }
 
   void cleanText() {
@@ -66,5 +60,9 @@ class FormAddVehicleProvider with ChangeNotifier {
     placaController.clear();
     anoController.clear();
     diariaController.clear();
+    selectedMarca = null;
+    selectedModelo = null;
+    selectedAno = null;
+    notifyListeners();
   }
 }

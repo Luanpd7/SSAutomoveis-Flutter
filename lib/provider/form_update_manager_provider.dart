@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/manager.dart';
-import '../routes/appRoutes.dart';
 import 'manager_provider.dart';
 
 ///[FormUpdateManagerProvider] gerencia o formulário de editar

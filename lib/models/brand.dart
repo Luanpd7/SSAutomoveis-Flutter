@@ -1,28 +1,23 @@
-import '../services/database.dart';
-
 class Brand {
   final int? id;
   final String nome;
 
   Brand({
-    this.id,
-    required this.nome
+    required this.id,
+    required this.nome,
   });
 
-    factory Brand.fromMap(Map<String, dynamic> map) {
+  factory Brand.fromMap(Map<String, dynamic> map) {
     return Brand(
-      id: map[TableBrand.id],
-      nome: map[TableBrand.nome],
-  
+      id: int.tryParse(map['code']),
+      nome: map['name'],
     );
   }
 
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'marca': nome,
+      'nome': nome,
     };
   }
-
-
 }

@@ -26,6 +26,7 @@ void main() async {
 
   // await resetDatabase();  // Recriar o banco de dados
 
+
   runApp(
     MultiProvider(
       providers: [

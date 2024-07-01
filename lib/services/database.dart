@@ -10,7 +10,6 @@ Future<void> resetDatabase() async {
   final database = await getDatabase();
   await _dropTables(database);
   await _createTables(database);
-  await _insertInitialData(database);
   await printMarcaData(database);
 }
 
@@ -22,14 +21,12 @@ Future<Database> getDatabase() async {
     version: 3, // Incrementar a versão do banco de dados
     onCreate: (db, version) async {
       await _createTables(db);
-      await _insertInitialData(db);
       await printMarcaData(db);
     },
     onUpgrade: (db, oldVersion, newVersion) async {
       if (oldVersion < newVersion) {
         await _dropTables(db);
         await _createTables(db);
-        await _insertInitialData(db);
         await printMarcaData(db);
       }
     },
@@ -63,20 +60,6 @@ Future<void> _dropTables(Database db) async {
   print('Tables dropped');
 }
 
-Future<void> _insertInitialData(Database db) async {
-  // Inserindo dados iniciais na tabela Marca
-  await db.insert(
-      TableBrand.tableName, TableBrand.toMap(Brand(id: 1, nome: 'Volkswagen')));
-  await db.insert(
-      TableBrand.tableName, TableBrand.toMap(Brand(id: 2, nome: 'Chevrolet')));
-  await db.insert(
-      TableBrand.tableName, TableBrand.toMap(Brand(id: 3, nome: 'Peugeot')));
-  await db.insert(
-      TableBrand.tableName, TableBrand.toMap(Brand(id: 4, nome: 'Honda')));
-  await db.insert(
-      TableBrand.tableName, TableBrand.toMap(Brand(id: 5, nome: 'Toyota')));
-  print('Initial data inserted');
-}
 
 //Classe para tabela
 class TableClient {
