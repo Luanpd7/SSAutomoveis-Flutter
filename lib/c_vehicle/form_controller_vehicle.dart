@@ -7,6 +7,7 @@ import '../components/form_text.dart';
 import '../models/Vehicle.dart';
 import '../provider/form_add_vehicle_provider.dart';
 import '../provider/image_picker_provider.dart';
+import '../services/input_formatter.dart';
 
 class FormsControllerVehicle extends StatelessWidget {
   final bool isEditing;
@@ -21,7 +22,6 @@ class FormsControllerVehicle extends StatelessWidget {
       child: Consumer<FormAddVehicleProvider>(
         builder: (context, formProvider, _) {
           if (formProvider.marcas.isEmpty) {
-            print(formProvider.marcas.length);
             return const Center(child: CircularProgressIndicator());
           } else {
             return buildForm(context, formProvider);
@@ -32,6 +32,7 @@ class FormsControllerVehicle extends StatelessWidget {
   }
 
   Widget buildForm(BuildContext context, FormAddVehicleProvider formProvider) {
+    var maskFormatter = InputFormatter();
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(15),
@@ -53,32 +54,33 @@ class FormsControllerVehicle extends StatelessWidget {
                   ),
             FormDrop(
               labelDrop: 'Modelo',
-              items: formProvider.modelos,
+              items: formProvider.modelos.map((model) => model['name']!).toList(),
               value: formProvider.selectedModelo ?? '',
               onChanged: (newValue) {
-                formProvider.setModelo(newValue);
+                formProvider.setModelo(newValue, context);
               },
             ),
             FormText(
+              inputFormatters: [maskFormatter.plateMaskFormatter],
               label: 'Placa',
               controller: formProvider.placaController,
             ),
             FormDrop(
-              labelDrop: 'Ano de Fabricação',
+              labelDrop: 'Ano de Fabricao',
               items: formProvider.anos,
               value: formProvider.selectedAno ?? '',
               onChanged: (newValue) {
-                formProvider.setAno(newValue);
+                formProvider.setAno(newValue, context);
               },
             ),
             FormText(
               label: 'Diária',
               controller: formProvider.diariaController,
+              textInputType: TextInputType.number,
             ),
             FormPicture(
               onTap: () async {
-                await Provider.of<ImagePickerProvider>(context, listen: false)
-                    .getPhoto();
+                await Provider.of<ImagePickerProvider>(context, listen: false).getPhoto();
               },
             ),
             Row(
@@ -93,7 +95,11 @@ class FormsControllerVehicle extends StatelessWidget {
                 FormButton(
                   labelButton: 'Salvar',
                   onPressed: () {
-                    print('marca selecionada  ${formProvider.selectedMarca}');
+                    print('${formProvider.selectedModelo }');
+                    print('${formProvider.selectedModelo }');
+                    print('${formProvider.placaController.text }');
+                    print('${formProvider.selectedAno}');
+                    print('${formProvider.diariaController.text }');
                   },
                 ),
               ],

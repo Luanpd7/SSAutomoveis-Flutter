@@ -12,10 +12,11 @@ class FormAddVehicleProvider with ChangeNotifier {
 
   String? selectedMarca;
   String? selectedModelo;
+  String? selectedModeloCode;
   String? selectedAno;
 
   List<Brand> marcas = [];
-  List<String> modelos = [];
+  List<Map<String, String>> modelos = [];
   List<String> anos = [];
 
   FormAddVehicleProvider();
@@ -24,6 +25,7 @@ class FormAddVehicleProvider with ChangeNotifier {
     VehicleProvider vehicleProvider = Provider.of<VehicleProvider>(context, listen: false);
     await vehicleProvider.fetchBrand();
     marcas = vehicleProvider.listBrand;
+  
     notifyListeners();
   }
 
@@ -33,24 +35,33 @@ class FormAddVehicleProvider with ChangeNotifier {
       int? brandCode = marcas.firstWhere((b) => b.nome == marca).id;
       if (brandCode != null) {
         VehicleProvider vehicleProvider = Provider.of<VehicleProvider>(context, listen: false);
-        print(brandCode);
         modelos = await vehicleProvider.fetchModels(brandCode);
+         
         selectedModelo = null;
-      }
-      else if(brandCode == null){
-        print('ta retornando nulo');
+        selectedModeloCode = null;
       }
     }
     notifyListeners();
   }
 
-  void setModelo(String? modelo) {
+  void setModelo(String? modelo, BuildContext context) async {
     selectedModelo = modelo;
+   
+    selectedModeloCode = modelos.firstWhere((m) => m['name'] == modelo)['code'];
+     if (selectedModeloCode != null) {
+        VehicleProvider vehicleProvider = Provider.of<VehicleProvider>(context, listen: false);
+        anos = await vehicleProvider.fetchYears(int.parse(selectedModeloCode!));
+     }
     notifyListeners();
   }
 
-  void setAno(String? ano) {
+  
+  
+
+
+  Future<void> setAno(String? ano, BuildContext context) async {
     selectedAno = ano;
+    
     notifyListeners();
   }
 
@@ -62,6 +73,7 @@ class FormAddVehicleProvider with ChangeNotifier {
     diariaController.clear();
     selectedMarca = null;
     selectedModelo = null;
+    selectedModeloCode = null;
     selectedAno = null;
     notifyListeners();
   }

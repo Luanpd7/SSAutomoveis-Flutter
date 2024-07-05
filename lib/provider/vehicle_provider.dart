@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/brand.dart';
+import '../models/vehicle.dart';
 import '../repositories/brand_repository.dart';
 import '../services/api_fipe.dart';
 
@@ -7,6 +8,11 @@ class VehicleProvider with ChangeNotifier {
   var brandRepository = BrandRepository();
   List<Brand> _list = [];
   List<Brand> get listBrand => _list;
+
+  List<Vehicle> _listVehicle = [];
+  List<Vehicle> get listVehicle => _listVehicle;
+
+   
 
   final ApiFipe _fipeService = ApiFipe();
 
@@ -17,31 +23,37 @@ class VehicleProvider with ChangeNotifier {
 
   Future<void> fetchBrand() async {
     List<dynamic> fetchedBranch = await _fipeService.getMarcas();
+    
 
-    List<dynamic> selectBrand = [
-      fetchedBranch[6],
-      fetchedBranch[8],
-      fetchedBranch[31],
-      fetchedBranch[33],
-      fetchedBranch[37],
-    ];
-    _list = selectBrand.map((data) => Brand.fromMap(data)).toList();
-    print('--- Marcas Selecionadas ---');
-    _list.forEach((brand) {
-      print('Marca: ${brand.nome}, ID: ${brand.id}');
-    });
+    _list = fetchedBranch.map((data) => Brand.fromMap(data)).toList();
+    
     notifyListeners();
   }
 
-  Future<List<String>> fetchModels(int brandCode) async {
-    List<dynamic> fetchedModels =
-        await _fipeService.getCarrosByMarca(brandCode.toString());
-    if (fetchedModels.isNotEmpty) {
-      List<String> modelNames =
-          fetchedModels.map((model) => model['name'] as String).toList();
-      print('Modelos para a marca $brandCode: $modelNames');
-      return modelNames;
-    }
-    return [];
+Future<List<Map<String, String>>> fetchModels(int brandCode) async {
+  List<dynamic> fetchedModels = await _fipeService.getCarrosByMarca(brandCode.toString());
+  if (fetchedModels.isNotEmpty) {
+    List<Map<String, String>> models = fetchedModels.map((model) => {
+      'code': model['code'] as String,
+      'name': model['name'] as String
+    }).toList();
+    return models;
   }
+  return [];
+}
+
+
+
+Future<List<String>> fetchYears(int brandCode, ) async {
+  print('brandId: $brandCode ');
+
+  List<dynamic> fetchedYears = await _fipeService.getYearsByModels(brandCode.toString());
+  if (fetchedYears.isNotEmpty) {
+    List<String> yearNames = fetchedYears.map((year) => year['name'] as String).toList();
+    print('Anos retornados: $yearNames');
+    return yearNames;
+  }
+  return [];
+}
+
 }

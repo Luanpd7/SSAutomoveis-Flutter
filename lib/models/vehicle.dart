@@ -1,16 +1,27 @@
 class Vehicle {
   final int? id;
-  final String marca;
   final String modelo;
-  final String placa;
-  final String ano;
-  final String diaria;
+  final String marca; // Adiciona esta linha
 
-  Vehicle(
-      {this.id,
-      required this.marca,
-      required this.modelo,
-      required this.placa,
-      required this.ano,
-      required this.diaria});
+  Vehicle({
+    this.id,
+    required this.modelo,
+    required this.marca, // Adiciona esta linha no construtor
+  });
+
+  factory Vehicle.fromMap(Map<String, dynamic> map, String marca) { // Adiciona marca como parâmetro
+    return Vehicle(
+      id: map['code'] != null ? int.tryParse(map['code'].toString()) : null,
+      modelo: map['name'],
+      marca: marca, // Usa o parâmetro marca
+    );
+  }
+
+  Map<String, Object?> toMap() {
+    return {
+      'id': id,
+      'modelo': modelo,
+      'marca': marca, // Adiciona esta linha
+    };
+  }
 }

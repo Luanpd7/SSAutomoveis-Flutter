@@ -13,7 +13,7 @@ import '../services/input_formatter.dart';
 /// e após inserir se as informações estiverem corretas, irão pro banco.
 
 class FormsControllerClient extends StatelessWidget {
-  var maskFormatter = InputFormatter();
+  
 
   final bool isEditing;
   final Client? client;
@@ -22,6 +22,7 @@ class FormsControllerClient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var maskFormatter = InputFormatter();
     return ChangeNotifierProvider(
       create: (context) => isEditing
           ? FormUpdateClientProvider(client!)
