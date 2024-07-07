@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ss_automveis/screen/register_rent_screen.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
+import '../models/vehicle.dart';
 import '../screen/add_client_screen.dart';
 import '../screen/add_manager_screen.dart';
+import '../screen/add_rent_screen.dart';
 import '../screen/add_vehicle_screen.dart';
 import '../screen/privacy_policy_screen.dart';
 import '../screen/query_client_screen.dart';
 import '../screen/query_clients_screen.dart';
 import '../screen/query_manager_screen.dart';
 import '../screen/query_managers_screen.dart';
+import '../screen/query_vehicle_screen.dart';
 import '../screen/query_vehicles_screen.dart';
 import '../screen/register_client_screen.dart';
 import '../screen/register_manager_screen.dart';
@@ -34,8 +38,11 @@ class AppRoute {
   static const addManager = '/AddManagerScreen';
   static const updateManager = '/UpdateManagerScreen';
   static const registerVehicle = '/RegisterVehicleScreen';
+  static const queryVehicle = '/QueryVehicleScreen';
+  static const registerRent = '/RegisterRentScreen';
+  static const addRent = '/AddRentScreen';
   static const addVehicle = '/AddVehicleScreen';
-  static const queryVehicles = '/QueryVehicleScreen';
+  static const queryVehicles = '/QueryVehiclesScreen';
   static const privacyPolicy = '/PrivacyPolicy';
 
   Map<String, Widget Function(BuildContext)> routes() {
@@ -46,8 +53,11 @@ class AppRoute {
         });
       },
       AppRoute.registerCliente: (context) => RegisterClienteScreen(),
+      AppRoute.registerRent: (context) => RegisterRentScreen(),
       AppRoute.queryManagers: (context) => QueryManagersScreen(),
       AppRoute.addManager: (context) => AddManagerScreen(),
+      AppRoute.addRent: (context) => AddRentScreen(),
+
       AppRoute.privacyPolicy: (context) => PrivacyPolicy(),
       AppRoute.addClient: (context) => AddClientScreen(),
       AppRoute.queryClients: (context) => QueryClientsScreen(),
@@ -66,6 +76,11 @@ class AppRoute {
       AppRoute.queryManager: (context) {
         final manager = ModalRoute.of(context)!.settings.arguments as Manager;
         return QueryManagerScreen(manager: manager);
+      },
+
+       AppRoute.queryVehicle: (context) {
+        final vehicle = ModalRoute.of(context)!.settings.arguments as Vehicle;
+        return QueryVehicleScreen(vehicle: vehicle,);
       }
     };
   }

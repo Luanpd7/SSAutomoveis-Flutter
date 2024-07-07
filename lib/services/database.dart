@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../models/brand.dart';
+import '../models/vehicle.dart';
 
 ///Método para resetar o banco caso precise
 
@@ -50,6 +51,7 @@ Future<void> _createTables(Database db) async {
   await db.execute(TableClient.createTable);
   await db.execute(TableManager.createTable);
   await db.execute(TableBrand.createTable);
+  await db.execute(TableVehicle.createTable);
   print('Tables created');
 }
 
@@ -57,6 +59,7 @@ Future<void> _dropTables(Database db) async {
   await db.execute('DROP TABLE IF EXISTS ${TableClient.tableName}');
   await db.execute('DROP TABLE IF EXISTS ${TableManager.tableName}');
   await db.execute('DROP TABLE IF EXISTS ${TableBrand.tableName}');
+  await db.execute('DROP TABLE IF EXISTS ${TableVehicle.tableName}');
   print('Tables dropped');
 }
 
@@ -156,6 +159,48 @@ class TableBrand {
 
     map[TableBrand.id] = marca.id;
     map[TableBrand.nome] = marca.nome;
+
+    return map;
+  }
+
+
+  
+
+}
+
+class TableVehicle {
+  static const String createTable = '''
+   CREATE TABLE $tableName(
+   $id INTEGER PRIMARY KEY AUTOINCREMENT,
+   $modelo TEXT NOT NULL,
+   $marca TEXT NOT NULL,
+   $placa TEXT NOT NULL,
+   $ano TEXT NOT NULL,
+   $diaria TEXT NOT NULL,
+   $imagePath TEXT NOT NULL
+   );
+   ''';
+
+  static const String tableName = 'vehicle';
+  static const String id = 'id';
+  static const String modelo = 'modelo';
+  static const String marca = 'marca';
+  static const String placa = 'placa';
+  static const String ano = 'ano';
+  static const String diaria = 'diaria';
+  static const String imagePath = 'imagePath';
+
+  // Método para mapear os dados do Vehicle para um Map
+  static Map<String, dynamic> toMap(Vehicle vehicle) {
+    final map = <String, dynamic>{};
+
+    map[TableVehicle.id] = vehicle.id;
+    map[TableVehicle.modelo] = vehicle.modelo;
+    map[TableVehicle.marca] = vehicle.marca;
+    map[TableVehicle.placa] = vehicle.placa;
+    map[TableVehicle.ano] = vehicle.ano;
+    map[TableVehicle.diaria] = vehicle.diaria;
+    map[TableVehicle.imagePath] = vehicle.imagePath;
 
     return map;
   }

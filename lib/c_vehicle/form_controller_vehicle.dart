@@ -95,11 +95,7 @@ class FormsControllerVehicle extends StatelessWidget {
                 FormButton(
                   labelButton: 'Salvar',
                   onPressed: () {
-                    print('${formProvider.selectedModelo }');
-                    print('${formProvider.selectedModelo }');
-                    print('${formProvider.placaController.text }');
-                    print('${formProvider.selectedAno}');
-                    print('${formProvider.diariaController.text }');
+                   formProvider.saveForm(context);
                   },
                 ),
               ],

@@ -41,10 +41,10 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pushNamed(context, AppRoute.registerManager);
                     }),
                 ItemMenu(
-                    label: 'Teste',
-                    icon: const Icon(Icons.people, size: 48),
+                    label: 'Aluguel',
+                    icon: const Icon(Icons.car_rental_sharp , size: 54),
                     onTap: () {
-                      // Navigator.pushNamed(context, AppRoute.registerCliente);
+                       Navigator.pushNamed(context, AppRoute.registerRent);
                     }),
                 ItemMenu(
                     label: AppLocalizations.of(context)!.vehicles,

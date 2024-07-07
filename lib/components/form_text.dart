@@ -10,13 +10,15 @@ class FormText extends StatelessWidget {
   final String? hintLabel;
   final  inputFormatters;
   final textInputType;
+  final Function()? onTap;
 
-  FormText({required this.label, required this.controller, this.hintLabel, this.inputFormatters, this.textInputType});
+  FormText({required this.label, required this.controller, this.hintLabel, this.inputFormatters, this.textInputType, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
+        onTap: onTap,
         controller: controller,
         keyboardType: textInputType,
         inputFormatters: inputFormatters,

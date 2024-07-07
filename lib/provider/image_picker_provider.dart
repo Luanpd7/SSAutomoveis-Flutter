@@ -1,22 +1,35 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
-class ImagePickerProvider with ChangeNotifier{
-   XFile? photo;
+class ImagePickerProvider with ChangeNotifier {
+  XFile? _photo;
 
-  
-  getPhoto() async{
+  XFile? get photo => _photo;
+
+  Future<void> getPhoto() async {
     final ImagePicker picker = ImagePicker();
 
-    try{
+    try {
       XFile? file = await picker.pickImage(source: ImageSource.gallery);
-      if(file != null){
-        photo = file;
+      if (file != null) {
+
+        final directory = await getApplicationSupportDirectory();
+
+        final String filePath = path.join(directory.path, path.basename(file.path));
+                await file.saveTo(filePath);
+
+        _photo = XFile(filePath);
+        notifyListeners();
+        print('Imagem salva em: $filePath');
       }
-    } catch(e){
-      print('erro');
+    } catch (e) {
+      print('Erro ao selecionar imagem: $e');
     }
-    notifyListeners();
   }
-  
+  String? getImagePath() {
+    return _photo?.path;
+  }
 }

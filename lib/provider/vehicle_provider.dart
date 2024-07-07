@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/brand.dart';
 import '../models/vehicle.dart';
 import '../repositories/brand_repository.dart';
+import '../repositories/vehicle_repository.dart';
 import '../services/api_fipe.dart';
 
 class VehicleProvider with ChangeNotifier {
@@ -12,7 +13,29 @@ class VehicleProvider with ChangeNotifier {
   List<Vehicle> _listVehicle = [];
   List<Vehicle> get listVehicle => _listVehicle;
 
-   
+  VehicleProvider() {
+    select();
+  }
+
+  var vehicleRepository = VehicleRepository();
+
+   void addVehicle(Vehicle vehicle) {
+    vehicleRepository.insertVehicle(vehicle);
+    print('inserido');
+    notifyListeners();
+  }
+
+  Future<void> select() async {
+   // isLoading = true;
+    _listVehicle = await  vehicleRepository.load();
+
+    //isLoading = false;
+    //await Future.delayed(Duration(seconds: 1));
+    notifyListeners();
+  }
+
+
+
 
   final ApiFipe _fipeService = ApiFipe();
 

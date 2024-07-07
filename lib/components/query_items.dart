@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/Vehicle.dart';
+import '../models/vehicle.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../routes/appRoutes.dart';
 import 'build_list_tile.dart';
+import 'build_list_vehicle.dart';
 
 /// [QueryItems] gerencia uma lista de objetos de forma boleana;
 /// que se for recebido como true sera fornecido uma lista de cliente
@@ -65,13 +66,14 @@ class QueryItems extends StatelessWidget {
           if (isVehicle!) {
             final vehicle = list[index] as Vehicle;
 
-            return buildListTile(
-                context: context,
-                title: vehicle.marca,
-                subtitle: vehicle.modelo,
-                onTap: () {
-                  /*   Navigator.of(context)
-                      .pushNamed(AppRoute.queryManager, arguments: manager);*/
+            return BuildListVehicle(
+              vehicle: vehicle,
+               onTap: () {
+                 Navigator.of(context)
+                      .pushNamed(AppRoute.queryVehicle, arguments: vehicle);
+
+                     
+                      
                 });
           }
           return null;
