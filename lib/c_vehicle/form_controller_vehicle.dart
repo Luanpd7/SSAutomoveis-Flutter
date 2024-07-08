@@ -74,6 +74,7 @@ class FormsControllerVehicle extends StatelessWidget {
               },
             ),
             FormText(
+                inputFormatters: [maskFormatter.realMaskFormatter],
               label: 'Diária',
               controller: formProvider.diariaController,
               textInputType: TextInputType.number,

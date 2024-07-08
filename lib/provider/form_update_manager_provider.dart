@@ -23,6 +23,7 @@ class FormUpdateManagerProvider with ChangeNotifier {
 
   Future<void> updateForm(BuildContext context) async {
     var managerProvider = ManagerProvider();
+     
 
     managerProvider.update(Manager(
         id: this.id,
@@ -30,6 +31,7 @@ class FormUpdateManagerProvider with ChangeNotifier {
         nome: nomeController.text,
         telefone: telefoneController.text,
         estado: estadoController.text,
+        //dataRegistro: DateTime.now(),
         percentual: percentualController.text));
 
        /*  final load = Provider.of<ManagerProvider>(context, listen: false);

@@ -7,6 +7,7 @@ import '../screen/add_client_screen.dart';
 import '../screen/add_manager_screen.dart';
 import '../screen/add_rent_screen.dart';
 import '../screen/add_vehicle_screen.dart';
+import '../screen/dashboard_screen.dart';
 import '../screen/privacy_policy_screen.dart';
 import '../screen/query_client_screen.dart';
 import '../screen/query_clients_screen.dart';
@@ -20,6 +21,7 @@ import '../screen/register_vehicle_screen.dart';
 import '../screen/tabs_screen.dart';
 import '../screen/update_client_screen.dart';
 import '../screen/update_manager_screen.dart';
+import '../screen/update_vehicle_screen.dart';
 
 ///Classe que contém os nomes das rotas
 ///que servirá para deixar as rotas de navegações
@@ -37,6 +39,7 @@ class AppRoute {
   static const queryManager = '/QueryManagerScreen';
   static const addManager = '/AddManagerScreen';
   static const updateManager = '/UpdateManagerScreen';
+  static const updateVehicle = '/UpdateVehicleScreen';
   static const registerVehicle = '/RegisterVehicleScreen';
   static const queryVehicle = '/QueryVehicleScreen';
   static const registerRent = '/RegisterRentScreen';
@@ -44,6 +47,7 @@ class AppRoute {
   static const addVehicle = '/AddVehicleScreen';
   static const queryVehicles = '/QueryVehiclesScreen';
   static const privacyPolicy = '/PrivacyPolicy';
+  static const dashboard = '/Dashboard';
 
   Map<String, Widget Function(BuildContext)> routes() {
     return {
@@ -57,12 +61,13 @@ class AppRoute {
       AppRoute.queryManagers: (context) => QueryManagersScreen(),
       AppRoute.addManager: (context) => AddManagerScreen(),
       AppRoute.addRent: (context) => AddRentScreen(),
-
+      AppRoute.dashboard: (context) => DashboardScreen(),
       AppRoute.privacyPolicy: (context) => PrivacyPolicy(),
       AppRoute.addClient: (context) => AddClientScreen(),
       AppRoute.queryClients: (context) => QueryClientsScreen(),
       AppRoute.updateClient: (context) => UpdateClientScreen(),
       AppRoute.updateManager: (context) => UpdateManagerScreen(),
+      AppRoute.updateVehicle: (context) => UpdateVehicleScreen(),
       AppRoute.registerManager: (context) => RegisterManagerScreen(),
       AppRoute.registerVehicle: (context) => RegisterVehicleScreen(),
       AppRoute.addVehicle: (context) => AddVehicleScreen(),

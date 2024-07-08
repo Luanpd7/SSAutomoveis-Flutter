@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../components/query_item.dart';
 import '../components/query_item_icone.dart';
-import '../models/manager.dart';
 import '../models/vehicle.dart';
-import '../provider/manager_provider.dart';
 import '../provider/vehicle_provider.dart';
 import '../routes/appRoutes.dart';
 
@@ -51,11 +48,14 @@ class QueryVehicleScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
+                    Container(
+                   
+                      height: 450,
+                      width: 180,
                       child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           QueryItem(
                             title: 'Marca',
@@ -67,16 +67,18 @@ class QueryVehicleScreen extends StatelessWidget {
                           QueryItemIcone(
                             icon: Icons.delete,
                             onTap: () async {
-                              /* await vehicleState.delete(
+                               await vehicleState.delete(
                                 vehicle,
                               );
-                              Navigator.pop(context);*/
+                              Navigator.pop(context);
                             },
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
+                    Container(
+                        height: 450,
+                      width: 180,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -86,11 +88,13 @@ class QueryVehicleScreen extends StatelessWidget {
                               title: 'Diária',
                               subtitle: '${vehicle.diaria} /dia'),
                           QueryItemIcone(
-                              icon: Icons.edit, onTap: () => print('')
-                              /* Navigator.of(context).pushNamed(
-                              AppRoute.updateManager,
-                              arguments: manager,
-                            ),*/
+                              icon: Icons.edit, onTap: () {
+                                Navigator.of(context).pushNamed(
+                              AppRoute.updateVehicle,
+                              arguments: vehicle,
+                            );
+                              }
+                              
                               ),
                         ],
                       ),

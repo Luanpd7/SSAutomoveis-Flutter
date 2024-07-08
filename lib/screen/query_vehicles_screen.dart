@@ -18,7 +18,20 @@ class QueryVehiclesScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: Consumer<VehicleProvider>(
         builder: (context, vehiclesProvider, _) {
-          if (vehiclesProvider.listVehicle.isNotEmpty) {
+           if (vehiclesProvider.isLoading == true) {
+            return const Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('Carregando...'),
+              ],
+            ));
+          }
+         else if (vehiclesProvider.listVehicle.isNotEmpty) {
             return QueryItems(
               list: vehiclesProvider.listVehicle,
               isVehicle: true,

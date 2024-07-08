@@ -1,12 +1,6 @@
 import 'dart:io';
-
-import 'package:cross_file/src/types/interface.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
 import '../provider/image_picker_provider.dart';
 
 class FormPicture extends StatelessWidget {

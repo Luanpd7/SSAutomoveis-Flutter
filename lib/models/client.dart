@@ -37,7 +37,7 @@ class Client {
    Map<String, Object?> toMap(){
     return {
       'id': id,
-      'dataRegistro' :dataRegistro,
+     
       'cnpj': cnpj,
       'razaoSocial': razaoSocial,
       'telefone': telefone,

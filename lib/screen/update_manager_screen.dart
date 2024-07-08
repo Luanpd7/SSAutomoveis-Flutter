@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../c_manager/form_controller_manager.dart';
 import '../models/manager.dart';
 
@@ -12,7 +11,7 @@ class UpdateManagerScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Editar Manager',
+          'Editar ${manager.nome}',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,

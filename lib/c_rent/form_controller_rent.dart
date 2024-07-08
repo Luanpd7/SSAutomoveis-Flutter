@@ -3,10 +3,14 @@ import 'package:provider/provider.dart';
 import '../components/form_button.dart';
 import '../components/form_drop.dart';
 import '../components/form_text.dart';
+import '../models/client.dart';
 import '../models/manager.dart';
+import '../models/vehicle.dart';
+import '../provider/client_provider.dart';
 import '../provider/form_add_manager_provider.dart';
 import '../provider/form_add_rent_provider.dart';
 import '../provider/form_update_manager_provider.dart';
+import '../provider/vehicle_provider.dart';
 import '../services/input_formatter.dart';
 
 ///[FormsControllerManager] controla o formulário de adicionar ou editar
@@ -24,6 +28,9 @@ class FormsControllerRent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Client> listClients = Provider.of<ClientProvider>(context, listen: false).list;
+    List<Vehicle> listVehicles = Provider.of<VehicleProvider>(context, listen: false).listVehicle;
+    print(listClients.length);
     return ChangeNotifierProvider(
       create: (context) => isEditing
           ? FormUpdateManagerProvider(manager!)
@@ -38,7 +45,7 @@ class FormsControllerRent extends StatelessWidget {
                 children: [
                 FormDrop(
                   labelDrop: 'Cliente',
-                  items:  (formProvider as FormAddRentProvider).clients,
+                  items:  listClients.map((marca) => marca.razaoSocial).toList(),
                   value: '',
                   onChanged: (newValue) {
                     //formRegisterProvider.setEstado(newValue);
@@ -46,7 +53,7 @@ class FormsControllerRent extends StatelessWidget {
                 ),
                 FormDrop(
                   labelDrop: 'Veículo',
-                  items: (formProvider as FormAddRentProvider).vehicles,
+                  items: listVehicles.map((vehicle) => vehicle.modelo).toList(),
                   value: '',
                   onChanged: (newValue) {
                     //formRegisterProvider.setEstado(newValue);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/client.dart';
+import 'client_provider.dart';
 
 class FormAddRentProvider with ChangeNotifier{
   final TextEditingController clientController = TextEditingController();
@@ -22,5 +24,6 @@ class FormAddRentProvider with ChangeNotifier{
     clients.add(client);
     notifyListeners();
   }
+
 
 }

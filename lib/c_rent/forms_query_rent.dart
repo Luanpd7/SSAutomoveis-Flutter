@@ -28,7 +28,7 @@ class FormsQueryRent extends StatelessWidget {
               children: [
                 FormDrop(
                   labelDrop: 'Cliente',
-                  items: formRegisterProvider.clients,
+                  items: formRegisterProvider.clients!.map((marca) => marca.razaoSocial).toList(),
                   value: formRegisterProvider.selectedEstado ?? '',
                   onChanged: (newValue) {
                     //formRegisterProvider.setEstado(newValue);

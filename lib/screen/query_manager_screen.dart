@@ -48,8 +48,11 @@ class QueryManagerScreen extends StatelessWidget {
                         subtitle: manager.nome,
                       ),
                       QueryItem(title: 'Telefone', subtitle: manager.telefone),
-                      QueryItem(
-                          title: 'Comissão', subtitle: manager.percentual),
+                       QueryItem(
+                          title: 'Data de Registro',
+                          subtitle:
+                              _formatDateToBrasilia(manager.dataRegistro!)),
+                      
                       QueryItemIcone(
                         icon: Icons.delete,
                         onTap: () async {
@@ -69,9 +72,7 @@ class QueryManagerScreen extends StatelessWidget {
                       QueryItem(title: 'CPF', subtitle: manager.cpf),
                       QueryItem(title: 'Estado', subtitle: manager.estado),
                       QueryItem(
-                          title: 'Data de Registro',
-                          subtitle:
-                              _formatDateToBrasilia(manager.dataRegistro!)),
+                          title: 'Comissão', subtitle: manager.percentual),
                       QueryItemIcone(
                         icon: Icons.edit,
                         onTap: () => Navigator.of(context).pushNamed(

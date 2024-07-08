@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/brand.dart';
 import '../models/vehicle.dart';
+import '../routes/appRoutes.dart';
 import 'image_picker_provider.dart';
 import 'vehicle_provider.dart';
 
@@ -52,6 +53,11 @@ class FormAddVehicleProvider with ChangeNotifier {
     print('Ano: ${vehicle.ano}');
     print('Diária: ${vehicle.diaria}');
     print('Caminho da Imagem: ${vehicle.imagePath}');
+
+    
+    Provider.of<VehicleProvider>(context, listen: false).select();
+    cleanText();
+    Navigator.popAndPushNamed(context, AppRoute.queryVehicles);
   }
 
   Future<void> initialize(BuildContext context) async {
@@ -107,6 +113,7 @@ class FormAddVehicleProvider with ChangeNotifier {
     selectedModelo = null;
     selectedModeloCode = null;
     selectedAno = null;
+   
     notifyListeners();
   }
 }

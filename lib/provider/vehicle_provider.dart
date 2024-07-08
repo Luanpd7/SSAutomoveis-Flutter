@@ -9,9 +9,10 @@ class VehicleProvider with ChangeNotifier {
   var brandRepository = BrandRepository();
   List<Brand> _list = [];
   List<Brand> get listBrand => _list;
-
+ bool? isLoading;
   List<Vehicle> _listVehicle = [];
   List<Vehicle> get listVehicle => _listVehicle;
+ 
 
   VehicleProvider() {
     select();
@@ -26,11 +27,11 @@ class VehicleProvider with ChangeNotifier {
   }
 
   Future<void> select() async {
-   // isLoading = true;
     _listVehicle = await  vehicleRepository.load();
-
-    //isLoading = false;
-    //await Future.delayed(Duration(seconds: 1));
+       isLoading = true;
+    notifyListeners();
+    await Future.delayed(Duration(seconds: 1));
+    isLoading = false;
     notifyListeners();
   }
 
@@ -78,5 +79,20 @@ Future<List<String>> fetchYears(int brandCode, ) async {
   }
   return [];
 }
+
+  Future<void> delete(Vehicle vehicle) async {
+    vehicleRepository.delete(vehicle.id!);
+    select();
+
+    print('removido');
+    notifyListeners();
+  }
+
+    Future<void> update(Vehicle Vehicle) async {
+    vehicleRepository.updateVehicle(Vehicle);
+    print('atualizado');
+    select();
+    notifyListeners();
+  }
 
 }

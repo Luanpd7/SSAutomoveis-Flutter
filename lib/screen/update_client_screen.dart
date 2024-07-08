@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../clients/forms_controller_client.dart';
 import '../models/client.dart';
 
@@ -12,7 +11,7 @@ class UpdateClientScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Editar Cliente',
+          'Editar ${client.razaoSocial}',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../c_manager/forms_query_manager.dart';
 import '../c_rent/forms_query_rent.dart';
 
 ///Essa classe será responsavel para ser a tela
@@ -13,7 +12,7 @@ class RegisterRentScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Alugueis',
+          'Aluguéis',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,

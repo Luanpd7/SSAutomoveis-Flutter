@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import '../c_rent/form_controller_rent.dart';
+import '../c_vehicle/form_update_vehicle.dart';
+import '../models/vehicle.dart';
 
-///[AddManagerScreen] é a tela responsável por adicionar clients
-
-class AddRentScreen extends StatelessWidget {
-  
-
+class UpdateVehicleScreen extends StatelessWidget {
+  UpdateVehicleScreen();
   @override
   Widget build(BuildContext context) {
+    var vehicle = ModalRoute.of(context)!.settings.arguments as Vehicle;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Registrar Aluguel',
+          'Editar ',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,
@@ -20,7 +19,7 @@ class AddRentScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(15),
           child: Container(
             height: 680,
             width: 380,
@@ -28,8 +27,9 @@ class AddRentScreen extends StatelessWidget {
               color: Theme.of(context).hintColor,
               borderRadius: BorderRadius.circular(23),
             ),
-            child: FormsControllerRent(
-              isEditing: false,
+            child: FormsUpdateControllerVehicle(
+      
+              vehicle: vehicle,
             ),
           ),
         ),

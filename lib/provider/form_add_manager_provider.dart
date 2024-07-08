@@ -31,6 +31,11 @@ class FormAddManagerProvider with ChangeNotifier {
   }
 
   void cleanText() {
-    print('limpando campos');
+    cpfController.clear();
+     nomeController.clear();
+    telefoneController.clear();
+    estadoController.clear();
+    percentualController.clear();
+
   }
 }

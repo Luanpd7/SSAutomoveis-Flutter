@@ -33,7 +33,7 @@ class Manager {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'dataRegistro' :dataRegistro,
+   
       'cpf': cpf,
       'nome': nome,
       'telefone': telefone,

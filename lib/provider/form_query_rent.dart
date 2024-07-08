@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/client.dart';
+import 'client_provider.dart';
 
 ///[FormsQueryManagerProvider] gerencia o formulário de consulta 
 ///do client para todas as classes que chamar ela.
@@ -12,7 +16,18 @@ class FormsQueryRentProvider with ChangeNotifier {
 
   String? selectedEstado;
 
-  List<String> clients = ['Lince', 'Philips', 'AutoCar', 'Prefeitura'];
+
+    List<Client>? clients = [];
+
+Future<void> obterListClient(BuildContext context) async{
+     clients =  Provider.of<ClientProvider>(context, listen: false).list;
+     
+}
+
+
+
+  
+
   List<String> vehicles = ['Cruze', 'Sonata', 'Volkswagen', 'Montana'];
 
 

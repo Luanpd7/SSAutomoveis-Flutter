@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dashboard_screen.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
 
@@ -19,7 +20,7 @@ class _TabsScreeenState extends State<TabsScreen> {
 
   void initState() {
     super.initState();
-    pg = PageController(initialPage: currentPage);
+    pg = PageController(initialPage: 1);
   }
 
   setCurrentPage(int page) {
@@ -36,6 +37,7 @@ class _TabsScreeenState extends State<TabsScreen> {
         controller: pg,
         onPageChanged: setCurrentPage,
         children: [
+          DashboardScreen(),
           HomeScreen(),
           SettingsScreen(),
         ],
@@ -56,6 +58,10 @@ class _TabsScreeenState extends State<TabsScreen> {
             Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         currentIndex: currentPage,
         items: [
+            BottomNavigationBarItem(
+            icon: const Icon(Icons.dashboard),
+            label: 'Dashboard',
+          ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.home_filled),
             label: AppLocalizations.of(context)!.menu,

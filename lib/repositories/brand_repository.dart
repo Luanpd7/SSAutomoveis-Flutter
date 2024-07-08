@@ -19,7 +19,7 @@ class BrandRepository {
 
     listMarca.clear();
     listMarca.addAll(marca);
-   // print('brandrepository ${listMarca[1].nome}');
+ 
 
     return listMarca;
   }
