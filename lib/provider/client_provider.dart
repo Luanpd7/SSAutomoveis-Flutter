@@ -8,20 +8,32 @@ import '../repositories/client_repository.dart';
 class ClientProvider with ChangeNotifier {
   ///utilizei select no construtor para garantir que assim for instânciado
   ///se atualiazado o select para pegar a lista de clientes atualizado
+  
+   var clientRepository = ClientRepository();
+
   ClientProvider() {
     select();
   }
 
-  var clientRepository = ClientRepository();
+
+
+ 
   List<Client> _list = [];
 
   bool? isLoading;
 
   List<Client> get list => _list;
 
+
+  int returnLenght(){
+    select();
+    return list.length;
+  }
+
+
   void addClient(Client client) {
     clientRepository.insertClient(client);
-
+  
     notifyListeners();
   }
 

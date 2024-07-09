@@ -15,6 +15,12 @@ class ManagerProvider with ChangeNotifier {
     select();
   }
 
+  
+  int returnLenght(){
+    select();
+    return list.length;
+  }
+
   List<Manager> get list => _list;
    
 

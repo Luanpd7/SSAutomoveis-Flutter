@@ -13,7 +13,7 @@ import '../provider/form_update_manager_provider.dart';
 import '../provider/vehicle_provider.dart';
 import '../services/input_formatter.dart';
 
-///[FormsControllerManager] controla o formulário de adicionar ou editar
+///[FormsControllerRent] controla o formulário de adicionar ou editar
 /// do manager, essa classe estará esperando um valor  booleano no qual
 /// for verdadeiro sera usado o formulario de editar se não para adicionar,
 /// e após inserir se as informações estiverem corretas, irão pro banco.

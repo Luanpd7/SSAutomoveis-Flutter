@@ -14,7 +14,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreeenState extends State<TabsScreen> {
-  int currentPage = 0; //variavel para indicar o indice da página atual
+  int currentPage = 1; 
 
   late PageController pg;
 

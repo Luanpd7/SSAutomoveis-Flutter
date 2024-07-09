@@ -18,6 +18,11 @@ class VehicleProvider with ChangeNotifier {
     select();
   }
 
+  int returnLenght(){
+    select();
+    return listVehicle.length;
+  }
+
   var vehicleRepository = VehicleRepository();
 
    void addVehicle(Vehicle vehicle) {

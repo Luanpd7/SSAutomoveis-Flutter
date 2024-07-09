@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 import 'package:ss_automveis/screen/register_rent_screen.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../models/vehicle.dart';
+import '../provider/client_provider.dart';
 import '../screen/add_client_screen.dart';
 import '../screen/add_manager_screen.dart';
 import '../screen/add_rent_screen.dart';
@@ -50,6 +53,7 @@ class AppRoute {
   static const dashboard = '/Dashboard';
 
   Map<String, Widget Function(BuildContext)> routes() {
+
     return {
       AppRoute.HOME: (ctx) {
         return Builder(builder: (context) {
