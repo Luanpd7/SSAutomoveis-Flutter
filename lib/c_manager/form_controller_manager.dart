@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/form_button.dart';
+import '../components/form_drop.dart';
 import '../components/form_text.dart';
 import '../models/manager.dart';
 import '../provider/form_add_manager_provider.dart';
@@ -62,24 +63,28 @@ class FormsControllerManager extends StatelessWidget {
                             .telefoneController,
                     textInputType: TextInputType.number,
                   ),
-                  FormText(
-                    label: 'Estado',
-                    controller: isEditing
-                        ? (formProvider as FormUpdateManagerProvider)
-                            .estadoController
-                        : (formProvider as FormAddManagerProvider)
-                            .estadoController,
-                  ),
-                  FormText(
-                    label: 'Percentual',
-                    inputFormatters: [maskFormatter.valueMaskFormatter],
-                    controller: isEditing
-                        ? (formProvider as FormUpdateManagerProvider)
-                            .percentualController
-                        : (formProvider as FormAddManagerProvider)
-                            .percentualController,
-                    textInputType: TextInputType.number,
-                  ),
+                      FormDrop(
+              labelDrop: 'Estado',
+              items: isEditing? (formProvider as FormUpdateManagerProvider).estados:
+              (formProvider as FormAddManagerProvider).estados,
+              value: isEditing? (formProvider as FormUpdateManagerProvider).selectedEstado ?? ''
+              : (formProvider as FormAddManagerProvider).selectedEstado ?? '',
+              onChanged: (newValue) {
+                isEditing? (formProvider as FormUpdateManagerProvider).setEstado(newValue):
+                (formProvider as FormAddManagerProvider).setEstado(newValue) ;
+              },
+            ), 
+                FormDrop(
+              labelDrop: 'Percentual',
+              items: isEditing? (formProvider as FormUpdateManagerProvider).percentuais:
+              (formProvider as FormAddManagerProvider).percentuais,
+              value: isEditing? (formProvider as FormUpdateManagerProvider).selectedPercentual ?? ''
+              : (formProvider as FormAddManagerProvider).selectedPercentual ?? '',
+              onChanged: (newValue) {
+                isEditing? (formProvider as FormUpdateManagerProvider).setPercentual(newValue):
+                (formProvider as FormAddManagerProvider).setPercentual(newValue) ;
+              },
+            ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

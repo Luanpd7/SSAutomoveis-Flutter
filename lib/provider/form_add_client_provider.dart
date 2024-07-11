@@ -28,6 +28,10 @@ class FormAddClientProvider with ChangeNotifier {
       final clientData = await api
           .validateCNPJ(maskFormatter.removeCnpjMask(cnpjController.text));
 
+            if (!validateForm(context)) {
+      return;
+    }
+
       if (clientData != null) {
         razaoSocialController.text = clientData.razaoSocial;
         telefoneController.text = clientData.telefone;
@@ -43,8 +47,7 @@ class FormAddClientProvider with ChangeNotifier {
             cidade: clientData.cidade);
         ClientProvider().addClient(client);
 
-        //fazer uma mensagem de sucesso ou falha e apos isso retornar a mesma tela de salvar clientes;
-        //Limpar todos os campos apos ser inserido
+       
         final load = Provider.of<ClientProvider>(context, listen: false);
         load.select();
         cleanText();
@@ -58,6 +61,17 @@ class FormAddClientProvider with ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+   bool validateForm(BuildContext context) {
+    if (cnpjController.text.isEmpty 
+        ) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Todos os campos devem ser preenchidos')),
+      );
+      return false;
+    }
+    return true;
   }
 
   void setEstado(String? estado) {

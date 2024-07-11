@@ -86,7 +86,7 @@ class QueryVehicleScreen extends StatelessWidget {
                           QueryItem(title: 'Ano', subtitle: vehicle.ano),
                           QueryItem(
                               title: 'Diária',
-                              subtitle: '${vehicle.diaria} /dia'),
+                              subtitle: '${vehicle.diaria}/dia'),
                           QueryItemIcone(
                               icon: Icons.edit, onTap: () {
                                 Navigator.of(context).pushNamed(

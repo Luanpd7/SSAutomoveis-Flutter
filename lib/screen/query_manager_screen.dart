@@ -72,7 +72,7 @@ class QueryManagerScreen extends StatelessWidget {
                       QueryItem(title: 'CPF', subtitle: manager.cpf),
                       QueryItem(title: 'Estado', subtitle: manager.estado),
                       QueryItem(
-                          title: 'Comissão', subtitle: manager.percentual),
+                          title: 'Comissão', subtitle: '${manager.percentual}%'),
                       QueryItemIcone(
                         icon: Icons.edit,
                         onTap: () => Navigator.of(context).pushNamed(
