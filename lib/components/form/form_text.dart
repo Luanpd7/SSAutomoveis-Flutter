@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 ///[FormText] gerencia o text FormField do campos de texto do aplicativo
 ///- label para o rótulo do campo
 ///- O controlador que gerencia o texto inserido no campo de texto.
@@ -23,7 +24,7 @@ class FormText extends StatelessWidget {
         keyboardType: textInputType,
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
-         
+    
           hintText: hintLabel,
           label: Text(
             label!,

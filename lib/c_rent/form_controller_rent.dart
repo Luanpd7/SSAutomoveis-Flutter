@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/form/form_button.dart';
 import '../components/form/form_drop.dart';
+import 'package:ss_automveis/components/form/form_drop_rent.dart';
 import '../components/form/form_text.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../models/vehicle.dart';
-import '../provider/client_provider.dart';
 import '../provider/add_provider/form_add_manager_provider.dart';
 import '../provider/add_provider/form_add_rent_provider.dart';
+import '../provider/client_provider.dart';
 import '../provider/update_provider/form_update_manager_provider.dart';
 import '../provider/vehicle_provider.dart';
 import '../services/input_formatter.dart';
@@ -28,6 +29,7 @@ class FormsControllerRent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ClientProvider>(context, listen: false).select();
     List<Client> listClients = Provider.of<ClientProvider>(context, listen: false).list;
     List<Vehicle> listVehicles = Provider.of<VehicleProvider>(context, listen: false).listVehicle;
     print(listClients.length);
@@ -43,22 +45,28 @@ class FormsControllerRent extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                FormDrop(
-                  labelDrop: 'Cliente',
-                  items:  listClients.map((marca) => marca.razaoSocial).toList(),
-                  value: '',
-                  onChanged: (newValue) {
-                    //formRegisterProvider.setEstado(newValue);
-                  },
-                ),
-                FormDrop(
-                  labelDrop: 'Veículo',
-                  items: listVehicles.map((vehicle) => vehicle.modelo).toList(),
-                  value: '',
-                  onChanged: (newValue) {
-                    //formRegisterProvider.setEstado(newValue);
-                  },
-                ),
+                           FormDropRent<Client>(
+                    labelDrop: 'Cliente',
+                    items: listClients,
+                    value: (formProvider as FormAddRentProvider).selectedClient,
+                    onChanged: (Client? value) {
+                      if (value != null) {
+                        formProvider.setClient(value);
+                      }
+                    },
+                    itemAsString: (Client client) => client.razaoSocial,
+                  ),
+                    FormDropRent<Vehicle>(
+                    labelDrop: 'Cliente',
+                    items: listVehicles,
+                    value: (formProvider as FormAddRentProvider).selectedVehicle,
+                    onChanged: (Vehicle? value) {
+                      if (value != null) {
+                        formProvider.setVehicle(value);
+                      }
+                    },
+                    itemAsString: (Vehicle vehicle) => vehicle.modelo,
+                  ),
                 FormText(
                   inputFormatters: [maskFormatter.phoneMaskFormatter],
                   label: 'Data de início',
@@ -104,7 +112,7 @@ class FormsControllerRent extends StatelessWidget {
                       FormButton(
                         labelButton: isEditing ? 'Salvar' : 'Salvar',
                         onPressed: () {
-                          
+                          (formProvider as FormAddRentProvider).saveForm();
                         },
                       ),
                     ],

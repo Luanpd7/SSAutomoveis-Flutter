@@ -27,7 +27,7 @@ class FormDrop extends StatelessWidget {
             return DropdownMenuItem<String>(
               value: item,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.7, // Ajuste a largura conforme necessário
+                width: MediaQuery.of(context).size.width * 0.7, 
                 child: Text(
                   item,
                   overflow: TextOverflow.ellipsis,

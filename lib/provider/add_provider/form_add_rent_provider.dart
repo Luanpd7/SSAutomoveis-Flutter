@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../models/client.dart';
-import '../client_provider.dart';
+import '../../models/vehicle.dart';
 
-class FormAddRentProvider with ChangeNotifier{
+class FormAddRentProvider with ChangeNotifier {
   final TextEditingController clientController = TextEditingController();
   final TextEditingController veiculoController = TextEditingController();
   final TextEditingController initController = TextEditingController();
   final TextEditingController findController = TextEditingController();
 
-        List<String> clients = [''];
-         List<String> vehicles = [''];
-         
-  String? selectedClient;
+   Client? selectedClient;
 
-  void setClient(String? newClient) {
-    selectedClient = newClient;
+  void setClient(Client? client) {
+    selectedClient = client;
     notifyListeners();
   }
 
-  void addClient(String client) {
-    clients.add(client);
+  Vehicle? selectedVehicle;
+
+  void setVehicle(Vehicle? vehicle) {
+    selectedVehicle = vehicle;
     notifyListeners();
   }
 
-
+  saveForm(){
+    print(selectedClient!.razaoSocial);
+        print(selectedClient!.cnpj);
+          print(selectedClient!.gerenteId);
+    print(selectedVehicle!.diaria);
+  }
 }
