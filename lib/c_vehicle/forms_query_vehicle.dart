@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/form_button.dart';
-import '../components/form_drop.dart';
-import '../components/form_radio.dart';
-import '../components/form_text.dart';
-import '../provider/form_query_vehicle_provider.dart';
+import '../components/form/form_button.dart';
+import '../components/form/form_drop.dart';
+import '../components/form/form_radio.dart';
+import '../components/form/form_text.dart';
+import '../provider/query_provider/form_query_vehicle_provider.dart';
 import '../routes/appRoutes.dart';
 
 class FormsQueryVehicle extends StatelessWidget {

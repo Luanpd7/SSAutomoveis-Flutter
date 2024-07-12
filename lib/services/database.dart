@@ -64,17 +64,18 @@ Future<void> _dropTables(Database db) async {
 }
 
 
-//Classe para tabela
 class TableClient {
   static const String createTable = '''
    CREATE TABLE $tableName(
-   $id INTEGER PRIMARY KEY NOT NULL,
+   $id INTEGER PRIMARY KEY AUTOINCREMENT,
    $dataRegistro TEXT NOT NULL,
    $cnpj TEXT NOT NULL,
    $razaoSocial TEXT NOT NULL,
    $telefone TEXT NOT NULL,
    $estado TEXT NOT NULL,
-   $cidade TEXT NOT NULL
+   $cidade TEXT NOT NULL,
+   $gerenteId INTEGER,
+   FOREIGN KEY($gerenteId) REFERENCES ${TableManager.tableName}(${TableManager.id})
    );
    ''';
 
@@ -86,6 +87,7 @@ class TableClient {
   static const String telefone = 'telefone';
   static const String estado = 'estado';
   static const String cidade = 'cidade';
+  static const String gerenteId = 'gerenteId';
 
   // Método para mapear os dados do Client para um Map
   static Map<String, dynamic> toMap(Client client) {
@@ -98,8 +100,23 @@ class TableClient {
     map[TableClient.telefone] = client.telefone;
     map[TableClient.estado] = client.estado;
     map[TableClient.cidade] = client.cidade;
+    map[TableClient.gerenteId] = client.gerenteId;
 
     return map;
+  }
+
+  // Método para criar um objeto Client a partir de um Map
+  static Client fromMap(Map<String, dynamic> map) {
+    return Client(
+      id: map[id] as int?,
+      dataRegistro: DateTime.parse(map[dataRegistro] as String),
+      cnpj: map[cnpj] as String,
+      razaoSocial: map[razaoSocial] as String,
+      telefone: map[telefone] as String,
+      estado: map[estado] as String,
+      cidade: map[cidade] as String,
+      gerenteId: map[gerenteId] as int?,
+    );
   }
 }
 

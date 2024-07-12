@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/client.dart';
+import '../models/manager.dart';
 import '../repositories/client_repository.dart';
 
 /// [ClientProvider] é um provider responsável por gerenciar o estado
@@ -59,4 +60,9 @@ class ClientProvider with ChangeNotifier {
     select();
     notifyListeners();
   }
+
+  Future<Manager?> getManagerByState(String estado) async {
+    return await clientRepository.getManagerByState(estado);
+  }
+
 }

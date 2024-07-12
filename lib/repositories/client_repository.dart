@@ -1,4 +1,5 @@
 import '../models/client.dart';
+import '../models/manager.dart';
 import '../services/database.dart';
 
 /// [ClientRepository] é responsável por gerenciar a persistência dos dados
@@ -50,5 +51,14 @@ class ClientRepository {
       where: 'id = ?',
       whereArgs: [client.id],
     );
+  }
+
+    Future<Manager?> getManagerByState(String estado) async {
+    final db = await getDatabase();
+    final maps = await db.query(TableManager.tableName, where: 'estado = ?', whereArgs: [estado]);
+    if (maps.isNotEmpty) {
+      return Manager.fromMap(maps.first);
+    }
+    return null;
   }
 }

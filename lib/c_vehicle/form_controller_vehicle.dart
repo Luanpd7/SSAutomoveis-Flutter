@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/form_button.dart';
-import '../components/form_drop.dart';
-import '../components/form_picture.dart';
-import '../components/form_text.dart';
+import '../components/form/form_button.dart';
+import '../components/form/form_drop.dart';
+import '../components/form/form_picture.dart';
+import '../components/form/form_text.dart';
 import '../models/Vehicle.dart';
-import '../provider/form_add_vehicle_provider.dart';
+import '../provider/add_provider/form_add_vehicle_provider.dart';
 import '../provider/image_picker_provider.dart';
 import '../services/input_formatter.dart';
 

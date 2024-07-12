@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/item_menu.dart';
+import '../components/item/item_menu.dart';
 import '../components/triangle_clipper.dart';
 import '../routes/appRoutes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

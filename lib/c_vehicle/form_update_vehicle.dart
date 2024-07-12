@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/form_button.dart';
-import '../components/form_picture.dart';
-import '../components/form_text.dart';
+import '../components/form/form_button.dart';
+import '../components/form/form_picture.dart';
+import '../components/form/form_text.dart';
 import '../models/vehicle.dart';
-import '../provider/form_update_vehicle_provider.dart';
+import '../provider/update_provider/form_update_vehicle_provider.dart';
 import '../provider/image_picker_provider.dart';
 import '../services/input_formatter.dart';
 

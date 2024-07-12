@@ -51,4 +51,8 @@ class ManagerRepository {
       whereArgs: [manager.id],
     );
   }
+
+   
+
+  
 }

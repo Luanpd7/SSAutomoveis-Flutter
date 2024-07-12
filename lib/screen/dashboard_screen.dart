@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:ss_automveis/components/chart.dart';
+import 'package:ss_automveis/components/chart/chart.dart';
 import 'package:ss_automveis/provider/client_provider.dart';
 import 'package:ss_automveis/provider/vehicle_provider.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/form_button.dart';
-import '../components/form_drop.dart';
-import '../components/form_text.dart';
+import '../components/form/form_button.dart';
+import '../components/form/form_drop.dart';
+import '../components/form/form_text.dart';
 import '../models/manager.dart';
-import '../provider/form_add_manager_provider.dart';
-import '../provider/form_update_manager_provider.dart';
+import '../provider/add_provider/form_add_manager_provider.dart';
+import '../provider/update_provider/form_update_manager_provider.dart';
 import '../services/input_formatter.dart';
 
 ///[FormsControllerManager] controla o formulário de adicionar ou editar

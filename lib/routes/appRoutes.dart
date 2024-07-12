@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
-import 'package:ss_automveis/screen/register_rent_screen.dart';
+import 'package:ss_automveis/screen/register_screen/register_rent_screen.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../models/vehicle.dart';
 import '../provider/client_provider.dart';
-import '../screen/add_client_screen.dart';
-import '../screen/add_manager_screen.dart';
-import '../screen/add_rent_screen.dart';
-import '../screen/add_vehicle_screen.dart';
+import '../screen/add_screen/add_client_screen.dart';
+import '../screen/add_screen/add_manager_screen.dart';
+import '../screen/add_screen/add_rent_screen.dart';
+import '../screen/add_screen/add_vehicle_screen.dart';
 import '../screen/dashboard_screen.dart';
 import '../screen/privacy_policy_screen.dart';
-import '../screen/query_client_screen.dart';
-import '../screen/query_clients_screen.dart';
-import '../screen/query_manager_screen.dart';
-import '../screen/query_managers_screen.dart';
-import '../screen/query_vehicle_screen.dart';
-import '../screen/query_vehicles_screen.dart';
-import '../screen/register_client_screen.dart';
-import '../screen/register_manager_screen.dart';
-import '../screen/register_vehicle_screen.dart';
+import '../screen/query_screen/query_client_screen.dart';
+import '../screen/querys_screen/query_clients_screen.dart';
+import '../screen/query_screen/query_manager_screen.dart';
+import '../screen/querys_screen/query_managers_screen.dart';
+import '../screen/query_screen/query_vehicle_screen.dart';
+import '../screen/querys_screen/query_vehicles_screen.dart';
+import '../screen/register_screen/register_client_screen.dart';
+import '../screen/register_screen/register_manager_screen.dart';
+import '../screen/register_screen/register_vehicle_screen.dart';
 import '../screen/tabs_screen.dart';
-import '../screen/update_client_screen.dart';
-import '../screen/update_manager_screen.dart';
-import '../screen/update_vehicle_screen.dart';
+import '../screen/update_screen/update_client_screen.dart';
+import '../screen/update_screen/update_manager_screen.dart';
+import '../screen/update_screen/update_vehicle_screen.dart';
 
 ///Classe que contém os nomes das rotas
 ///que servirá para deixar as rotas de navegações

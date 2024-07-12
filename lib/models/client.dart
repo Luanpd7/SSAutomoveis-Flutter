@@ -9,7 +9,7 @@ class Client {
   final String estado;
   final String cidade;
   final DateTime? dataRegistro;
-  
+  final int? gerenteId;
 
   Client({
     this.id,
@@ -18,7 +18,8 @@ class Client {
     required this.razaoSocial,
     required this.telefone,
     required this.estado,
-    required this.cidade
+    required this.cidade,
+    this.gerenteId,
   });
 
 
@@ -31,19 +32,20 @@ class Client {
       telefone: map[TableClient.telefone],
       estado: map[TableClient.estado],
       cidade: map[TableClient.cidade],
+      gerenteId: map[TableClient.gerenteId],
     );
   }
 
-   Map<String, Object?> toMap(){
+  Map<String, Object?> toMap() {
     return {
-      'id': id,
-     
-      'cnpj': cnpj,
-      'razaoSocial': razaoSocial,
-      'telefone': telefone,
-      'estado': estado,
-      'cidade': cidade,
-      
+      TableClient.id: id,
+      TableClient.dataRegistro: dataRegistro?.toIso8601String(),
+      TableClient.cnpj: cnpj,
+      TableClient.razaoSocial: razaoSocial,
+      TableClient.telefone: telefone,
+      TableClient.estado: estado,
+      TableClient.cidade: cidade,
+      TableClient.gerenteId: gerenteId,
     };
-   }
+  }
 }
