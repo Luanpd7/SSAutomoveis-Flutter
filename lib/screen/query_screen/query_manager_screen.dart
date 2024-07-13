@@ -75,10 +75,13 @@ class QueryManagerScreen extends StatelessWidget {
                           title: 'Comissão', subtitle: '${manager.percentual}%'),
                       QueryItemIcone(
                         icon: Icons.edit,
-                        onTap: () => Navigator.of(context).pushNamed(
-                          AppRoute.updateManager,
-                          arguments: manager,
-                        ),
+                        onTap: () async {
+                          await Navigator.of(context).pushNamed(
+                            AppRoute.updateManager,
+                            arguments: manager,
+                          );
+
+                        }
                       ),
                     ],
                   ),

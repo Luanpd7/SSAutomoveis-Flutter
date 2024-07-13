@@ -29,15 +29,17 @@ class FormsControllerRent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<ClientProvider>(context, listen: false).select();
-    List<Client> listClients = Provider.of<ClientProvider>(context, listen: false).list;
-    List<Vehicle> listVehicles = Provider.of<VehicleProvider>(context, listen: false).listVehicle;
-    print(listClients.length);
-    return ChangeNotifierProvider(
-      create: (context) => isEditing
-          ? FormUpdateManagerProvider(manager!)
-          : FormAddRentProvider(),
-      child: Consumer<ChangeNotifier>(
+    final clientState = Provider.of<ClientProvider>(context, listen: false);
+    final state = Provider.of<VehicleProvider>(context, listen: false);
+
+    clientState.select();
+
+    var listClients = clientState.list;
+    var listVehicles = state.listVehicle;
+
+    return ChangeNotifierProvider<FormAddRentProvider>(
+      create: (context) => FormAddRentProvider(),
+      child: Consumer<FormAddRentProvider>(
         builder: (context, formProvider, _) {
           return Center(
             child: Padding(
@@ -45,58 +47,60 @@ class FormsControllerRent extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                           FormDropRent<Client>(
+                  FormDropRent<Client>(
                     labelDrop: 'Cliente',
                     items: listClients,
-                    value: (formProvider as FormAddRentProvider).selectedClient,
-                    onChanged: (Client? value) {
+                    value: formProvider.selectedClient,
+                    onChanged: (value) {
                       if (value != null) {
                         formProvider.setClient(value);
                       }
                     },
-                    itemAsString: (Client client) => client.razaoSocial,
+                    itemAsString: (client) => client.razaoSocial,
                   ),
-                    FormDropRent<Vehicle>(
+                  FormDropRent<Vehicle>(
                     labelDrop: 'Veículo',
                     items: listVehicles,
-                    value: (formProvider as FormAddRentProvider).selectedVehicle,
-                    onChanged: (Vehicle? value) {
+                    value: formProvider.selectedVehicle,
+                    onChanged: (value) {
                       if (value != null) {
                         formProvider.setVehicle(value);
                       }
                     },
-                    itemAsString: (Vehicle vehicle) => vehicle.modelo,
+                    itemAsString: (vehicle) => vehicle.modelo,
                   ),
-                FormText(
-                  inputFormatters: [maskFormatter.phoneMaskFormatter],
-                  label: 'Data de início',
-                  controller: (formProvider as FormAddRentProvider).initController,
-                  
-                   onTap: () async {
-                  final date = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-                   }
-                ),
-               FormText(
-                  inputFormatters: [maskFormatter.phoneMaskFormatter],
-                  label: 'Data de termino',
-                  controller:   (formProvider as FormAddRentProvider).findController,
-                  
-                   onTap: () async {
-                  (formProvider as FormAddRentProvider).date  = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-               
-               
-                   }
-                ),
+                  FormText(
+                      inputFormatters: [maskFormatter.phoneMaskFormatter],
+                      label: 'Data de início',
+                      controller: formProvider.initController,
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2101),
+                        );
+                        if (date != null) {
+                          formProvider.dateInit = date;
+                          formProvider.setDataInit();
+                        }
+                      }),
+                  FormText(
+                      inputFormatters: [maskFormatter.phoneMaskFormatter],
+                      label: 'Data de devolução',
+                      controller: formProvider.findController,
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2101),
+                        );
+                        if (date != null) {
+                          formProvider.dateFind = date;
+                          formProvider.setDataFind();
+                        }
+                      }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -104,7 +108,7 @@ class FormsControllerRent extends StatelessWidget {
                         labelButton: 'Cancelar',
                         onPressed: () {
                           if (isEditing) {
-                            (formProvider as FormUpdateManagerProvider);
+                            formProvider;
                           } else {
                             (formProvider as FormAddManagerProvider)
                                 .cleanText();
@@ -114,7 +118,7 @@ class FormsControllerRent extends StatelessWidget {
                       FormButton(
                         labelButton: isEditing ? 'Salvar' : 'Salvar',
                         onPressed: () {
-                          (formProvider as FormAddRentProvider).saveForm();
+                          formProvider.saveForm();
                         },
                       ),
                     ],

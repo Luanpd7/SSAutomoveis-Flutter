@@ -29,7 +29,7 @@ class InputFormatter {
 
    //Máscara tipo double campo
   final realMaskFormatter = MaskTextInputFormatter(
-      mask: '##,##', filter: {"#": RegExp(r'[0-9]')});
+      mask: '##.##', filter: {"#": RegExp(r'[0-9]')});
 
   // Método para remover máscara de CNPJ
   String removeCnpjMask(String cnpj) {

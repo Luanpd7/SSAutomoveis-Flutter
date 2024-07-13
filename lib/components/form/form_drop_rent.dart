@@ -18,29 +18,26 @@ class FormDropRent<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-      
-       decoration: InputDecoration(
-        
-            enabledBorder: OutlineInputBorder(
-              borderSide:  BorderSide(
-                color: Color.fromRGBO(224, 224, 224, 1.0),
-                width: 1 , 
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            labelStyle: Theme.of(context).textTheme.bodyLarge,
-            labelText: labelDrop,
+      decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Color.fromRGBO(224, 224, 224, 1.0),
+            width: 1,
           ),
-           style: Theme.of(context).textTheme.bodyLarge,
-          dropdownColor: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        labelStyle: Theme.of(context).textTheme.bodyLarge,
+        labelText: labelDrop,
+      ),
+      style: Theme.of(context).textTheme.bodyLarge,
+      dropdownColor: Colors.white,
       value: value,
-      items: items.map((T item) {
+      items: items.map((item) {
         return DropdownMenuItem<T>(
           value: item,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.7, 
-            child: Text(itemAsString(item),  
-             overflow: TextOverflow.ellipsis),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Text(itemAsString(item), overflow: TextOverflow.ellipsis),
           ),
         );
       }).toList(),
