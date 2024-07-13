@@ -7,7 +7,7 @@ class FormAddRentProvider with ChangeNotifier {
   final TextEditingController clientController = TextEditingController();
   final TextEditingController veiculoController = TextEditingController();
   final TextEditingController initController = TextEditingController();
-  final TextEditingController findController = TextEditingController();
+  final TextEditingController findController = TextEditingController(text: date.toIso8601String().split('T')[0];);
 
   dynamic date;
 
