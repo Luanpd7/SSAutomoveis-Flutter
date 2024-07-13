@@ -28,9 +28,9 @@ class FormAddClientProvider with ChangeNotifier {
       final clientData = await api
           .validateCNPJ(maskFormatter.removeCnpjMask(cnpjController.text));
 
-            if (!validateForm(context)) {
-      return;
-    }
+      if (!validateForm(context)) {
+        return;
+      }
 
       if (clientData != null) {
         razaoSocialController.text = clientData.razaoSocial;
@@ -38,24 +38,22 @@ class FormAddClientProvider with ChangeNotifier {
         estadoController.text = clientData.estado;
         cidadeController.text = clientData.cidade;
 
-        final manager = await ClientProvider().getManagerByState(clientData.estado);
+        final manager =
+            await ClientProvider().getManagerByState(clientData.estado);
 
         var client = Client(
-            id: clientData.id,
-            dataRegistro: DateTime.now(),
-            cnpj: maskFormatter.addCnpjMask(clientData.cnpj),
-            razaoSocial: clientData.razaoSocial,
-            telefone: maskFormatter.addPhoneMask(clientData.telefone),
-            estado: clientData.estado,
-            cidade: clientData.cidade,
-            gerenteId: manager?.id,
-);
-
-        
+          id: clientData.id,
+          dataRegistro: DateTime.now(),
+          cnpj: maskFormatter.addCnpjMask(clientData.cnpj),
+          razaoSocial: clientData.razaoSocial,
+          telefone: maskFormatter.addPhoneMask(clientData.telefone),
+          estado: clientData.estado,
+          cidade: clientData.cidade,
+          gerenteId: manager?.id,
+        );
 
         ClientProvider().addClient(client);
 
-       
         final load = Provider.of<ClientProvider>(context, listen: false);
         load.select();
         cleanText();
@@ -71,9 +69,8 @@ class FormAddClientProvider with ChangeNotifier {
     notifyListeners();
   }
 
-   bool validateForm(BuildContext context) {
-    if (cnpjController.text.isEmpty 
-        ) {
+  bool validateForm(BuildContext context) {
+    if (cnpjController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Todos os campos devem ser preenchidos')),
       );

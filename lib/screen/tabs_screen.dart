@@ -14,7 +14,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreeenState extends State<TabsScreen> {
-  int currentPage = 1; 
+  int currentPage = 1;
 
   late PageController pg;
 
@@ -58,7 +58,7 @@ class _TabsScreeenState extends State<TabsScreen> {
             Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         currentIndex: currentPage,
         items: [
-            BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: const Icon(Icons.dashboard),
             label: 'Dashboard',
           ),

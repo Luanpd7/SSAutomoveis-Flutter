@@ -12,7 +12,6 @@ class Widget050 extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: 300,
-        //    color: Colors.grey,
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(

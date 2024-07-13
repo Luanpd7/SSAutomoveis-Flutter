@@ -57,7 +57,7 @@ class FormsControllerRent extends StatelessWidget {
                     itemAsString: (Client client) => client.razaoSocial,
                   ),
                     FormDropRent<Vehicle>(
-                    labelDrop: 'Cliente',
+                    labelDrop: 'Veículo',
                     items: listVehicles,
                     value: (formProvider as FormAddRentProvider).selectedVehicle,
                     onChanged: (Vehicle? value) {
@@ -84,15 +84,17 @@ class FormsControllerRent extends StatelessWidget {
                FormText(
                   inputFormatters: [maskFormatter.phoneMaskFormatter],
                   label: 'Data de termino',
-                  controller: (formProvider as FormAddRentProvider).findController,
+                  controller:   (formProvider as FormAddRentProvider).findController,
                   
                    onTap: () async {
-                  final date = await showDatePicker(
+                  (formProvider as FormAddRentProvider).date  = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime(2000),
                     lastDate: DateTime(2101),
                   );
+               
+               
                    }
                 ),
                   Row(

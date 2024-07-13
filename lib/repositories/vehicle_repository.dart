@@ -14,10 +14,7 @@ class VehicleRepository {
     final map = TableVehicle.toMap(vehicle);
 
     await database.insert(TableVehicle.tableName, map);
-
-    print('Inserido no banco = ${map[TableVehicle.marca]}');
-    print('Inserido no banco = ${map[TableVehicle.modelo]}');
-    print('Inserido no banco = ${map[TableVehicle.imagePath]}');
+    
   }
 
     Future<List<Vehicle>> load() async {

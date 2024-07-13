@@ -10,10 +10,6 @@ class ApiFipe {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
-      print('A resposta não contém a chave "models".');
-        //  print('deu 200 mas oque retornou foi isso $data');
-      print(brandId);
-
       if (brandId == '23') {
         List<dynamic> selectModels = [
           data[5],
@@ -68,24 +64,15 @@ class ApiFipe {
           data[477],
         ];
         return selectModels;
-      }
-      else if (brandId == '21') {
-        List<dynamic> selectModels = [
-     
-        ];
+      } else if (brandId == '21') {
+        List<dynamic> selectModels = [];
+        return selectModels;
+      } else if (brandId == '7') {
+        List<dynamic> selectModels = [];
         return selectModels;
       }
 
-      else if (brandId == '7') {
-        List<dynamic> selectModels = [
-     
-        ];
-        return selectModels;
-      }
-      
       return data;
-
-      //data;
     } else {
       print('Erro ao buscar modelos: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -98,7 +85,6 @@ class ApiFipe {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      //  print('Marcas retornadas: $data');
       List<dynamic> selectBrand = [
         data[6],
         data[8],
@@ -114,24 +100,21 @@ class ApiFipe {
     }
   }
 
-Future<List<dynamic>> getYearsByModels(String brandId) async {
-  print('id models = ${brandId}');
-  var s = '59';
+  Future<List<dynamic>> getYearsByModels(String brandId) async {
+    var s = '59';
 
-  final response = await http.get(Uri.parse('https://fipe.parallelum.com.br/api/v2/cars/brands/$s/years'));
- 
+    final response = await http.get(Uri.parse(
+        'https://fipe.parallelum.com.br/api/v2/cars/brands/$s/years'));
 
-  if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
 
-    final data = json.decode(response.body);
-  
-    return data; // Retorna os dados decodificados
-  } else {
-    print('não retornou nada');
-    print('Erro ao buscar anos: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    return [];
+      return data; // Retorna os dados decodificados
+    } else {
+      print('não retornou nada');
+      print('Erro ao buscar anos: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return [];
+    }
   }
-}
-
 }

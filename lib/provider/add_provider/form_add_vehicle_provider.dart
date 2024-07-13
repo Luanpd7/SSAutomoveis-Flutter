@@ -45,15 +45,6 @@ class FormAddVehicleProvider with ChangeNotifier {
     );
     
     VehicleProvider().addVehicle(vehicle);
-
-    print('Veículo salvo com sucesso:');
-    print('Marca: ${vehicle.marca}');
-    print('Modelo: ${vehicle.modelo}');
-    print('Placa: ${vehicle.placa}');
-    print('Ano: ${vehicle.ano}');
-    print('Diária: ${vehicle.diaria}');
-    print('Caminho da Imagem: ${vehicle.imagePath}');
-
     
     Provider.of<VehicleProvider>(context, listen: false).select();
     cleanText();

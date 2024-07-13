@@ -14,9 +14,6 @@ class ManagerRepository {
 
     await database.insert(TableManager.tableName, map);
 
-    print('Inserido no banco = ${map[TableManager.cpf]}');
-    print('Inserido no banco = ${map[TableManager.nome]}');
-    print('Inserido no banco = ${map[TableManager.id]}');
   }
 
   Future<List<Manager>> load() async {

@@ -9,6 +9,11 @@ class FormAddRentProvider with ChangeNotifier {
   final TextEditingController initController = TextEditingController();
   final TextEditingController findController = TextEditingController();
 
+  dynamic date;
+
+
+  
+
    Client? selectedClient;
 
   void setClient(Client? client) {
@@ -24,9 +29,16 @@ class FormAddRentProvider with ChangeNotifier {
   }
 
   saveForm(){
+    print('cliente');
     print(selectedClient!.razaoSocial);
-        print(selectedClient!.cnpj);
-          print(selectedClient!.gerenteId);
-    print(selectedVehicle!.diaria);
+    print(selectedClient!.cnpj);
+    print(selectedClient!.gerenteId);
+    print('veiculo ');
+    print(selectedVehicle!.marca);
+    print(selectedVehicle!.modelo);
+    print('Data ');
+    print(initController);
+    print(findController);
+
   }
 }

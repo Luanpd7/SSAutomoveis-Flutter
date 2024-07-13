@@ -46,9 +46,6 @@ class AppTheme {
         headlineMedium: TextStyle(
             fontSize: 19, color: Colors.black, fontFamily: 'inter.ttf'),
       ),
-      /*   iconTheme: const IconThemeData(
-          color: Color.fromRGBO(134, 128, 128, 1.0), // Define a cor padrão dos ícones
-        ),*/
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         //Tema do bottomNavigationBarTheme
         backgroundColor: Colors.white,
@@ -66,7 +63,6 @@ class AppTheme {
           const Color.fromRGBO(48, 48, 48, 1.0), // Cor da tela de fundo
       hintColor: Color.fromRGBO(36, 36, 36, 0.988),
       // Ajuste das cores de texto para garantir boa legibilidade no tema escuro
-      /*   iconTheme: const IconThemeData(color:Color.fromRGBO(134, 128, 128, 1.0)) ,*/
       textTheme: const TextTheme(
         titleMedium: TextStyle(
           fontSize: 20,

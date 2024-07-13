@@ -9,16 +9,11 @@ import '../components/dashboard_item.dart';
 import '../provider/manager_provider.dart';
 
 class DashboardScreen extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
-
     final numberClients = Provider.of<ClientProvider>(context).returnLenght();
-    final numberManagers =  Provider.of<ManagerProvider>(context).returnLenght();
-    final numberVehicles =  Provider.of<VehicleProvider>(context).returnLenght();
-   
-
+    final numberManagers = Provider.of<ManagerProvider>(context).returnLenght();
+    final numberVehicles = Provider.of<VehicleProvider>(context).returnLenght();
 
     return Scaffold(
       appBar: AppBar(
@@ -29,8 +24,7 @@ class DashboardScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Consumer<ClientProvider>(
-        builder: (BuildContext context, ClientProvider value, Widget? child) {  
-          
+          builder: (BuildContext context, ClientProvider value, Widget? child) {
         return Column(
           children: [
             Chart(
@@ -39,7 +33,9 @@ class DashboardScreen extends StatelessWidget {
               rentCount: 0,
               managerCount: numberManagers.toDouble(),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -48,18 +44,19 @@ class DashboardScreen extends StatelessWidget {
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
                   children: [
-                   DashboardItem(label: 'Clientes',listLenght: numberClients),
-                    DashboardItem(label: 'Gerentes',listLenght: numberManagers),
-                     DashboardItem(label: 'Veículos',listLenght: numberVehicles),
-                      DashboardItem(label: 'Aluguéis',listLenght: 0),
+                    DashboardItem(label: 'Clientes', listLenght: numberClients),
+                    DashboardItem(
+                        label: 'Gerentes', listLenght: numberManagers),
+                    DashboardItem(
+                        label: 'Veículos', listLenght: numberVehicles),
+                    DashboardItem(label: 'Aluguéis', listLenght: 0),
                   ],
                 ),
               ),
             ),
           ],
         );
-        }
-      ),
+      }),
     );
   }
 }

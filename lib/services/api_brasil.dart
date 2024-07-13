@@ -17,7 +17,6 @@ class ApiBrasil with ChangeNotifier {
 
     if (response.statusCode == 200) {
       infoClients = json.decode(response.body);
-      print('voltou 200');
 
       return Client(
           cnpj: infoClients!['cnpj'],
