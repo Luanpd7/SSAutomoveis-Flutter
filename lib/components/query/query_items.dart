@@ -27,19 +27,18 @@ class QueryItems extends StatelessWidget {
   bool? isVehicle;
   bool? isRent;
 
-  QueryItems(
-      {required this.list,
-      this.isClient = false,
-      this.isManager = false,
-      this.isRent = false,
-      this.isVehicle = false});
-
-  //oque pode ser passado por parametro?
-  //ao inves de passsar a lista, passar razão social e cnpj
-  //ou nome e cpf
+  QueryItems({
+    required this.list,
+    this.isClient = false,
+    this.isManager = false,
+    this.isRent = false,
+    this.isVehicle = false,
+  });
 
   @override
   Widget build(BuildContext context) {
+    RentRepository rentRepository = RentRepository();
+
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: ListView.builder(
@@ -59,44 +58,76 @@ class QueryItems extends StatelessWidget {
             );
           }
 
-         if (isRent!) {
+          if (isRent!) {
             final rent = list[index] as Rent;
-          
-            return buildListTile(
-                context: context,
-                title: rent.vehicleId.toString(),
-                subtitle: rent.clientId.toString(),
-                onTap: () {
-                  Navigator.of(context)
-                      .pushNamed(AppRoute.queryRent, arguments: rent);
-              
-                });
-          }
 
+            return FutureBuilder<Map<String, dynamic>>(
+              future: Future.wait([
+                rentRepository.getVehicle(rent.vehicleId),
+                rentRepository.getClient(rent.clientId),
+              ]).then((results) {
+                return {
+                  'vehicle': results[0] as Vehicle,
+                  'client': results[1] as Client,
+                };
+              }),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Center(child: Text('Erro ao carregar dados'));
+                }
+
+                final data = snapshot.data;
+                if (data == null || data['vehicle'] == null || data['client'] == null) {
+                  return Center(child: Text('Dados não encontrados'));
+                }
+
+                final vehicle = data['vehicle'] as Vehicle;
+                final client = data['client'] as Client;
+
+                return buildListTile(
+                  context: context,
+                  title: vehicle.modelo,
+                  subtitle: client.razaoSocial,
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      AppRoute.queryRent,
+                      arguments: rent,
+                    );
+                  },
+                );
+              },
+            );
+          }
 
           if (isManager!) {
             final manager = list[index] as Manager;
             return buildListTile(
-                context: context,
-                title: manager.nome,
-                subtitle: manager.cpf,
-                onTap: () {
-                  Navigator.of(context)
-                      .pushNamed(AppRoute.queryManager, arguments: manager);
-                });
+              context: context,
+              title: manager.nome,
+              subtitle: manager.cpf,
+              onTap: () => Navigator.of(context).pushNamed(
+                AppRoute.queryManager,
+                arguments: manager,
+              ),
+            );
           }
+
           if (isVehicle!) {
             final vehicle = list[index] as Vehicle;
             return BuildListVehicle(
-                vehicle: vehicle,
-                onTap: () {
-                  Navigator.of(context)
-                      .pushNamed(AppRoute.queryVehicle, arguments: vehicle);
-                });
+              vehicle: vehicle,
+              onTap: () => Navigator.of(context).pushNamed(
+                AppRoute.queryVehicle,
+                arguments: vehicle,
+              ),
+            );
           }
-          return null;
-        }
-         
+
+          return Container(); // Retornar um container vazio se nenhuma condição for atendida
+        },
       ),
     );
   }

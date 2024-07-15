@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../clients/forms_query_client.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Essa classe será responsavel para ser a tela
 ///de registro do cliente, o usuário poderá
@@ -12,7 +13,7 @@ class RegisterClienteScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'Clientes',
+          AppLocalizations.of(context)!.costumers,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         backgroundColor: Theme.of(context).primaryColor,

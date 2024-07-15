@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/query/query_items.dart';
+import '../../models/vehicle.dart';
 import '../../provider/rent_provider.dart';
+import '../../repositories/rent_repository.dart';
 
 
 
@@ -35,6 +37,7 @@ class QueryRentsScreen extends StatelessWidget {
             ));
           }
          else if (rentProvider.listRent.isNotEmpty) {
+        
             return QueryItems(
               list: rentProvider.listRent,
               isRent: true,

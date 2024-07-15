@@ -7,6 +7,7 @@ import '../components/form/form_text.dart';
 import '../provider/query_provider/form_query_client_provider.dart';
 import '../routes/appRoutes.dart';
 import '../services/input_formatter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///[FormsQueryClient] Gerencia o formulário de consulta do usuário
 ///onde também ele poderá navegar para tela como filtrar ['QueryClientsScreen']
@@ -32,17 +33,17 @@ class FormsQueryClient extends StatelessWidget {
               textInputType: TextInputType.number,
             ),
             FormText(
-              label: 'Razão Social',
+              label: AppLocalizations.of(context)!.socialReason,
               controller: formRegisterProvider.razaoSocialController,
             ),
             FormText(
               inputFormatters: [maskFormatter.phoneMaskFormatter],
-              label: 'Telefone',
+              label: AppLocalizations.of(context)!.phone,
               controller: formRegisterProvider.telefoneController,
               textInputType: TextInputType.number,
             ),
             FormDrop(
-              labelDrop: 'Estado',
+              labelDrop: AppLocalizations.of(context)!.state,
               items: formRegisterProvider.estados,
               value: formRegisterProvider.selectedEstado ?? '',
               onChanged: (newValue) {
@@ -50,25 +51,25 @@ class FormsQueryClient extends StatelessWidget {
               },
             ),
             FormDrop(
-              labelDrop: 'Cidade',
+              labelDrop: AppLocalizations.of(context)!.city,
               items: formRegisterProvider.cidades,
               value: formRegisterProvider.selectedEstado ?? '',
               onChanged: (newValue) {
                 formRegisterProvider.setEstado(newValue);
               },
             ),
-            FormRadio(),
+           
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FormButton(
-                  labelButton: 'Filtrar',
+                  labelButton: AppLocalizations.of(context)!.filter,
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoute.queryClients);
                   },
                 ),
                 FormButton(
-                    labelButton: 'Novo Cliente',
+                    labelButton: AppLocalizations.of(context)!.newCustomer,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.addClient);
                     })

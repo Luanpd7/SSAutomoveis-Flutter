@@ -27,7 +27,21 @@
 
   "managers": "Gerentes",
 
-  "vehicles": "Veículos"
+  "vehicles": "Veículos",
+
+  "rent": "Aluguel",
+
+  "socialReason": "Razão Social",
+
+  "state": "Estado",
+
+  "city": "Cidade",
+
+  "filter": "Filtrar",
+
+  "phone": "Telefone",
+
+  "newCustomer": "Novo Cliente"
 
   
 

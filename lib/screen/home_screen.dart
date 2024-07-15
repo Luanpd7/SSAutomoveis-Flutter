@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pushNamed(context, AppRoute.registerManager);
                     }),
                 ItemMenu(
-                    label: 'Aluguel',
+                    label: AppLocalizations.of(context)!.rent,
                     icon: const Icon(Icons.car_rental_sharp , size: 54),
                     onTap: () {
                        Navigator.pushNamed(context, AppRoute.registerRent);

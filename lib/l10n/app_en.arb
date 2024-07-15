@@ -26,6 +26,20 @@
 
   "managers": "Managers",
 
-  "vehicles": "Vehicles"
+  "vehicles": "Vehicles",
+
+  "rent": "Rent",
+
+  "socialReason": "Social Reason",
+
+  "state": "State",
+
+  "phone": "Phone",
+
+  "city": "City",
+
+  "filter": "Filter",
+
+  "newCustomer": "New Customer"
 
 }

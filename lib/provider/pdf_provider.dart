@@ -44,7 +44,7 @@ class PDFProvider with ChangeNotifier {
               pw.Text('Marca: ${vehicle.marca}'),
               pw.Text('Ano: ${vehicle.ano}'),
               pw.Text('Ano: ${vehicle.placa}'),
-           //   pw.Image(vehicleImage, width: 100, height: 100), // Ajuste o tamanho conforme necessário
+          
               pw.SizedBox(height: 16),
               pw.Text('Dados do Gerente:', style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
               pw.Text('Nome: ${manager!.nome}'),

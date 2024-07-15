@@ -30,8 +30,8 @@ Widget buildListTile({
       height: 100,
       child: Center(
         child: ListTile(
-          title: Text(title),
-          subtitle: Text(subtitle),
+          title: Text(title, overflow: TextOverflow.ellipsis,),
+          subtitle: Text(subtitle, overflow: TextOverflow.ellipsis),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           onTap: onTap,
         ),
