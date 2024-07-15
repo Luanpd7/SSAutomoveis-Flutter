@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
 import '../models/brand.dart';
+import '../models/rent.dart';
 import '../models/vehicle.dart';
 
 ///Método para resetar o banco caso precise
@@ -52,6 +53,7 @@ Future<void> _createTables(Database db) async {
   await db.execute(TableManager.createTable);
   await db.execute(TableBrand.createTable);
   await db.execute(TableVehicle.createTable);
+   await db.execute(TableRent.createTable);
   print('Tables created');
 }
 
@@ -60,6 +62,7 @@ Future<void> _dropTables(Database db) async {
   await db.execute('DROP TABLE IF EXISTS ${TableManager.tableName}');
   await db.execute('DROP TABLE IF EXISTS ${TableBrand.tableName}');
   await db.execute('DROP TABLE IF EXISTS ${TableVehicle.tableName}');
+  await db.execute('DROP TABLE IF EXISTS ${TableRent.tableName}');
   print('Tables dropped');
 }
 
@@ -222,3 +225,51 @@ class TableVehicle {
     return map;
   }
 }
+
+class TableRent {
+  static const String createTable = ''' 
+  CREATE TABLE $tableName(
+   $id INTEGER PRIMARY KEY AUTOINCREMENT,
+   $clientId INTEGER,
+   $veiculoId INTEGER,
+   $dataRegistro TEXT NOT NULL,
+   $dataInicio TEXT NOT NULL,
+   $dataFim TEXT NOT NULL,
+   $dias TEXT NOT NULL,
+   $valorTotal TEXT NOT NULL,
+   $comissao TEXT NOT NULL
+   );
+  ''';
+
+  static const String tableName = 'rent';
+  static const String id = 'id';
+  static const String clientId = 'clientId';
+  static const String veiculoId = 'veiculoId';
+  static const String dataRegistro = 'dataRegistro';
+  static const String dataInicio = 'dataInicio';
+  static const String dataFim = 'dataFim';
+  static const String dias = 'dias';
+  static const String valorTotal = 'valorTotal'; 
+  static const String comissao = 'comissao'; 
+
+
+  // Método para mapear os dados do aluguel para um Map
+  static Map<String, dynamic> toMap(Rent rent) {
+    final map = <String, dynamic>{};
+
+    map[id] = rent.id;
+    map[clientId] = rent.clientId;
+    map[veiculoId] = rent.vehicleId;
+    map[dataRegistro] = rent.dataRegistro?.toIso8601String();
+    map[dataInicio] = rent.dataInicio.toIso8601String();
+    map[dataFim] = rent.dataFim.toIso8601String();
+    map[dias] = rent.dias;
+    map[valorTotal] = rent.valorTotal;
+    map[comissao] = rent.comissao;
+
+    return map;
+  }
+}
+
+
+

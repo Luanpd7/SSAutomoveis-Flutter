@@ -6,6 +6,7 @@ import 'provider/add_provider/form_add_client_provider.dart';
 import 'provider/add_provider/form_add_manager_provider.dart';
 import 'provider/add_provider/form_add_rent_provider.dart';
 import 'provider/add_provider/form_add_vehicle_provider.dart';
+import 'provider/pdf_provider.dart';
 import 'provider/query_provider/form_query_client_provider.dart';
 import 'provider/query_provider/form_query_manager_provider.dart';
 import 'provider/query_provider/form_query_rent.dart';
@@ -13,6 +14,7 @@ import 'provider/query_provider/form_query_vehicle_provider.dart';
 import 'provider/image_picker_provider.dart';
 import 'provider/language_provider.dart';
 import 'provider/manager_provider.dart';
+import 'provider/rent_provider.dart';
 import 'provider/settings_provider.dart';
 import 'provider/vehicle_provider.dart';
 import 'routes/appRoutes.dart';
@@ -24,9 +26,9 @@ import 'theme/app_theme.dart';
 /// tambem armazenado as configuraçoes das cores e fonte das telas.
 
 void main() async {
- // WidgetsFlutterBinding.ensureInitialized();
+ //WidgetsFlutterBinding.ensureInitialized();
 
- // await resetDatabase();  // Recriar o banco de dados
+  //await resetDatabase();  // Recriar o banco de dados
 
 
   runApp(
@@ -43,10 +45,12 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ApiBrasil()),
         ChangeNotifierProvider(create: (_) => ClientProvider()),
         ChangeNotifierProvider(create: (_) => ManagerProvider()),
+        ChangeNotifierProvider(create: (_) => RentProvider()),
         ChangeNotifierProvider(create: (_) => VehicleProvider()..selectMarca()),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
+        ChangeNotifierProvider(create: (_) => PDFProvider()),
       ],
       child: MyApp(),
     ),

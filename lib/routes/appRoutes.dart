@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/client.dart';
 import '../models/manager.dart';
+import '../models/rent.dart';
 import '../models/vehicle.dart';
 import '../screen/add_screen/add_client_screen.dart';
 import '../screen/add_screen/add_manager_screen.dart';
@@ -10,9 +11,11 @@ import '../screen/dashboard_screen.dart';
 import '../screen/privacy_policy_screen.dart';
 import '../screen/query_screen/query_client_screen.dart';
 import '../screen/query_screen/query_manager_screen.dart';
+import '../screen/query_screen/query_rent_screen.dart';
 import '../screen/query_screen/query_vehicle_screen.dart';
 import '../screen/querys_screen/query_clients_screen.dart';
 import '../screen/querys_screen/query_managers_screen.dart';
+import '../screen/querys_screen/query_rents_screen.dart';
 import '../screen/querys_screen/query_vehicles_screen.dart';
 import '../screen/register_screen/register_client_screen.dart';
 import '../screen/register_screen/register_manager_screen.dart';
@@ -41,9 +44,11 @@ class AppRoute {
   static const updateManager = '/UpdateManagerScreen';
   static const updateVehicle = '/UpdateVehicleScreen';
   static const registerVehicle = '/RegisterVehicleScreen';
+  static const queryRent= '/QueryRentScreen';
   static const queryVehicle = '/QueryVehicleScreen';
   static const registerRent = '/RegisterRentScreen';
   static const addRent = '/AddRentScreen';
+  static const queryRents = '/QueryRentsScreen';
   static const addVehicle = '/AddVehicleScreen';
   static const queryVehicles = '/QueryVehiclesScreen';
   static const privacyPolicy = '/PrivacyPolicy';
@@ -59,6 +64,7 @@ class AppRoute {
       },
       AppRoute.registerCliente: (context) => RegisterClienteScreen(),
       AppRoute.registerRent: (context) => RegisterRentScreen(),
+      AppRoute.queryRents: (context) => QueryRentsScreen(),
       AppRoute.queryManagers: (context) => QueryManagersScreen(),
       AppRoute.addManager: (context) => AddManagerScreen(),
       AppRoute.addRent: (context) => AddRentScreen(),
@@ -87,6 +93,10 @@ class AppRoute {
        AppRoute.queryVehicle: (context) {
         final vehicle = ModalRoute.of(context)!.settings.arguments as Vehicle;
         return QueryVehicleScreen(vehicle: vehicle,);
+      },
+       AppRoute.queryRent: (context) {
+        final rent = ModalRoute.of(context)!.settings.arguments as Rent;
+        return QueryRentScreen(rent: rent,);
       }
     };
   }

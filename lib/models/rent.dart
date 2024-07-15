@@ -1,51 +1,57 @@
-class Aluguel {
-  final int id;
-  final int clienteId;
-  final DateTime dataInicio;
-  final DateTime dataTermino;
-  final int numeroDias;
-  final double valorTotal;
-  final int veiculoId;
-  final int gerenteId;
-  final double comissaoGerente;
+import '../services/database.dart';
 
-  Aluguel({
-    required this.id,
-    required this.clienteId,
+
+class Rent {
+  final int? id;
+  final int clientId;
+  final int vehicleId;
+  final DateTime dataRegistro;
+  final DateTime dataInicio;
+  final DateTime dataFim;
+  final int dias;
+  final double valorTotal;
+  final double comissao;
+
+  Rent({
+    this.id,
+    required this.clientId,
+    required this.vehicleId,
+    required this.dataRegistro,
     required this.dataInicio,
-    required this.dataTermino,
-    required this.numeroDias,
+    required this.dataFim,
+    required this.dias,
     required this.valorTotal,
-    required this.veiculoId,
-    required this.gerenteId,
-    required this.comissaoGerente,
+    required this.comissao
   });
+
+  factory Rent.fromMap(Map<String, dynamic> map) {
+    return Rent(
+      id: map[TableRent.id],
+      clientId: map[TableRent.clientId],
+      vehicleId: map[TableRent.veiculoId],
+     dataRegistro: DateTime.parse(map[TableRent.dataRegistro]),
+    dataInicio: DateTime.parse(map[TableRent.dataInicio]),
+    dataFim: DateTime.parse(map[TableRent.dataFim]),
+      dias: int.parse(map[TableRent.dias]), 
+      valorTotal: double.parse(map[TableRent.valorTotal]),
+       comissao: double.parse(map[TableRent.comissao]),
+
+    
+    );
+    
+  }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'clienteId': clienteId,
-      'dataInicio': dataInicio.toIso8601String(),
-      'dataTermino': dataTermino.toIso8601String(),
-      'numeroDias': numeroDias,
-      'valorTotal': valorTotal,
-      'veiculoId': veiculoId,
-      'gerenteId': gerenteId,
-      'comissaoGerente': comissaoGerente,
+      TableRent.id: id,
+      TableRent.clientId: clientId,
+      TableRent.veiculoId: vehicleId,
+      TableRent.dataRegistro: dataRegistro.toIso8601String(),
+      TableRent.dataInicio: dataInicio.toIso8601String(),
+     TableRent.dataFim: dataFim.toIso8601String(),
+     TableRent.dias: dias,
+     TableRent.valorTotal: valorTotal,
+     TableRent.comissao: comissao
     };
-  }
-
-  factory Aluguel.fromMap(Map<String, dynamic> map) {
-    return Aluguel(
-      id: map['id'],
-      clienteId: map['clienteId'],
-      dataInicio: DateTime.parse(map['dataInicio']),
-      dataTermino: DateTime.parse(map['dataTermino']),
-      numeroDias: map['numeroDias'],
-      valorTotal: map['valorTotal'],
-      veiculoId: map['veiculoId'],
-      gerenteId: map['gerenteId'],
-      comissaoGerente: map['comissaoGerente'],
-    );
   }
 }

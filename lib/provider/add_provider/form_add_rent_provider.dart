@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
+import 'package:provider/provider.dart';
 import '../../models/client.dart';
+import '../../models/manager.dart';
+import '../../models/rent.dart';
 import '../../models/vehicle.dart';
+import '../../repositories/rent_repository.dart';
+import '../../routes/appRoutes.dart';
+import '../rent_provider.dart';
 
 class FormAddRentProvider with ChangeNotifier {
   final initController = TextEditingController();
   final findController = TextEditingController();
+
+  Manager? manager;
 
   dynamic dateTest;
   DateTime? dateInit;
@@ -19,31 +25,47 @@ class FormAddRentProvider with ChangeNotifier {
   }
 
   void setDataFind() {
-    print(dateFind);
-    dateTest = dateFind!.toIso8601String().split('T')[0];
-
-    findController.text = dateTest;
+    var dateTests = dateFind!.toIso8601String().split('T')[0];
+    findController.text = dateTests;
     notifyListeners();
   }
 
-  int diasSobrando() {
+  int diasSobrando()  {
     final initDateParse = DateTime.parse(initController.text);
     final findDateParse = DateTime.parse(findController.text);
-    final differenceTime = findDateParse.difference(initDateParse);
-
+   final differenceTime = findDateParse.difference(initDateParse);
+    
     return differenceTime.inDays;
   }
 
   double valorPagar() {
+    if (selectedVehicle == null || selectedVehicle!.diaria.isEmpty) {
+      return 0.0;
+    }
     double? diary = double.tryParse(selectedVehicle!.diaria);
     double value = (diary ?? 0) * diasSobrando();
-
     return value;
   }
 
+  Future<void> retornarManager() async {
+    if (selectedClient != null && selectedClient!.gerenteId != null) {
+      manager = await RentRepository().getManager(selectedClient!.gerenteId!);
+      
+    } else {
+      print("Cliente ou gerenteId não pode ser nulo");
+    }
+  }
+
   double comissaoGerente() {
-    print('id do gerente = ${selectedClient!.gerenteId}');
-    return 0;
+    if (manager != null) {
+      double? percentual = double.tryParse(manager!.percentual);
+      double valorTotal = valorPagar();
+      double comissao = (percentual ?? 0) / 100 * valorTotal;
+      return comissao;
+    } else {
+      print("Gerente não pode ser nulo");
+      return 0.0;
+    }
   }
 
   Client? selectedClient;
@@ -60,17 +82,49 @@ class FormAddRentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  saveForm() {
-    print('cliente');
-    print(selectedClient!.razaoSocial);
-    print(selectedClient!.cnpj);
-    print('veiculo ');
-    print(selectedVehicle!.marca);
-    print(selectedVehicle!.modelo);
-    print('Dias sobrando ');
+  Future<void> saveForm(BuildContext context) async {
+    await retornarManager();
+
+    print(initController.text);
+    print(findController.text);
     print(diasSobrando());
-    print('cálculo dias com a diária ');
-    print(valorPagar());
-    comissaoGerente();
+   
+
+   
+    
+
+    if (selectedClient == null ||
+        selectedVehicle == null ||
+        dateInit == null ||
+        dateFind == null) {
+      print('Todos os campos devem ser preenchidos');
+      return;
+    }
+
+    var rent = Rent(
+      id: null,
+      clientId: selectedClient!.id!,
+      vehicleId: selectedVehicle!.id!,
+      dataRegistro: DateTime.now(),
+      dataInicio: dateInit!,
+      dataFim: dateFind!,
+      dias:  diasSobrando(),
+      valorTotal: valorPagar(),
+      comissao: comissaoGerente(),
+    );
+
+    RentProvider().addRent(rent);
+    Provider.of<RentProvider>(context, listen: false).select();
+
+    cleanText();
+
+    Navigator.popAndPushNamed(context, AppRoute.queryRents);
+  }
+
+  void cleanText() {
+    initController.clear();
+    initController.clear();
+    selectedClient = null;
+    selectedVehicle = null;
   }
 }

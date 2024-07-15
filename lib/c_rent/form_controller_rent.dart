@@ -80,7 +80,7 @@ class FormsControllerRent extends StatelessWidget {
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101),
                         );
-                        if (date != null) {
+                         if (date != null) {
                           formProvider.dateInit = date;
                           formProvider.setDataInit();
                         }
@@ -96,7 +96,7 @@ class FormsControllerRent extends StatelessWidget {
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101),
                         );
-                        if (date != null) {
+                         if (date != null) {
                           formProvider.dateFind = date;
                           formProvider.setDataFind();
                         }
@@ -118,7 +118,7 @@ class FormsControllerRent extends StatelessWidget {
                       FormButton(
                         labelButton: isEditing ? 'Salvar' : 'Salvar',
                         onPressed: () {
-                          formProvider.saveForm();
+                          formProvider.saveForm(context);
                         },
                       ),
                     ],

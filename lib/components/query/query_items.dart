@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../models/rent.dart';
 import '../../models/vehicle.dart';
 import '../../models/client.dart';
 import '../../models/manager.dart';
+import '../../provider/rent_provider.dart';
+import '../../repositories/rent_repository.dart';
 import '../../routes/appRoutes.dart';
 import '../list/build_list_tile.dart';
 import '../list/build_list_vehicle.dart';
@@ -21,11 +25,13 @@ class QueryItems extends StatelessWidget {
   bool? isClient;
   bool? isManager;
   bool? isVehicle;
+  bool? isRent;
 
   QueryItems(
       {required this.list,
       this.isClient = false,
       this.isManager = false,
+      this.isRent = false,
       this.isVehicle = false});
 
   //oque pode ser passado por parametro?
@@ -52,6 +58,22 @@ class QueryItems extends StatelessWidget {
               ),
             );
           }
+
+         if (isRent!) {
+            final rent = list[index] as Rent;
+          
+            return buildListTile(
+                context: context,
+                title: rent.vehicleId.toString(),
+                subtitle: rent.clientId.toString(),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(AppRoute.queryRent, arguments: rent);
+              
+                });
+          }
+
+
           if (isManager!) {
             final manager = list[index] as Manager;
             return buildListTile(
@@ -65,19 +87,16 @@ class QueryItems extends StatelessWidget {
           }
           if (isVehicle!) {
             final vehicle = list[index] as Vehicle;
-
             return BuildListVehicle(
-              vehicle: vehicle,
-               onTap: () {
-                 Navigator.of(context)
+                vehicle: vehicle,
+                onTap: () {
+                  Navigator.of(context)
                       .pushNamed(AppRoute.queryVehicle, arguments: vehicle);
-
-                     
-                      
                 });
           }
           return null;
-        },
+        }
+         
       ),
     );
   }

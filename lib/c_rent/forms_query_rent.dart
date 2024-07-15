@@ -77,7 +77,7 @@ class FormsQueryRent extends StatelessWidget {
                     FormButton(
                       labelButton: 'Filtrar',
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoute.queryManagers);
+                        Navigator.pushNamed(context, AppRoute.queryRents);
                       },
                     ),
                     FormButton(
